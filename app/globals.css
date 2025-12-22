@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+:root {
+  --background: #F0F8FF;
+  --foreground: #171717;
+}
+
+@theme {
+  --color-corpo-orange: #f57622;
+  --color-corpo-blue: #02284A;
+
+  --color-soft-orange: #FFB86A;
+  --color-alt-blue: #063661;
+
+  --color-pastel-yellow: #FFFAD1;
+  --color-pastel-orange: #FFE6C2;
+  --color-pastel-pink: #FFDAC5;
+  --color-pastel-blue: #D5EBFF;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 100;}
+}
+
+@keyframes appear {
+  from {width: 0; opacity: 0; }
+  to {width: 350px; opacity: 100;}
+}
+
+@keyframes disappear {
+  from {width: 350px; opacity: 100;}
+  to {width: 0; opacity: 0;}
+}
+
+.fadein {
+  animation-name: fadeIn;
+  animation-duration: 1.5s;
+}
+
+.fadein-slower {
+  animation-name: fadeIn;
+  animation-duration: 2s;
+}
+
+.appear {
+  animation-name: appear;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+.overlay {
+  background-color: #171717;
+  opacity: 0;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 150;
+  visibility: hidden;
+  transition: opacity 1000ms ease-in, visibility 0ms ease-in 1000ms;
+}
+
+.overlay.visible {
+  visibility: visible;
+  opacity: 0.5;
+  transition-delay: 0ms;
+}
+
+.disappear {
+  animation-name: disappear;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+.break-title {
+  word-spacing: 1000px;
+}
+
+.markdown > * {
+  all: revert;
+}
+
+.iub__us-widget {
+  background-color: #02284A !important;
+  padding-bottom: 2rem !important;
+}
