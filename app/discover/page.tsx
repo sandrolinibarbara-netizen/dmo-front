@@ -23,7 +23,7 @@ export default async function Discover() {
                     <div className="w-2/4 h-auto relative">
                         <Image
                             className="object-cover object-center rounded-xl"
-                            src={process.env.NEXT_PUBLIC_BASE_URL + content.data['immagine_1'].formats.medium.url}
+                            src={process.env.NEXT_PUBLIC_BASE_URL + content.data['immagine_1'].url}
                             alt={content.data['immagine_1'].alternativeText}
                             fill={true}
                         />
@@ -40,7 +40,7 @@ export default async function Discover() {
                 <div className="w-2/4 h-auto relative">
                     <Image
                         className="object-cover object-center rounded-xl"
-                        src={process.env.NEXT_PUBLIC_BASE_URL + content.data['immagine_2'].formats.medium.url}
+                        src={process.env.NEXT_PUBLIC_BASE_URL + content.data['immagine_2'].url}
                         alt={content.data['immagine_2'].alternativeText}
                         fill={true}
                     />
@@ -57,7 +57,7 @@ export default async function Discover() {
                     <div className="w-2/4 h-auto relative">
                         <Image
                             className="object-cover object-center rounded-xl"
-                            src={process.env.NEXT_PUBLIC_BASE_URL + content.data['immagine_3'].formats.medium.url}
+                            src={process.env.NEXT_PUBLIC_BASE_URL + content.data['immagine_3'].url}
                             alt={content.data['immagine_3'].alternativeText}
                             fill={true}
                         />

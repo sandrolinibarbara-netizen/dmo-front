@@ -18,7 +18,7 @@ export default function Menu({links} : {links:any}) {
                         onNavigate={() => setShowMenu('close')}
                     >
                         <Image
-                            src='/logo.png'
+                            src='/logo.webp'
                             alt="visit-cremona-logo"
                             width={500}
                             height={500}
