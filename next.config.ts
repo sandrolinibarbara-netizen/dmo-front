@@ -2,18 +2,23 @@ import type { NextConfig } from "next";
 
 const backendURL = process.env.NEXT_PUBLIC_BASE_URL as string;
 const isDev = backendURL.startsWith("http://localhost");
+console.log(backendURL)
 
 const nextConfig: NextConfig = {
     images: {
         dangerouslyAllowLocalIP: isDev,
         remotePatterns: [
-            {
-                protocol: isDev ? "http" : "https",
-                hostname: isDev ? "localhost" : "",
-                port: isDev ? "1337" : "",
-                pathname: "/uploads/**"
-            },
+            new URL('http://localhost:1338/uploads/**'),
+            new URL('https://strapi-production-f50f.up.railway.app/uploads/**')
         ],
+        // remotePatterns: [
+        //     {
+        //         protocol: isDev ? "http" : "https",
+        //         hostname: isDev ? "localhost" : "",
+        //         port: isDev ? "1338" : "5432",
+        //         pathname: "uploads/**"
+        //     },
+        // ],
     },
 };
 

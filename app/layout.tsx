@@ -27,10 +27,10 @@ export default async function RootLayout({
 }>) {
     let content, contactsContent;
     try {
-        const data = await fetch('http://localhost:1337/api/link');
+        const data = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/link');
         content = await data.json();
 
-        const contactsData = await fetch('http://localhost:1337/api/contact');
+        const contactsData = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/contact');
         contactsContent = await contactsData.json();
     } catch(error) {
         console.log(error);
