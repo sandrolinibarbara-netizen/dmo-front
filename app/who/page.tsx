@@ -21,7 +21,8 @@ export default async function Who() {
             '&populate[12]=team_3.avatar' +
             '&populate[13]=team_4.avatar' +
             '&populate[14]=team_5.avatar' +
-            '&populate[15]=sub_hero_immagine'
+            '&populate[15]=sub_hero_immagine',
+            { next: { revalidate: 1000 }}
         );
         content = await data.json();
     } catch(error) {

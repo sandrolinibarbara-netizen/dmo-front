@@ -4,7 +4,8 @@ export default async function Who() {
     let content;
 
     try {
-        let data = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/accessibility-declaration');
+        let data = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/accessibility-declaration',
+            { next: { revalidate: 1000 }});
         content = await data.json();
     } catch(error) {
         console.log(error);

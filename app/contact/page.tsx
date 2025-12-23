@@ -5,7 +5,8 @@ export default async function Contacts() {
     let content;
 
     try {
-        let data = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/contact');
+        let data = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/contact',
+            { next: { revalidate: 1000 }});
         content = await data.json();
     } catch(error) {
         console.log(error)

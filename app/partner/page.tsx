@@ -40,7 +40,8 @@ export default async function Who() {
             '&populate[32]=partner_15' +
             '&populate[33]=partner_16' +
             '&populate[34]=partner_17' +
-            '&populate[35]=partner_18'
+            '&populate[35]=partner_18',
+            { next: { revalidate: 1000 }}
         );
         content = await data.json();
         for(const [key, value] of Object.entries(content.data)) {

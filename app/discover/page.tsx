@@ -4,7 +4,8 @@ export default async function Discover() {
     let content;
 
     try {
-        let data = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/discover?populate=*');
+        let data = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/discover?populate=*',
+            { next: { revalidate: 1000 }});
         content = await data.json();
     } catch(error) {
         console.log(error);

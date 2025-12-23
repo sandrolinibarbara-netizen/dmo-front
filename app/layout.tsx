@@ -27,10 +27,12 @@ export default async function RootLayout({
 }>) {
     let content, contactsContent;
     try {
-        const data = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/link');
+        const data = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/link',
+            { next: { revalidate: 1000 }});
         content = await data.json();
 
-        const contactsData = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/contact');
+        const contactsData = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/contact',
+            { next: { revalidate: 1000 }});
         contactsContent = await contactsData.json();
     } catch(error) {
         console.log(error);

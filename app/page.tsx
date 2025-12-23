@@ -16,7 +16,8 @@ export default async function Home() {
             '&populate[4]=sub_hero_video' +
             '&populate[5]=card_1' +
             '&populate[6]=card_2' +
-            '&populate[7]=visit_cards_immagine'
+            '&populate[7]=visit_cards_immagine',
+            { next: { revalidate: 1000 }}
         );
         content = await data.json();
     } catch(error) {
