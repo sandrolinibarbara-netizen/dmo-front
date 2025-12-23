@@ -45,6 +45,7 @@ export default function Carousel({pics}:{pics:any}) {
                {pics &&
                    <>
                        <Image
+                           loader={({ src }) => src}
                            className='object-cover absolute z-0'
                            src={process.env.NEXT_PUBLIC_BASE_URL + pics[placeholder].url}
                            alt={pics[placeholder].alternativeText}
@@ -52,6 +53,7 @@ export default function Carousel({pics}:{pics:any}) {
                        />
 
                        <Image
+                           loader={({ src }) => src}
                            id="slider"
                            className='object-cover relative z-5'
                            src={process.env.NEXT_PUBLIC_BASE_URL + pics[slide].url}

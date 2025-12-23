@@ -11,8 +11,8 @@ export default function Menu({links} : {links:any}) {
 
     return(
         <>
-            <header className="w-full fixed bg-corpo-blue z-100 top-0">
-                <div className="w-[90%] mx-auto p-0.5 text-white flex items-center justify-between">
+            <header className="w-full fixed bg-corpo-blue z-100 top-0 h-[79px]">
+                <div className="w-[90%] h-full mx-auto p-0.5 text-white flex items-center justify-between">
                     <Link
                         href="/"
                         onNavigate={() => setShowMenu('close')}
@@ -22,7 +22,7 @@ export default function Menu({links} : {links:any}) {
                             alt="visit-cremona-logo"
                             width={500}
                             height={500}
-                            className="h-[76px] w-auto"
+                            className="h-[56px] w-auto"
                         />
                     </Link>
                     <Hamburger className="w-8 h-8 cursor-pointer" onClick={() => setShowMenu('open')}/>
