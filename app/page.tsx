@@ -135,7 +135,7 @@ export default async function Home() {
                   </div>
                   <div className="w-2/4 h-[20vh] relative mb-8">
                     <Image
-                        src='/logo.png'
+                        src='/logo.webp'
                         alt="visit-cremona-logo"
                         width={500}
                         height={500}
