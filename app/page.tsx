@@ -8,7 +8,7 @@ export default async function Home() {
     let content;
 
     try {
-        let data = await fetch('http://localhost:1337/api/homepage' +
+        let data = await fetch(process.env.NEXT_PUBLIC_BASE_URL + 'api/homepage' +
             '?populate[0]=esperienza_1.immagine' +
             '&populate[1]=esperienza_2.immagine' +
             '&populate[2]=esperienza_3.immagine' +

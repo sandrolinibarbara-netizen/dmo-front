@@ -3,7 +3,7 @@ import Image from "next/image";
 export default async function Who() {
     let content;
     try{
-        let data = await fetch('http://localhost:1337/api/partner?populate=*'
+        let data = await fetch(process.env.NEXT_PUBLIC_BASE_URL + 'api/partner?populate=*'
         );
         content = await data.json();
     } catch(error) {

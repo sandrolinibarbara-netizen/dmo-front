@@ -5,7 +5,7 @@ import Image from "next/image";
 export default async function Who() {
     let content;
     try {
-        let data = await fetch('http://localhost:1337/api/who' +
+        let data = await fetch(process.env.NEXT_PUBLIC_BASE_URL + 'api/who' +
             '?populate[0]=tales_of_1.immagine' +
             '&populate[1]=tales_of_1.logo' +
             '&populate[2]=tales_of_2.immagine' +

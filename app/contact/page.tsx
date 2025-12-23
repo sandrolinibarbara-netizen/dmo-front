@@ -5,7 +5,7 @@ export default async function Contacts() {
     let content;
 
     try {
-        let data = await fetch('http://localhost:1337/api/contact');
+        let data = await fetch(process.env.NEXT_PUBLIC_BASE_URL + 'api/contact');
         content = await data.json();
     } catch(error) {
         console.log(error)

@@ -4,7 +4,7 @@ export default async function Discover() {
     let content;
 
     try {
-        let data = await fetch('http://localhost:1337/api/discover?populate=*');
+        let data = await fetch(process.env.NEXT_PUBLIC_BASE_URL + 'api/discover?populate=*');
         content = await data.json();
     } catch(error) {
         console.log(error);
