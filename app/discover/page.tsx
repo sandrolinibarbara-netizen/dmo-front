@@ -33,11 +33,6 @@ export default async function Discover() {
             </section>
 
             <section className="flex gap-20 w-[80vw] mx-auto justify-center px-8 pt-20 pb-24">
-                <div className="flex flex-col gap-2 w-2/4">
-                    <h2 className="font-bold text-4xl mt-8">{content.data['titolo_2']}</h2>
-                    <p className="w-full mt-2 pl-1 whitespace-pre-line">{content.data['testo_2']}</p>
-
-                </div>
                 <div className="w-2/4 h-auto relative">
                     <Image
                         className="object-cover object-center rounded-xl"
@@ -45,6 +40,11 @@ export default async function Discover() {
                         alt={content.data['immagine_2'].alternativeText}
                         fill={true}
                     />
+                </div>
+                <div className="flex flex-col gap-2 w-2/4">
+                    <h2 className="font-bold text-4xl mt-8">{content.data['titolo_2']}</h2>
+                    <p className="w-full mt-2 pl-1 whitespace-pre-line">{content.data['testo_2']}</p>
+
                 </div>
             </section>
 
