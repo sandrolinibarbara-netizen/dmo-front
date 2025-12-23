@@ -25,7 +25,7 @@ export default async function Home() {
 
   return (
       <>
-          <section className="mt-[79px] fadein-slower">
+          <section className="mt-[79px] fadein-slower w-full">
             <Carousel pics={content.data['hero_carosello']}/>
           </section>
 
@@ -92,9 +92,9 @@ export default async function Home() {
                       <h2 className="font-bold text-4xl mt-8">{content.data['visit_cards_titolo']}</h2>
                       <p className="w-full mt-8 pl-1 whitespace-pre-line">{content.data['visit_cards_descrizione']}</p>
                   </div>
-                  <div className="absolute w-[100%] h-[40vh] right-[-30%]">
+                  <div className="absolute w-[100%] h-[40vh]">
                       <Image
-                          className="max-w-[70%] object-cover"
+                          className="max-w-[70%] object-cover ml-[30%]"
                           src={process.env.NEXT_PUBLIC_BASE_URL + content.data['visit_cards_immagine'].url}
                           alt={content.data['visit_cards_immagine'].alternativeText}
                           fill={true}

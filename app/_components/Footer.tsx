@@ -3,12 +3,12 @@ import Image from "next/image";
 
 export default function Footer({links, contacts} : {links:any, contacts:any}) {
     return (
-        <footer className="min-h-[40vh] bg-corpo-blue w-screen flex gap-4 py-16 text-white">
+        <footer className="min-h-[40vh] bg-corpo-blue w-full flex gap-4 py-16 text-white">
             <div className="w-[80vw] flex gap-20 items-start mx-auto">
                 <div className="w-[20vw] flex flex-col items-center justify-center gap-4">
                     <Link href="/" className="w-[90%]">
                         <Image
-                            src='/logo.png'
+                            src='/logo.webp'
                             alt="visit-cremona-logo"
                             width={500}
                             height={500}

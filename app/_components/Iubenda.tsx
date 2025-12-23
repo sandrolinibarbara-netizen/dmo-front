@@ -7,7 +7,7 @@ export default function Iubenda() {
     const iubendaCP = `<script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>`;
 
     return(
-        <div className="bg-corpo-blue w-screen">
+        <div className="bg-corpo-blue w-full">
             <div className="w-[90%] flex items-center justify-center gap-2 mx-auto pb-4">
                 <a href="https://www.iubenda.com/privacy-policy/52538338"
                    className="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe " title="Privacy Policy ">Privacy

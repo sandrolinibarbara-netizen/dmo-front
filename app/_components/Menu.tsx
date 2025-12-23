@@ -11,8 +11,8 @@ export default function Menu({links} : {links:any}) {
 
     return(
         <>
-            <header className="w-screen fixed bg-corpo-blue z-100 top-0">
-                <div className="w-[90vw] mx-auto p-0.5 text-white flex items-center justify-between">
+            <header className="w-full fixed bg-corpo-blue z-100 top-0">
+                <div className="w-[90%] mx-auto p-0.5 text-white flex items-center justify-between">
                     <Link
                         href="/"
                         onNavigate={() => setShowMenu('close')}

@@ -19,9 +19,10 @@ export default async function Contacts() {
             const subject = formData.get('subject');
             const message = formData.get('message');
             await sendMail({
-                sendTo: 'barbara.sandrolini@gmail.com',
+                sendTo: 'info@visitcremona.com',
                 subject:'Nuova richiesta di informazioni: ' + subject,
-                text: fullName + ' ha mandato il seguente messaggio: ' + message
+                text: fullName + ' ha mandato il seguente messaggio: ' + message,
+                replyTo: email
             });
         }
     }
