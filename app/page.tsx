@@ -3,6 +3,7 @@ import ExperienceCard from "@/app/_components/ExperienceCard";
 import VisitCard from "@/app/_components/VisitCard";
 import Link from "next/link";
 import Image from "next/image";
+import AnimatedHoverButton from "@/app/_components/AnimatedHoverButton";
 
 export default async function Home() {
     let content;
@@ -36,7 +37,9 @@ export default async function Home() {
                   <h3 className="text-3xl pl-1">{content.data['sub_hero_sottotitolo']}</h3>
                   <p className="w-full mt-2 pl-1 whitespace-pre-line">{content.data['sub_hero_descrizione']}</p>
                   <div className="w-full text-right mt-8">
-                    <Link href="/discover" className="font-bold underline">Scopri il territorio &gt; </Link>
+                    <Link href="/discover" className="font-bold underline relative">
+                        <AnimatedHoverButton/>
+                    </Link>
                   </div>
               </div>
               <div className="w-full h-[400px] md:w-2/4 md:h-auto relative">

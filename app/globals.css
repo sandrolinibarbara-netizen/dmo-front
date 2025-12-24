@@ -31,21 +31,6 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-@keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity: 100;}
-}
-
-@keyframes appear {
-  from {width: 0; opacity: 0; }
-  to {width: 350px; opacity: 100;}
-}
-
-@keyframes disappear {
-  from {width: 350px; opacity: 100;}
-  to {width: 0; opacity: 0;}
-}
-
 .fadein {
   animation-name: fadeIn;
   animation-duration: 1.5s;
@@ -58,6 +43,24 @@ body {
 
 .appear {
   animation-name: appear;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+.disappear {
+  animation-name: disappear;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+.show {
+  animation-name: show;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+.hide {
+  animation-name: hide;
   animation-duration: 1s;
   animation-fill-mode: forwards;
 }
@@ -79,12 +82,6 @@ body {
   transition-delay: 0ms;
 }
 
-.disappear {
-  animation-name: disappear;
-  animation-duration: 1s;
-  animation-fill-mode: forwards;
-}
-
 .break-title {
   word-spacing: 1000px;
 }
@@ -96,6 +93,31 @@ body {
 .iub__us-widget {
   background-color: #02284A !important;
   padding-bottom: 2rem !important;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 100;}
+}
+
+@keyframes appear {
+  from {width: 0; opacity: 0; }
+  to {width: 350px; opacity: 100;}
+}
+
+@keyframes disappear {
+  from {width: 350px; opacity: 100;}
+  to {width: 0; opacity: 0;}
+}
+
+@keyframes show {
+  from {width: 0; opacity: 0; }
+  to {width: 100%; opacity: 100;}
+}
+
+@keyframes hide {
+  from {width: 100%; opacity: 100;}
+  to {width: 0; opacity: 0;}
 }
 
 @media screen and (max-width: 480px) {
