@@ -2,7 +2,6 @@ import type { NextConfig } from "next";
 
 const backendURL = process.env.NEXT_PUBLIC_BASE_URL as string;
 const isDev = backendURL.startsWith("http://localhost");
-console.log(backendURL)
 
 const nextConfig: NextConfig = {
     images: {
@@ -19,6 +18,21 @@ const nextConfig: NextConfig = {
         //         pathname: "uploads/**"
         //     },
         // ],
+    },
+    async redirects() {
+        return [
+            {
+                source: '/:path*',
+                has: [
+                    {
+                        type: 'host',
+                        value: 'visitcremona.com',
+                    },
+                ],
+                destination: 'https://www.visitcremona.com/:path*',
+                permanent: true,
+            },
+        ]
     },
 };
 
