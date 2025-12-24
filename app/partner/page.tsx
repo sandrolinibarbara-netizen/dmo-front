@@ -57,7 +57,7 @@ export default async function Who() {
       <>
           <section className="w-[90vw] md:w-[80vw] mx-auto text-center md:text-left mt-[79px] pt-[69px] mb-[80px] min-h-[65vh] fadein-slower">
               <h2 className="font-bold text-4xl">{content.data['partners_titolo']}</h2>
-              <div className="flex justify-center md:justify-start gap-4 mt-8 flex-wrap">
+              <div className="grid justify-items-center grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-4 mt-8">
               {partnersInfo &&
                   partnersInfo.map((el:any) => {
                       if(!el[0]) {

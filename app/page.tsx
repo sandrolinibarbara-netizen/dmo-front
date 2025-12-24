@@ -135,7 +135,7 @@ export default async function Home() {
                       <h2 className="font-bold text-4xl mt-8">{content.data['chi_siamo_titolo']}</h2>
                       <p className="w-full mt-8 pl-1 whitespace-pre-line text-xl">{content.data['chi_siamo_descrizione']}</p>
                       <div className="w-full text-center md:text-right mt-12 md:mt-8">
-                        <Link href='/who' className="text-black bg-soft-orange rounded-full p-4">Scopri di più &gt;</Link>
+                        <Link href='/who' className="text-black transition duration-500 hover:bg-corpo-orange bg-soft-orange rounded-full p-4">Scopri di più &gt;</Link>
                       </div>
                   </div>
                   <div className="w-full md:w-2/4 md:h-[20vh] relative mb-8">
