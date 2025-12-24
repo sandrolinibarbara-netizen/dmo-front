@@ -18,22 +18,7 @@ const nextConfig: NextConfig = {
         //         pathname: "uploads/**"
         //     },
         // ],
-    },
-    async redirects() {
-        return [
-            {
-                source: '/:path*',
-                has: [
-                    {
-                        type: 'host',
-                        value: 'visitcremona.com',
-                    },
-                ],
-                destination: 'https://www.visitcremona.com/:path*',
-                permanent: true,
-            },
-        ]
-    },
+    }
 };
 
 export default nextConfig;

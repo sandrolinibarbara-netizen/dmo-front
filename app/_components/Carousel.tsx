@@ -29,6 +29,11 @@ export default function Carousel({pics}:{pics:any}) {
         document.getElementById('slider')?.classList.add('fadein');
     }
 
+    function setCredits(str:string) {
+        const arr = str.split('Credits:');
+        return arr[1];
+    }
+
     useEffect(() => {
         setTimeout(() => {
             document.getElementById('slider')?.classList.remove('fadein');
@@ -58,16 +63,11 @@ export default function Carousel({pics}:{pics:any}) {
                            alt={pics[slide].alternativeText}
                            fill={true}
                        />
+
                        {
-                           pics[slide].url.includes('IMG_9978_copia_1') &&
+                           pics[slide].alternativeText.includes('Credits:') &&
                            <div className="text-white font-medium absolute z-6 bottom-2 right-5">
-                               &copy; Vincenzo Cerati
-                           </div>
-                       }
-                       {
-                           pics[slide].url.includes('Anna_Lopopolo_1') &&
-                           <div className="text-white font-medium absolute z-6 bottom-2 right-5">
-                               &copy; Carlo Buschieri
+                               &copy; {setCredits(pics[slide].alternativeText)}
                            </div>
                        }
                    </>
