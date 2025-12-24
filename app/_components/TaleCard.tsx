@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function TaleCard({logo, pic} : {logo:string[]|undefined, pic:string[]|undefined}) {
     return (
-        <div className="rounded-xl w-[25vw] p-6 shadow-lg">
+        <div className="rounded-xl w-full md:w-[25vw] p-6 shadow-lg">
             { logo && pic &&
                 <>
                 <div className="w-full h-[72px] relative">

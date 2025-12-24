@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function VisitCard({title, price, details} : {title:string|undefined, price:number|undefined, details:string[]|undefined}) {
     return(
-        <div className={`${title === 'Welcome' ? 'bg-pastel-blue border-blue-300' : 'bg-pastel-pink border-red-300'} rounded-xl w-[40vw] flex flex-col border p-8 min-h-[40vh]`}>
+        <div className={`${title === 'Welcome' ? 'bg-pastel-blue border-blue-300' : 'bg-pastel-pink border-red-300'} rounded-xl w-full md:w-[40vw] flex flex-col border p-8 min-h-[40vh]`}>
             {
                 title && price && details &&
                 <>

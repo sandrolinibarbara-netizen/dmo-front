@@ -97,3 +97,9 @@ body {
   background-color: #02284A !important;
   padding-bottom: 2rem !important;
 }
+
+@media screen and (max-width: 480px) {
+  .iub__us-widget {
+    justify-content: center !important;
+  }
+}

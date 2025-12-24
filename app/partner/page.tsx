@@ -55,9 +55,9 @@ export default async function Who() {
 
   return (
       <>
-          <section className="w-[80vw] mx-auto mt-[79px] pt-[69px] mb-[80px] min-h-[65vh] fadein-slower">
+          <section className="w-[90vw] md:w-[80vw] mx-auto text-center md:text-left mt-[79px] pt-[69px] mb-[80px] min-h-[65vh] fadein-slower">
               <h2 className="font-bold text-4xl">{content.data['partners_titolo']}</h2>
-              <div className="flex gap-4 mt-8 flex-wrap">
+              <div className="flex justify-center md:justify-start gap-4 mt-8 flex-wrap">
               {partnersInfo &&
                   partnersInfo.map((el:any) => {
                       if(!el[0]) {
@@ -98,7 +98,7 @@ export default async function Who() {
 
               <h2 className="font-bold text-4xl mt-16">{content.data['diventa_partner_titolo']}</h2>
               {/*<p className="w-full pl-1 columns-2 mt-8 whitespace-pre-line">{content.data['diventa_partner_descrizione']}</p>*/}
-              <p className="w-full text-left font-semibold mt-4">Per maggiori informazioni scrivici a <a href="mailto:info@visitcremona.com" className="underline">info@visitcremona.com</a>
+              <p className="w-full text-center md:text-left font-semibold mt-4">Per maggiori informazioni scrivici a <a href="mailto:info@visitcremona.com" className="underline">info@visitcremona.com</a>
               </p>
           </section>
       </>

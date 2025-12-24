@@ -41,13 +41,13 @@ export default async function Who() {
               />
           </div>
 
-          <section className="flex gap-20 w-[80vw] mx-auto justify-center px-8 pt-20 pb-24">
-              <div className="flex flex-col gap-2 w-2/4">
+          <section className="flex flex-col md:flex-row gap-20 w-[90vw] md:w-[80vw] mx-auto justify-center px-4 md:px-8 pt-20 pb-24">
+              <div className="flex flex-col gap-2 w-full md:w-2/4">
                   <h2 className="font-bold text-4xl mt-8">{content.data['sub_hero_titolo']}</h2>
                   <p className="w-full mt-2 pl-1 whitespace-pre-line">{content.data['sub_hero_descrizione']}</p>
 
               </div>
-              <div className="w-2/4 h-[450px] relative">
+              <div className="w-full md:w-2/4 h-[500px] md:h-[450px] relative">
                   <Image
                       className="object-cover rounded-xl"
                       src={process.env.NEXT_PUBLIC_BASE_URL + content.data['sub_hero_immagine'].url}
@@ -57,17 +57,17 @@ export default async function Who() {
               </div>
           </section>
 
-          <section className="bg-corpo-blue px-8 pt-20 pb-24">
+          <section className="bg-corpo-blue px-8 pt-20 pb-20 md:pb-24">
               <div className="w-[80vw] mx-auto text-center">
                   <p className="text-white font-bold text-3xl whitespace-pre-line">{content.data.motto}</p>
               </div>
           </section>
 
-          <section className="w-[80vw] mx-auto px-8 pt-16 pb-24">
+          <section className="w-[90vw] md:w-[80vw] mx-auto px-4 md:px-8 pt-16 pb-24">
               <h2 className="font-bold text-4xl mt-8">{content.data['anime_titolo']}</h2>
-              <p className="w-full mt-8 pl-1 whitespace-pre-line columns-2 gap-8">{content.data['anime_descrizione']}</p>
+              <p className="w-full mt-8 pl-1 whitespace-pre-line md:columns-2 gap-8">{content.data['anime_descrizione']}</p>
 
-              <div className="flex gap-8 justify-center mt-16">
+              <div className="flex flex-col md:flex-row gap-8 justify-center mt-16">
                   <TaleCard logo={[
                       process.env.NEXT_PUBLIC_BASE_URL + content.data['tales_of_1'][0].logo.url,
                       content.data['tales_of_1'][0].logo.alternativeText
@@ -88,7 +88,7 @@ export default async function Who() {
               </div>
           </section>
 
-          <section className="w-[80vw] mx-auto px-8 pt-8 pb-24 text-center">
+          <section className="w-[90vw] md:w-[80vw] mx-auto px-4 md:px-8 pt-8 pb-24 text-center">
               <h2 className="font-bold text-4xl mt-8">{content.data['team_titolo']}</h2>
 
               <div className="flex gap-12 justify-center mt-16 flex-wrap">

@@ -18,7 +18,7 @@ export default function ExperienceCard({title, subtitle, description, pic, backg
     }
 
     return(
-        <div className={`${bg} rounded-xl w-[25vw] flex flex-col gap-1 p-6 text-black`}>
+        <div className={`${bg} rounded-xl w-full md:w-[25vw] flex flex-col gap-1 p-6 text-black`}>
             {
                 title && description && pic &&
                 <>

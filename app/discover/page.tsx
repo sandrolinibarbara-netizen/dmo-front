@@ -14,14 +14,14 @@ export default async function Discover() {
     return(
         <>
             <section className="mt-[79px] bg-alt-blue fadein-slower">
-                <div className="flex gap-20 w-[80vw] mx-auto justify-center px-8 pt-20 pb-24 text-white">
-                    <div className="flex flex-col gap-2 w-2/4">
+                <div className="flex flex-col md:flex-row gap-20 w-[90vw] md:w-[80vw] mx-auto justify-center px-4 md:px-8 pt-20 pb-24 text-white">
+                    <div className="flex flex-col gap-2 w-full md:w-2/4">
                         <p className="text-sm"><span className="font-semibold">Home /</span> Scopri il territorio</p>
                         <h2 className="font-bold text-4xl mt-8">{content.data['titolo_1']}</h2>
                         <p className="w-full mt-2 pl-1 whitespace-pre-line">{content.data['testo_1']}</p>
 
                     </div>
-                    <div className="w-2/4 h-auto relative">
+                    <div className="w-full h-[500px] md:w-2/4 md:h-auto relative">
                         <Image
                             className="object-cover object-center rounded-xl"
                             src={process.env.NEXT_PUBLIC_BASE_URL + content.data['immagine_1'].url}
@@ -32,8 +32,8 @@ export default async function Discover() {
                 </div>
             </section>
 
-            <section className="flex gap-20 w-[80vw] mx-auto justify-center px-8 pt-20 pb-24">
-                <div className="w-2/4 h-auto relative">
+            <section className="flex flex-col md:flex-row gap-20 w-[90vw] md:w-[80vw] mx-auto justify-center px-4 md:px-8 pt-20 pb-24">
+                <div className="w-full h-[500px] md:w-2/4 md:h-auto relative">
                     <Image
                         className="object-cover object-center rounded-xl"
                         src={process.env.NEXT_PUBLIC_BASE_URL + content.data['immagine_2'].url}
@@ -41,7 +41,7 @@ export default async function Discover() {
                         fill={true}
                     />
                 </div>
-                <div className="flex flex-col gap-2 w-2/4">
+                <div className="flex flex-col gap-2 w-full md:w-2/4">
                     <h2 className="font-bold text-4xl mt-8">{content.data['titolo_2']}</h2>
                     <p className="w-full mt-2 pl-1 whitespace-pre-line">{content.data['testo_2']}</p>
 
@@ -49,13 +49,13 @@ export default async function Discover() {
             </section>
 
             <section className="bg-alt-blue text-white">
-                <div className="flex gap-12 w-[80vw] mx-auto justify-center px-8 pt-20 pb-24">
-                    <div className="flex flex-col gap-2 w-2/4">
+                <div className="flex flex-col md:flex-row gap-12 w-[90vw] md:w-[80vw] mx-auto justify-center px-4 md:px-8 pt-20 pb-24">
+                    <div className="flex flex-col gap-2 w-full md:w-2/4">
                         <h2 className="font-bold text-4xl mt-8">{content.data['titolo_3']}</h2>
                         <p className="w-full mt-2 pl-1 whitespace-pre-line">{content.data['testo_3']}</p>
 
                     </div>
-                    <div className="w-2/4 h-auto relative">
+                    <div className="w-full h-[500px] md:w-2/4 md:h-auto relative">
                         <Image
                             className="object-cover object-center rounded-xl"
                             src={process.env.NEXT_PUBLIC_BASE_URL + content.data['immagine_3'].url}

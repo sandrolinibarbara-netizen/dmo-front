@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function MemberCard({avatar, name, job, link} :
 {avatar:string[]|undefined, name:string|undefined, job:string|undefined, link:string|undefined}) {
     return (
-        <div className="rounded-xl w-[17.5vw] flex flex-col items-center">
+        <div className="rounded-xl w-full md:w-[17.5vw] flex flex-col items-center">
             {avatar && name && job && link &&
                 <>
                     <div className="w-full h-[50vh] max-h-[500px] relative">
