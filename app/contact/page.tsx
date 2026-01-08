@@ -33,9 +33,8 @@ export default async function Contacts() {
             <section className="w-[90vw] md:w-[80vw] mx-auto mt-[79px] px-4 md:px-0 pt-[69px] mb-[80px] flex flex-col md:flex-row gap-16 fadein-slower">
                 <div className="w-full md:w-2/4">
                     <h2 className="font-bold text-4xl">Contatti</h2>
-                    <p className="w-full mt-8 pl-1">Email: {content.data.email}</p>
-                    <p className="w-full pl-1">Telefono: {content.data.telefono}</p>
-                    <p className="w-full pl-1">Sede: {content.data.indirizzo}</p>
+                    <p className="w-full mt-8 pl-1">Email: <a className="underline" href={`mailto:${content.data.email}`}>{content.data.email}</a></p>
+                    <p className="w-full pl-1">Telefono: <a className="underline" href={`tel:${content.data.telefono.split(' ').join('')}`}>{content.data.telefono}</a></p>
                 </div>
                 <div className="w-full md:w-2/4">
                     <h2 className="font-bold text-4xl">Hai bisogno di più info?</h2>
@@ -63,7 +62,7 @@ export default async function Contacts() {
                         </label>
 
                         <div className="w-full text-right">
-                            <button type="submit" className="cursor-pointer w-[164px] text-black bg-soft-orange rounded-full p-4">Invia &gt;</button>
+                            <button type="submit" className="cursor-pointer w-[164px] text-black transition duration-500 hover:bg-corpo-orange bg-soft-orange rounded-full p-4">Invia &gt;</button>
                         </div>
                     </Form>
                 </div>
