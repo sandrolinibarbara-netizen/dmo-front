@@ -1,5 +1,5 @@
 import Carousel from "@/app/_components/Carousel";
-import ExperienceCard from "@/app/_components/ExperienceCard";
+// import ExperienceCard from "@/app/_components/ExperienceCard";
 import VisitCard from "@/app/_components/VisitCard";
 import Link from "next/link";
 import Image from "next/image";
@@ -9,7 +9,6 @@ import data from "@/utils/experiences.json"
 import SingleExperienceCard from "@/app/_components/SingleExperienceCard";
 import Event from "@/app/_components/Event";
 import Stories from "@/app/_components/Stories";
-import Form from "next/form";
 import {sendMail} from "@/utils/nodemailer/sendMail";
 import ContactForm from "@/app/_components/ContactForm";
 
@@ -32,22 +31,6 @@ export default async function Home() {
         content = await data.json();
     } catch(error) {
         console.log(error);
-    }
-
-    async function send(formData:any) {
-        'use server'
-        if(formData.get('privacy') === 'on') {
-            const fullName = formData.get('name') + ' ' + formData.get('lastname');
-            const email = formData.get('email');
-            const subject = formData.get('subject');
-            const message = formData.get('message');
-            await sendMail({
-                sendTo: 'info@visitcremona.com',
-                subject:'Nuova richiesta di informazioni: ' + subject,
-                text: fullName + ' ha mandato il seguente messaggio: ' + message,
-                replyTo: email
-            });
-        }
     }
 
   return (
@@ -80,7 +63,7 @@ export default async function Home() {
           {/*default: pt-20*/}
           <section className="w-[90vw] md:w-[80vw] mx-auto px-4 md:px-8 pb-24">
               <h2 className="font-bold text-4xl mt-8 mb-12">Scopri cosa offre il territorio vicino a te</h2>
-              <LocalMap/>
+              <LocalMap homepage={true} autoFilter={0}/>
           </section>
 
           {/*<section className="w-full bg-corpo-blue text-white">*/}
@@ -180,7 +163,7 @@ export default async function Home() {
                           arrData.filter(el => el.tipo === 'CL').map((el, i) => {
                               if (i < 3) {
                                   return (
-                                      <SingleExperienceCard key={el.titolo} el={el}/>
+                                      <SingleExperienceCard key={el.titolo} el={el} grid={true}/>
                                   )
                               }
                           })
@@ -213,7 +196,7 @@ export default async function Home() {
                           arrData.filter(el => el.tipo === 'CO').map((el, i) => {
                               if (i < 3) {
                                   return (
-                                      <SingleExperienceCard key={el.titolo} el={el}/>
+                                      <SingleExperienceCard key={el.titolo} el={el} grid={true}/>
                                   )
                               }
                           })

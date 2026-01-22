@@ -8,11 +8,11 @@ import data from "@/utils/experiences.json"
 import Link from "next/link";
 import {useState} from "react";
 
-export default function Map() {
+export default function Map({homepage, autoFilter} : {homepage:boolean, autoFilter:number}) {
     const [filter, setFilter] = useState<string>('all');
     return (
         <section id="map">
-            <div className="flex items-center gap-4 px-4 mb-4">
+            {homepage && <div className="flex items-center gap-4 px-4 mb-4">
                 <ul className="text-sm flex gap-4">
                     <li>
                         <button type="button"
@@ -22,7 +22,7 @@ export default function Map() {
                     </li>
                     <li>
                         <button value="cycling" type="button"
-                            className={`${filter === 'all' ? 'bg-soft-orange' : 'border border-gray-300'} cursor-pointer rounded-full px-4 py-2`}
+                                className={`${filter === 'all' ? 'bg-soft-orange' : 'border border-gray-300'} cursor-pointer rounded-full px-4 py-2`}
                                 onClick={() => setFilter('all')}>Tutti
                         </button>
                     </li>
@@ -39,14 +39,14 @@ export default function Map() {
                         </button>
                     </li>
                 </ul>
-            </div>
-            <MapContainer className="h-[600px] rounded z-100" center={[45.136887, 10.028458]} zoom={10}
+            </div>}
+            <MapContainer className={`${homepage ? 'h-[600px]' : 'h-[546px] w-[848px]'} rounded-xl z-100`} center={[45.136887, 10.028458]} zoom={10}
                           scrollWheelZoom={false}>
                 <TileLayer
                     attribution="Google Maps"
                     url="https://www.google.cn/maps/vt?lyrs=m@189&gl=cn&x={x}&y={y}&z={z}"
                 />
-                {(filter === 'all' || filter === 'cycling') && data.cycling.map(el => {
+                {((filter === 'all' && autoFilter === 0) || filter === 'cycling' || autoFilter === 1) && data.cycling.map(el => {
                     return(
                         <Marker key={el.coordinate[0] + ', ' + el.coordinate[1]} position={[el.coordinate[0], el.coordinate[1]]}>
                             <Popup className="border border-orange-500 rounded-xl">
@@ -69,7 +69,7 @@ export default function Map() {
                     )
                 })}
 
-                {(filter === 'all' || filter === 'luthiery') && data.luthiery.map(el => {
+                {((filter === 'all' && autoFilter === 0) || filter === 'luthiery' || autoFilter === 2) && data.luthiery.map(el => {
                     return(
                         <Marker key={el.coordinate[0] + ', ' + el.coordinate[1]} position={[el.coordinate[0], el.coordinate[1]]}>
                             <Popup className="border border-orange-500 rounded-xl">

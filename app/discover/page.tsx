@@ -1,4 +1,8 @@
 import Image from "next/image";
+import LocalMap from "@/app/_components/LocalMap";
+import TalesLogo from "@/app/_components/TalesLogo";
+import data from "@/utils/experiences.json"
+import SingleExperienceCard from "@/app/_components/SingleExperienceCard";
 
 export default async function Discover() {
     let content;
@@ -65,6 +69,80 @@ export default async function Discover() {
                     </div>
                 </div>
             </section>
+
+            <section>
+                <div className="w-[90vw] md:w-[80vw] mx-auto px-4 md:px-8 pt-20 pb-24">
+                    <h2 className="font-bold text-4xl mt-8">Le Anime del Territorio</h2>
+                    <p className="w-full mt-8 pl-1">La provincia di Cremona è un racconto di ville, castelli e arte.
+                        A Cremona entri in palazzi storici con saloni affrescati e cortili silenziosi.
+                        Fuori città trovi residenze affascinanti immerse in splendidi parchi : Villa Calciati Crotti,
+                        Villa Sommi Picenardi, Villa Bottini “La Limonaia”, Palazzo Zurla De Poli.
+                        A San Giovanni in Croce visiti Villa Medici del Vascello, legata alla storia di Cecilia
+                        Gallerani. Il giardino romantico è fatto di viali, alberi alti e angoli dove fermarsi un momento
+                        a respirare.
+                        Poi ci sono le rocche e i castelli: la Rocca Sforzesca di Soncino, i camminamenti di
+                        Pizzighettone, il Castello Visconteo di Pandino. Mura, fossati, torri: tutto parla di storia e
+                        bellezza.
+                    </p>
+
+                    <div className="mt-28 mb-8">
+                        <TalesLogo theme="cycling"/>
+                    </div>
+                    <div className="flex gap-4">
+                        <div className="flex flex-col gap-2">
+                            {data.cycling.map((el, i) => {
+                                if (i < 2) {
+                                    return (
+                                        <SingleExperienceCard key={el.titolo} el={el} grid={false}/>
+                                    )
+                                }
+                            })}
+                        </div>
+                        <div className="flex flex-col gap-2 ">
+                            <div className="flex gap-2">
+                                <div
+                                    className="text-sm rounded-xl w-[50%] h-[150px] bg-violet-300 py-4 px-8 flex items-center justify-center">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                </div>
+                                <Image className="object-cover rounded-xl w-[50%] h-[150px]"
+                                       src="/images/stories/town.webp" alt="pic" width={200} height={100}/>
+                            </div>
+                            <LocalMap homepage={false} autoFilter={1}/>
+                        </div>
+                    </div>
+
+                    <div className="mt-28 mb-8">
+                        <TalesLogo theme="luthiery"/>
+                    </div>
+                    <div className="flex gap-4">
+                        <div className="flex flex-col gap-2">
+                            {data.luthiery.map((el, i) => {
+                                if (i < 2) {
+                                    return (
+                                        <SingleExperienceCard key={el.titolo} el={el} grid={false}/>
+                                    )
+                                }
+                            })}
+                        </div>
+                        <div className="flex flex-col gap-2 ">
+                            <div className="flex gap-2">
+                                <div
+                                    className="text-sm rounded-xl w-[50%] h-[150px] bg-sky-300 py-4 px-8 flex items-center justify-center">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                </div>
+                                <Image className="object-cover rounded-xl w-[50%] h-[150px]"
+                                       src="/images/stories/lab.webp" alt="pic" width={200} height={100}/>
+                            </div>
+                            <LocalMap homepage={false} autoFilter={2}/>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
         </>
-)
+    )
 }

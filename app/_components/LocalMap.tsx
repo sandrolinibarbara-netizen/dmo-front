@@ -2,7 +2,7 @@
 import {useMemo} from "react";
 import dynamic from "next/dynamic";
 
-export default function LocalMap() {
+export default function LocalMap({homepage, autoFilter} : {homepage:boolean, autoFilter:number}) {
     const ImportedMap = useMemo(() => dynamic(
         () => import('@/app/_components/Map'),
         {
@@ -11,5 +11,5 @@ export default function LocalMap() {
         }
     ), [])
 
-    return <ImportedMap/>
+    return <ImportedMap homepage={homepage} autoFilter={autoFilter}/>
 }
