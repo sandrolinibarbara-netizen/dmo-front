@@ -11,7 +11,7 @@ export default function Menu({links} : {links:any}) {
 
     return(
         <>
-            <header className="w-full fixed bg-corpo-blue z-100 top-0 h-[79px]">
+            <header className="w-full fixed bg-corpo-blue z-110 top-0 h-[79px]">
                 <div className="w-[90%] h-full mx-auto p-0.5 text-white flex items-center justify-between">
                     <Link
                         href="/"

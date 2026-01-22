@@ -90,6 +90,19 @@ body {
   all: revert;
 }
 
+.leaflet-popup-content {
+  margin: 0 !important;
+  width: 236px !important;
+}
+
+.leaflet-popup-content-wrapper {
+  padding: 0 !important;
+}
+
+a.leaflet-popup-close-button {
+  color: #F0F8FF !important;
+}
+
 .iub__us-widget {
   background-color: #02284A !important;
   padding-bottom: 2rem !important;
