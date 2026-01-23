@@ -40,7 +40,7 @@ export default function Map({homepage, autoFilter} : {homepage:boolean, autoFilt
                     </li>
                 </ul>
             </div>}
-            <MapContainer className={`${homepage ? 'h-[600px]' : 'h-[546px] w-[848px]'} rounded-xl z-100`} center={[45.136887, 10.028458]} zoom={10}
+            <MapContainer className={`${homepage ? 'h-[600px]' : 'h-[546px] w-[866px]'} rounded-xl z-100`} center={[45.136887, 10.028458]} zoom={10}
                           scrollWheelZoom={false}>
                 <TileLayer
                     attribution="Google Maps"

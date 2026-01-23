@@ -3,6 +3,8 @@ import LocalMap from "@/app/_components/LocalMap";
 import TalesLogo from "@/app/_components/TalesLogo";
 import data from "@/utils/experiences.json"
 import SingleExperienceCard from "@/app/_components/SingleExperienceCard";
+import Link from "next/link";
+import AnimatedHoverButton from "@/app/_components/AnimatedHoverButton";
 
 export default async function Discover() {
     let content;
@@ -85,7 +87,14 @@ export default async function Discover() {
                         bellezza.
                     </p>
 
-                    <div className="mt-28 mb-8">
+                    <div className="mt-12 flex gap-4">
+                        <Link href='#cycling' className="bg-violet-300 rounded-full px-4 py-3 text-sm">Cycling</Link>
+                        <Link href='#luthiery' className="bg-sky-300 rounded-full px-4 py-3 text-sm">Music & luthiery</Link>
+                    </div>
+
+                    {/*Tales of Cycling*/}
+                    <div id="cycling" aria-hidden={true} className="h-[80px]"></div>
+                    <div className="mt-2 mb-8">
                         <TalesLogo theme="cycling"/>
                     </div>
                     <div className="flex gap-4">
@@ -110,10 +119,16 @@ export default async function Discover() {
                                        src="/images/stories/town.webp" alt="pic" width={200} height={100}/>
                             </div>
                             <LocalMap homepage={false} autoFilter={1}/>
+                            <div className="w-full text-right mt-4">
+                                <Link href="/discover/cycling" className="font-bold underline relative">
+                                    <AnimatedHoverButton content="Scopri Tales of Cycling"/>
+                                </Link>
+                            </div>
                         </div>
                     </div>
-
-                    <div className="mt-28 mb-8">
+                    {/*Tales of Luthiery*/}
+                    <div id="luthiery" aria-hidden={true} className="h-[80px]"></div>
+                    <div id="luthiery" className="mt-2 mb-8">
                         <TalesLogo theme="luthiery"/>
                     </div>
                     <div className="flex gap-4">
@@ -138,6 +153,11 @@ export default async function Discover() {
                                        src="/images/stories/lab.webp" alt="pic" width={200} height={100}/>
                             </div>
                             <LocalMap homepage={false} autoFilter={2}/>
+                            <div className="w-full text-right mt-4">
+                                <Link href="/discover" className="font-bold underline relative">
+                                    <AnimatedHoverButton content="Scopri Tales of Music and Luthiery"/>
+                                </Link>
+                            </div>
                         </div>
                     </div>
 

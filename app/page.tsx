@@ -9,7 +9,6 @@ import data from "@/utils/experiences.json"
 import SingleExperienceCard from "@/app/_components/SingleExperienceCard";
 import Event from "@/app/_components/Event";
 import Stories from "@/app/_components/Stories";
-import {sendMail} from "@/utils/nodemailer/sendMail";
 import ContactForm from "@/app/_components/ContactForm";
 
 export default async function Home() {
