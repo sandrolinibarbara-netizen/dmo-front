@@ -154,7 +154,7 @@ export default async function Discover() {
                             </div>
                             <LocalMap homepage={false} autoFilter={2}/>
                             <div className="w-full text-right mt-4">
-                                <Link href="/discover" className="font-bold underline relative">
+                                <Link href="/discover/luthiery" className="font-bold underline relative">
                                     <AnimatedHoverButton content="Scopri Tales of Music and Luthiery"/>
                                 </Link>
                             </div>

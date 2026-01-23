@@ -8,7 +8,7 @@ import data from "@/utils/experiences.json"
 import Link from "next/link";
 import {useState} from "react";
 
-export default function Map({homepage, autoFilter} : {homepage:boolean, autoFilter:number}) {
+export default function Map({homepage, autoFilter, fullPage} : {homepage:boolean, autoFilter:number, fullPage?:undefined|boolean}) {
     const [filter, setFilter] = useState<string>('all');
     return (
         <section id="map">
@@ -40,7 +40,7 @@ export default function Map({homepage, autoFilter} : {homepage:boolean, autoFilt
                     </li>
                 </ul>
             </div>}
-            <MapContainer className={`${homepage ? 'h-[600px]' : 'h-[546px] w-[866px]'} rounded-xl z-100`} center={[45.136887, 10.028458]} zoom={10}
+            <MapContainer className={`${homepage || fullPage ? 'h-[600px]' : 'h-[546px] w-[866px]'} rounded-xl z-100`} center={[45.136887, 10.028458]} zoom={10}
                           scrollWheelZoom={false}>
                 <TileLayer
                     attribution="Google Maps"

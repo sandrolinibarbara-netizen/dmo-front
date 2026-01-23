@@ -5,7 +5,7 @@ export default function Event({what, when, where, how, img} : {what:string, when
         <div className="w-full rounded-xl border-1 flex p-4 gap-8 h-[558px]">
             <Image src={img} alt="copertina esperienza" width={400} height={400} className="rounded-xl w-[40%] h-[524px] object-cover"/>
             <div>
-                <div className="p-4 h-[486px]">
+                <div className="p-4 h-[456px]">
                     <h5 className="mb-2 font-semibold text-2xl">{what}</h5>
                     <div className="flex flex-col gap-4 my-4 border-b-1 border-orange-800 pb-4">
                         <div className="flex gap-4 items-center">
@@ -56,7 +56,7 @@ export default function Event({what, when, where, how, img} : {what:string, when
                         erat volutpat. Nullam eget congue mi.
                     </p>
                 </div>
-                <div className="flex gap-4 w-full items-center justify-end text-sm">
+                <div className="flex gap-4 w-full items-center justify-end text-sm border-t border-orange-800 pt-8">
                     <a className="text-black transition duration-500 hover:bg-corpo-orange bg-soft-orange rounded-full py-2 px-3"
                        href="/">Acquista &gt;</a>
                     <a className="text-black transition duration-500 hover:bg-corpo-orange bg-soft-orange rounded-full py-2 px-3"
