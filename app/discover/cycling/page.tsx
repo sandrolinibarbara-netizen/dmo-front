@@ -4,6 +4,7 @@ import SingleExperienceCard from "@/app/_components/SingleExperienceCard";
 import Link from "next/link";
 import Event from "@/app/_components/Event";
 import LocalMap from "@/app/_components/LocalMap";
+import {PDF} from "@/app/_components/_icons/PDF";
 
 export default function Cycling() {
     return (
@@ -20,15 +21,7 @@ export default function Cycling() {
                         </div>
 
                         <div className="flex flex-col gap-2 w-full md:w-2/4">
-                            <p className="w-full mt-2 pl-1 whitespace-pre-line">Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit,
-                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                                veniam, quis
-                                nostrud
-                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                                dolor in
-                                reprehenderit
-                                in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                            <p className="w-full mt-2 pl-1 whitespace-pre-line">Il cicloturismo nel territorio di Cremona, Crema e Casalmaggiore offre una varietà di paesaggi che si sviluppano tra fiumi, canali e cascine storiche. Un itinerario di oltre 300 chilometri lungo piste ciclabili ben segnalate e strade a basso traffico ti permette di scoprire bellezze artistiche, natura e specialità gastronomiche locali.</p>
                         </div>
                     </div>
                 </div>
@@ -50,7 +43,7 @@ export default function Cycling() {
                             segue
                             gli argini del Po e dell’Adda, interseca riserve naturali e conduce a borghi ricchi di
                             storia
-                            come Pizzighettone, Torre de’Picenardi e Castelleone.
+                            come Pizzighettone, Torre de’ Picenardi e Castelleone.
                             Il Casalasco, tra Po e Oglio, è dominato dagli ambienti fluviali, come nel caso di
                             Casalmaggiore. Numerosi itinerari permettono di scoprire oasi e riserve naturali, borghi
                             affascinanti e siti di archeologia industriale. Diversi edifici storici come Villa Medici
@@ -84,6 +77,44 @@ export default function Cycling() {
                     <div
                         className="w-[33%] h-[200px] rounded-xl border-green-500 border bg-green-100 flex items-center justify-center">
                         Komoot Map #4
+                    </div>
+                </div>
+
+                <div className="mt-5 flex gap-4 w-full">
+                    <div
+                        className="p-8 w-[33%] h-[200px] rounded-xl bg-corpo-blue text-white flex flex-col items-center justify-center">
+                        <p className="font-bold">Scarica la mappa cicloturistica del territorio cremonese</p>
+                        <div className="flex gap-4 items-center mt-2">
+                            <PDF className="cursor-pointer w-20 h-20"/>
+                            <p className="text-sm">
+                                Sette percorsi che coprono una totalità di circa 300 km, proponendo anche diverse
+                                varianti.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div
+                        className="p-8 w-[33%] h-[200px] rounded-xl bg-corpo-blue text-white flex flex-col items-center justify-center">
+                        <p className="font-bold">Consulta la mappa delle piste ciclabili di Cremona e dintorni</p>
+                        <div className="flex gap-4 items-center mt-2">
+                            <PDF className="cursor-pointer w-20 h-20"/>
+                            <p className="text-sm">
+                                La lista completa con mappa di tutta la pista ciclabile urbana ed extraurbana di
+                                Cremona.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div
+                        className="p-8 w-[33%] h-[200px] rounded-xl bg-corpo-blue text-white flex flex-col items-center justify-center">
+                        <p className="font-bold">Consulta la mappa delle piste ciclabili di Crema</p>
+                        <div className="flex gap-4 items-center mt-2">
+                            <PDF className="cursor-pointer w-20 h-20"/>
+                            <p className="text-sm">
+                                La lista completa con mappa di tutta la pista ciclabile urbana ed extraurbana di
+                                Crema.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -126,7 +157,7 @@ export default function Cycling() {
             </section>
 
             <section className="w-[90vw] md:w-[80vw] mx-auto items-center justify-center px-4 md:px-8 pt-16 pb-24">
-                <h2 className="font-bold text-4xl mt-8 mb-16">Tutte gli eventi</h2>
+                <h2 className="font-bold text-4xl mt-8 mb-16">Tutti gli eventi</h2>
                 <div className="flex gap-4 flex-wrap">
                     {
                         data.cycling.map(el => {
