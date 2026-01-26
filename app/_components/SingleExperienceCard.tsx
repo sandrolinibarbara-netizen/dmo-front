@@ -2,9 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import {Experience} from "@/app/_types/types";
 
-export default function SingleExperienceCard({el, grid} : {el:Experience, grid:boolean}) {
+export default function SingleExperienceCard({el, grid, altGrid} : {el:Experience, grid:boolean, altGrid?:boolean}) {
     return(
-        <div className={`h-[348px] ${grid ? 'w-[calc(25%-12px)]' : ''} border border-orange-500 rounded-xl text-black bg-[#F0F8FF]`}>
+        <div className={`h-[348px] ${grid ? 'w-[calc(25%-12px)]' : altGrid ? 'w-[calc(50%-16px)]' : ''} border border-orange-500 rounded-xl text-black bg-[#F0F8FF]`}>
             <Image className="rounded-t-xl w-full h-[136px] object-cover" width={200} height={100} src={`/images/experiences/${el.immagine}`} alt="immagine"/>
             <div className="px-4 pt-4 pb-2">
                 <h4 className="font-bold h-[32px]">

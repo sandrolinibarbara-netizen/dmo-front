@@ -170,7 +170,7 @@ export default async function Home() {
                   </div>
 
                   <div className="w-full text-right mt-4">
-                      <Link href="/discover" className="font-bold underline relative">
+                      <Link href="/experiences/classic" className="font-bold underline relative">
                           <AnimatedHoverButton content="Vai alle Esperienze Classiche"/>
                       </Link>
                   </div>
@@ -203,7 +203,7 @@ export default async function Home() {
                   </div>
 
                   <div className="w-full text-right mt-4">
-                      <Link href="/discover" className="font-bold underline relative">
+                      <Link href="/experiences/contemporary" className="font-bold underline relative">
                           <AnimatedHoverButton content="Vai alle Esperienze Contemporanee"/>
                       </Link>
                   </div>
@@ -243,7 +243,7 @@ export default async function Home() {
                   </div>
 
                   <div className="w-full text-right">
-                      <Link href="/discover" className="font-bold underline relative">
+                      <Link href="/experiences/unique" className="font-bold underline relative">
                           <AnimatedHoverButton content="Vai alle Esperienze Uniche"/>
                       </Link>
                   </div>

@@ -4,6 +4,8 @@ import {Hamburger} from "@/app/_components/_icons/Hamburger";
 import {useState} from "react";
 import {Close} from "@/app/_components/_icons/Close";
 import Image from "next/image";
+import {Search} from "@/app/_components/_icons/Search";
+import {Cart} from "@/app/_components/_icons/Cart";
 
 export default function Menu({links} : {links:any}) {
 
@@ -25,7 +27,16 @@ export default function Menu({links} : {links:any}) {
                             className="h-[56px] w-auto"
                         />
                     </Link>
-                    <Hamburger className="w-8 h-8 cursor-pointer" onClick={() => setShowMenu('open')}/>
+                    <div className="flex gap-4 items-center">
+                        <Link href='/experiences' className="text-black transition duration-500 hover:bg-corpo-orange bg-soft-orange rounded-full px-4 py-3">Esperienze</Link>
+                        <div className="flex relative items-center">
+                            <Search className="text-gray-600 absolute left-[16px] w-5 h-5"/>
+                            <input type="text" placeholder="Cerca eventi o esperienze" className="w-[272px] py-3 pr-8 pl-12 rounded-full bg-white text-black"/>
+                        </div>
+                        <Cart className="cursor-pointer w-8 h-8"/>
+                        <Hamburger className="w-8 h-8 cursor-pointer" onClick={() => setShowMenu('open')}/>
+                        <Image src="/images/it.png" className="cursor-pointer rounded-full w-6 h-6" alt="italian flag" width={64} height={64}/>
+                    </div>
                 </div>
             </header>
 
@@ -65,6 +76,22 @@ export default function Menu({links} : {links:any}) {
                         </li>
                         <li className="py-3">
                             <Link
+                                href="/discover/cycling"
+                                onNavigate={() => setShowMenu('close')}
+                            >
+                                Cicloturismo
+                            </Link>
+                        </li>
+                        <li className="py-3">
+                            <Link
+                                href="/discover/luthiery"
+                                onNavigate={() => setShowMenu('close')}
+                            >
+                                Musica e liuteria
+                            </Link>
+                        </li>
+                        <li className="py-3">
+                            <Link
                                 href="/partner"
                                 onNavigate={() => setShowMenu('close')}
                             >
@@ -87,7 +114,8 @@ export default function Menu({links} : {links:any}) {
                                 Dichiarazione di accessibilità
                             </Link>
                         </li>
-                        <li className="py-3"><a target="_blank" href={links['amministrazione_trasparente']}>Amministrazione trasparente</a></li>
+                        <li className="py-3"><a target="_blank" href={links['amministrazione_trasparente']}>Amministrazione
+                            trasparente</a></li>
                         <li className="py-3">
                             <Link
                                 href="/contact"

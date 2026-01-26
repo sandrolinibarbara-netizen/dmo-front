@@ -25,7 +25,6 @@ export default async function Discover() {
                         <p className="text-sm"><span className="font-semibold">Home /</span> Scopri il territorio</p>
                         <h2 className="font-bold text-4xl mt-8">{content.data['titolo_1']}</h2>
                         <p className="w-full mt-2 pl-1 whitespace-pre-line">{content.data['testo_1']}</p>
-
                     </div>
                     <div className="w-full h-[500px] md:w-2/4 md:h-auto relative">
                         <Image

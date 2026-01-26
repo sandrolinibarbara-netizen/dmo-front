@@ -9,6 +9,7 @@
       "descrizione": "La più nota cicloturistica vintage sulle strade bianche del Chianti, con più percorsi e bici d’epoca.",
       "immagine": "cycling1.webp",
       "tags": ["Arte & Cultura", "Cicloturismo"],
+      "categoria": "cycling",
       "coordinate": [45.1330, 10.0220]
     },
     {
@@ -20,6 +21,7 @@
       "descrizione": "La granfondo più storica d’Italia con percorsi Medio e Lungo attraverso l’Appennino romagnolo.",
       "immagine": "cycling2.webp",
       "tags": ["Cicloturismo", "Aria aperta"],
+      "categoria": "cycling",
       "coordinate": [45.3610, 9.6840]
     },
     {
@@ -31,17 +33,19 @@
       "descrizione": "Granfondo iconica con arrivo al Passo dello Stelvio; si sceglie tra tre percorsi: da 64, 108 e 130 km.",
       "immagine": "cycling1.webp",
       "tags": ["Cicloturismo", "Aria aperta"],
+      "categoria": "cycling",
       "coordinate": [44.9900, 10.4200]
     },
     {
       "titolo": "Bike Night Emilia-Romagna",
       "tipo": "CO",
-      "data": "2025-06-14/2025-06-15",
+      "data": "2025-06-15",
       "luogo": "Ferrara, Emilia-Romagna",
       "costo": 45,
       "descrizione": "Pedalata notturna di 100 km lungo le ciclabili del Po, dalla città al mare.",
       "immagine": "cycling2.webp",
       "tags": ["Arte & Cultura", "Cicloturismo"],
+      "categoria": "cycling",
       "coordinate": [45.2870, 9.8580]
     },
     {
@@ -53,6 +57,7 @@
       "descrizione": "Granfondo su strade bianche nel paesaggio toscano, legata alla classica pro.",
       "immagine": "cycling1.webp",
       "tags": ["Cicloturismo", "Aria aperta"],
+      "categoria": "cycling",
       "coordinate": [45.4020, 9.5480]
     },
     {
@@ -64,6 +69,7 @@
       "descrizione": "Capolavoro rinascimentale celebre per giardini e fontane.",
       "immagine": "villa1.webp",
       "tags": ["Arte & Cultura", "Aria aperta"],
+      "categoria": "cycling",
       "coordinate": [45.4000, 9.8700]
     },
     {
@@ -75,6 +81,7 @@
       "descrizione": "La residenza imperiale di Adriano: area archeologica monumentale.",
       "immagine": "villa2.webp",
       "tags": ["Arte & Cultura", "Museo"],
+      "categoria": "cycling",
       "coordinate": [45.1880, 9.7920]
     }
   ],
@@ -88,7 +95,8 @@
       "descrizione": "Villa del XVIII secolo affacciata sul Lago di Como, set di celebri film.",
       "immagine": "villa1.webp",
       "tags": ["Arte & Cultura", "Museo"],
-      "coordinate":  [45.3790, 9.7480]
+      "coordinate":  [45.3790, 9.7480],
+      "categoria": "luthiery"
     },
     {
       "titolo": "Villa Carlotta",
@@ -99,6 +107,7 @@
       "descrizione": "Villa e giardino botanico sul Lago di Como, collezioni d’arte e fioriture.",
       "immagine": "villa2.webp",
       "tags": ["Arte & Cultura", "Aria aperta"],
+      "categoria": "luthiery",
       "coordinate":  [45.3680, 9.7700]
     },
     {
@@ -110,6 +119,7 @@
       "descrizione": "Residenza sabauda barocca sulla collina di Torino, con giardini storici.",
       "immagine": "villa1.webp",
       "tags": ["Arte & Cultura", "Aria aperta"],
+      "categoria": "luthiery",
       "coordinate": [45.4020, 9.4890]
     },
     {
@@ -121,6 +131,7 @@
       "descrizione": "Percorso sulla liuteria cremonese con strumenti storici di Stradivari, Amati e Guarneri.",
       "immagine": "violin1.webp",
       "tags": ["Arte & Cultura", "Museo"],
+      "categoria": "luthiery",
       "coordinate": [45.2870, 9.7640]
     },
     {
@@ -132,6 +143,7 @@
       "descrizione": "Brevi concerti su strumenti storici delle collezioni del Museo del Violino.",
       "immagine": "violin2.webp",
       "tags": ["Arte & Cultura", "Museo"],
+      "categoria": "luthiery",
       "coordinate": [45.4620, 9.6390]
     },
     {
@@ -143,6 +155,7 @@
       "descrizione": "Ingresso in una bottega artigiana per scoprire fasi, materiali e strumenti della liuteria.",
       "immagine": "violin1.webp",
       "tags": ["Arte & Cultura", "Museo"],
+      "categoria": "luthiery",
       "coordinate": [45.4680, 9.5110]
     },
     {
@@ -154,6 +167,7 @@
       "descrizione": "Visita guidata speciale ai Musei Civici.",
       "immagine": "violin2.webp",
       "tags": ["Arte & Cultura", "Museo"],
+      "categoria": "luthiery",
       "coordinate": [45.3700, 9.5310]
     },
     {
@@ -165,6 +179,7 @@
       "descrizione": "La fiera/festival internazionale dedicata a strumenti e musica.",
       "immagine": "violin1.webp",
       "tags": ["Arte & Cultura", "Museo"],
+      "categoria": "luthiery",
       "coordinate": [45.2140, 10.0020]
     }
   ]
