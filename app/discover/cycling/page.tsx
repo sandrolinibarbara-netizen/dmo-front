@@ -138,13 +138,13 @@ export default function Cycling() {
 
                     <div className="rounded-xl border border-white p-4 w-fit mb-6">
                         <p>Necessiti di conoscere strutture bike friendly?
-                            <Link href="/" className="font-bold text-corpo-orange underline ml-2">Clicca qui &gt;</Link>
+                            <Link href="/discover/cycling/bike-friendly" className="font-bold text-corpo-orange underline ml-2">Clicca qui &gt;</Link>
                         </p>
                     </div>
 
                     <div className="rounded-xl border border-white p-4 w-fit mb-6">
                         <p>Vuoi sapere dove sono i servizi a noleggio nel nostro territorio?
-                            <Link href="/" className="font-bold text-corpo-orange underline ml-2">Clicca qui &gt;</Link>
+                            <Link href="/discover/cycling/rent" className="font-bold text-corpo-orange underline ml-2">Clicca qui &gt;</Link>
                         </p>
                     </div>
 

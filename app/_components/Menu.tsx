@@ -12,7 +12,7 @@ export default function Menu({links} : {links:any}) {
     const [showMenu, setShowMenu] = useState<string>('initial');
 
     function toggleMenu(action:'open'|'close') {
-        if(action === 'open' && showMenu === 'close') {
+        if(action === 'open' && (showMenu === 'close' || showMenu === 'initial')) {
             setShowMenu('open');
         } else if(action === 'close' && showMenu === 'open') {
             setShowMenu('close');

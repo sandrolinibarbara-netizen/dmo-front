@@ -8,7 +8,7 @@ import data from "@/utils/experiences.json"
 import Link from "next/link";
 import {useState} from "react";
 
-export default function Map({homepage, autoFilter, fullPage} : {homepage:boolean, autoFilter:number, fullPage?:undefined|boolean}) {
+export default function Map({homepage, autoFilter, fullPage} : {homepage:boolean, autoFilter?:undefined|number, fullPage?:undefined|boolean}) {
     const [filter, setFilter] = useState<string>('all');
     return (
         <section id="map">

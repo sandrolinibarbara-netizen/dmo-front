@@ -150,8 +150,7 @@ export default async function Home() {
                       <h2 className="font-bold text-4xl w-full text-center md:text-left break-title">Esperienze
                           Classiche</h2>
                       <p className="max-w-[40vw]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-                          feugiat
-                          scelerisque ex sed luctus.
+                          feugiat scelerisque ex sed luctus.
                           Nullam non cursus tortor, eu interdum nisi. Etiam congue magna nec quam vehicula imperdiet.
                           Praesent vitae scelerisque eros, quis aliquam justo. In hac habitasse platea dictumst.
                       </p>
