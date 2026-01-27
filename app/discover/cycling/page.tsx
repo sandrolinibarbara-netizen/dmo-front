@@ -125,7 +125,7 @@ export default function Cycling() {
                     {
                         data.cycling.map(el => {
                             return (
-                                <SingleExperienceCard el={el} grid={true}/>
+                                <SingleExperienceCard el={el} grid={true} key={el.titolo + Math.random()}/>
                             )
                         })
                     }
@@ -163,6 +163,7 @@ export default function Cycling() {
                         data.cycling.map(el => {
                             return (
                                 <Event
+                                    key={el.titolo + Math.random()}
                                     what={el.titolo}
                                     where={el.luogo}
                                     when={el.data}

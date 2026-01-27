@@ -10,12 +10,21 @@ import {Cart} from "@/app/_components/_icons/Cart";
 export default function Menu({links} : {links:any}) {
 
     const [showMenu, setShowMenu] = useState<string>('initial');
-
+    const [showExpMenu, setShowExpMenu] = useState<string>('close');
     function toggleMenu(action:'open'|'close') {
         if(action === 'open' && (showMenu === 'close' || showMenu === 'initial')) {
             setShowMenu('open');
         } else if(action === 'close' && showMenu === 'open') {
             setShowMenu('close');
+            setShowExpMenu('close');
+        }
+    }
+
+    function toggleExpMenu() {
+        if(showExpMenu === 'close') {
+            setShowExpMenu('open');
+        } else {
+            setShowExpMenu('close');
         }
     }
 
@@ -64,7 +73,7 @@ export default function Menu({links} : {links:any}) {
                     />
                     <Close className="w-8 h-8 cursor-pointer" onClick={() => toggleMenu('close')}/>
                 </div>
-                <nav className="border-t border-black/50 w-[90%] mx-auto text-black/50 pt-3">
+                <nav className="border-t border-black/50 w-[90%] mx-auto text-black/50 pt-3 overflow-y-auto h-[calc(100vh-148px)]">
                     <ul className="pl-2">
                         <li className="py-3">
                             <Link
@@ -98,6 +107,66 @@ export default function Menu({links} : {links:any}) {
                                 Musica e liuteria
                             </Link>
                         </li>
+
+                        <li className="w-full flex flex-col">
+                            <div className="py-3 flex justify-between items-center">Esperienze <button type="button" onClick={toggleExpMenu} className="cursor-pointer inline-block pr-4">&gt;</button></div>
+                            {showExpMenu === 'open' &&
+                                <ul className="pl-4">
+                                    <li className="py-3">
+                                        <Link
+                                            href="/experiences"
+                                            onNavigate={() => toggleMenu('close')}
+                                        >
+                                            Tutte le esperienze
+                                        </Link>
+                                    </li>
+                                    <li className="py-3">
+                                        <Link
+                                            href="/experiences/classic"
+                                            onNavigate={() => toggleMenu('close')}
+                                        >
+                                            Esperienze Classiche
+                                        </Link>
+                                    </li>
+                                    <li className="py-3">
+                                        <Link
+                                            href="/experiences/contemporary"
+                                            onNavigate={() => toggleMenu('close')}
+                                        >
+                                            Esperienze Contemporanee
+                                        </Link>
+                                    </li>
+                                    <li className="py-3">
+                                        <Link
+                                            href="/experiences/unique"
+                                            onNavigate={() => toggleMenu('close')}
+                                        >
+                                            Esperienze Uniche
+                                        </Link>
+                                    </li>
+                                </ul>
+                            }
+                        </li>
+
+
+                        <li className="py-3">
+                            <Link
+                                href="/plan"
+                                onNavigate={() => toggleMenu('close')}
+                            >
+                                Pianifica il tuo viaggio
+                            </Link>
+                        </li>
+
+                        <li className="py-3">
+                            <Link
+                                href="/stories"
+                                onNavigate={() => toggleMenu('close')}
+                            >
+                                Stories
+                            </Link>
+                        </li>
+
                         <li className="py-3">
                             <Link
                                 href="/partner"

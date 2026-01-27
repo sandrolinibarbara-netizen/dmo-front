@@ -52,7 +52,7 @@ export default function Stories() {
                         sodales varius.
                     </p>
                     <div className="w-full text-right mt-8">
-                        <Link href="/discover" className="font-bold underline relative">
+                        <Link href="/stories" className="font-bold underline relative">
                             <AnimatedHoverButton content="Vai alle Storie del Territorio"/>
                         </Link>
                     </div>
