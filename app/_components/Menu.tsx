@@ -11,13 +11,21 @@ export default function Menu({links} : {links:any}) {
 
     const [showMenu, setShowMenu] = useState<string>('initial');
 
+    function toggleMenu(action:'open'|'close') {
+        if(action === 'open' && showMenu === 'close') {
+            setShowMenu('open');
+        } else if(action === 'close' && showMenu === 'open') {
+            setShowMenu('close');
+        }
+    }
+
     return(
         <>
             <header className="w-full fixed bg-corpo-blue z-110 top-0 h-[79px]">
                 <div className="w-[90%] h-full mx-auto p-0.5 text-white flex items-center justify-between">
                     <Link
                         href="/"
-                        onNavigate={() => setShowMenu('close')}
+                        onNavigate={() => toggleMenu('close')}
                     >
                         <Image
                             src='/logo.webp'
@@ -34,7 +42,7 @@ export default function Menu({links} : {links:any}) {
                             <input type="text" placeholder="Cerca eventi o esperienze" className="w-[272px] py-3 pr-8 pl-12 rounded-full bg-white text-black"/>
                         </div>
                         <Cart className="cursor-pointer w-8 h-8"/>
-                        <Hamburger className="w-8 h-8 cursor-pointer" onClick={() => setShowMenu('open')}/>
+                        <Hamburger className="w-8 h-8 cursor-pointer" onClick={() => toggleMenu('open')}/>
                         <Image src="/images/it.png" className="cursor-pointer rounded-full w-6 h-6" alt="italian flag" width={64} height={64}/>
                     </div>
                 </div>
@@ -54,14 +62,14 @@ export default function Menu({links} : {links:any}) {
                         height={500}
                         className="h-[100px] w-auto"
                     />
-                    <Close className="w-8 h-8 cursor-pointer" onClick={() => setShowMenu('close')}/>
+                    <Close className="w-8 h-8 cursor-pointer" onClick={() => toggleMenu('close')}/>
                 </div>
                 <nav className="border-t border-black/50 w-[90%] mx-auto text-black/50 pt-3">
                     <ul className="pl-2">
                         <li className="py-3">
                             <Link
                                 href="/"
-                                onNavigate={() => setShowMenu('close')}
+                                onNavigate={() => toggleMenu('close')}
                             >
                                 Homepage
                             </Link>
@@ -69,7 +77,7 @@ export default function Menu({links} : {links:any}) {
                         <li className="py-3">
                             <Link
                                 href="/discover"
-                                onNavigate={() => setShowMenu('close')}
+                                onNavigate={() => toggleMenu('close')}
                             >
                                 Scopri il territorio
                             </Link>
@@ -77,7 +85,7 @@ export default function Menu({links} : {links:any}) {
                         <li className="py-3">
                             <Link
                                 href="/discover/cycling"
-                                onNavigate={() => setShowMenu('close')}
+                                onNavigate={() => toggleMenu('close')}
                             >
                                 Cicloturismo
                             </Link>
@@ -85,7 +93,7 @@ export default function Menu({links} : {links:any}) {
                         <li className="py-3">
                             <Link
                                 href="/discover/luthiery"
-                                onNavigate={() => setShowMenu('close')}
+                                onNavigate={() => toggleMenu('close')}
                             >
                                 Musica e liuteria
                             </Link>
@@ -93,7 +101,7 @@ export default function Menu({links} : {links:any}) {
                         <li className="py-3">
                             <Link
                                 href="/partner"
-                                onNavigate={() => setShowMenu('close')}
+                                onNavigate={() => toggleMenu('close')}
                             >
                                 Partner
                             </Link>
@@ -101,7 +109,7 @@ export default function Menu({links} : {links:any}) {
                         <li className="py-3">
                             <Link
                                 href="/who"
-                                onNavigate={() => setShowMenu('close')}
+                                onNavigate={() => toggleMenu('close')}
                             >
                                 Chi siamo
                             </Link>
@@ -109,7 +117,7 @@ export default function Menu({links} : {links:any}) {
                         <li className="py-3">
                             <Link
                                 href="/accessibility"
-                                onNavigate={() => setShowMenu('close')}
+                                onNavigate={() => toggleMenu('close')}
                             >
                                 Dichiarazione di accessibilità
                             </Link>
@@ -119,7 +127,7 @@ export default function Menu({links} : {links:any}) {
                         <li className="py-3">
                             <Link
                                 href="/contact"
-                                onNavigate={() => setShowMenu('close')}
+                                onNavigate={() => toggleMenu('close')}
                             >
                                 Contatti
                             </Link>

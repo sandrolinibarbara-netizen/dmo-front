@@ -7,9 +7,9 @@ export default function Filter({exp, search} : {exp:boolean, search:() => void})
     const filters = useFilterStore((state) => state.filters);
 
     return (
-        <div className="w-full">
+        <div className={`${exp ? 'w-full' : 'w-[40%]'}`}>
             {exp &&
-                <div className="w-full flex justify-center gap-4 mb-4">
+                <div className="w-full flex justify-between gap-4 mb-4">
                     <button type="button" value="classic" onClick={(e) => setFilter('type', e.currentTarget.value)}
                             className={`${filters.type === 'classic' ? 'border-corpo-orange' : 'border-transparent'} border-2 overflow-x-auto text-ellipsis text-sm bg-white w-[calc(30%-16px)] text-center px-4 py-3 rounded-full cursor-pointer`}>Classiche</button>
                     <button type="button" value="contemp" onClick={(e) => setFilter('type', e.currentTarget.value)}
@@ -19,7 +19,7 @@ export default function Filter({exp, search} : {exp:boolean, search:() => void})
                 </div>
             }
 
-            <div className="w-full flex justify-center gap-4 mb-4">
+            <div className="w-full flex justify-between gap-4 mb-4">
                 <Dialog placeholder="Dal"/>
                 <Dialog placeholder="Al"/>
             </div>

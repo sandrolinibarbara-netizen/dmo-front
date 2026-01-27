@@ -3,6 +3,7 @@ import Link from "next/link";
 import {Experience} from "@/app/_types/types";
 
 export default function SingleExperienceCard({el, grid, altGrid} : {el:Experience, grid:boolean, altGrid?:boolean}) {
+
     return(
         <div className={`h-[348px] ${grid ? 'w-[calc(25%-12px)]' : altGrid ? 'w-[calc(50%-16px)]' : ''} border border-orange-500 rounded-xl text-black bg-[#F0F8FF]`}>
             <Image className="rounded-t-xl w-full h-[136px] object-cover" width={200} height={100} src={`/images/experiences/${el.immagine}`} alt="immagine"/>
@@ -17,13 +18,13 @@ export default function SingleExperienceCard({el, grid, altGrid} : {el:Experienc
                         {el.descrizione}
                     </span>
                 </p>
-                <div className="flex justify-between items-center">
-                    <p className="font-bold">{
+                <div className={`flex ${el.tipo === 'UN' ? 'justify-end' : 'justify-between'} items-center`}>
+                    {el.tipo !== 'UN' && <p className="font-bold">{
                         new Intl.NumberFormat("de-DE", {
                             style: "currency",
                             currency: "EUR"
                         }).format(el.costo)
-                    }</p>
+                    }</p>}
                     <Link href='/' className="text-black transition duration-500 hover:bg-corpo-orange bg-soft-orange rounded-full py-2 px-3">Scopri</Link>
                 </div>
             </div>

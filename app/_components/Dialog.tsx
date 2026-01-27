@@ -73,7 +73,7 @@ export function Dialog({placeholder} : {placeholder:string}) {
     }
 
     return (
-        <div className="w-[calc(50%-16px)] flex gap-2 rounded-full border border-gray-500 px-4 py-3">
+        <div className="w-[calc(50%-8px)] flex gap-2 rounded-full border border-gray-500 px-4 py-3">
             <label htmlFor="date-input">
                 {placeholder}:
             </label>
