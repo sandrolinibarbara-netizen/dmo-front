@@ -109,7 +109,10 @@ export default function Menu({links} : {links:any}) {
                         </li>
 
                         <li className="w-full flex flex-col">
-                            <div className="py-3 flex justify-between items-center">Esperienze <button type="button" onClick={toggleExpMenu} className="cursor-pointer inline-block pr-4">&gt;</button></div>
+                            <div className="py-3 flex justify-between items-center">Esperienze <button type="button"
+                                                                                                       onClick={toggleExpMenu}
+                                                                                                       className="cursor-pointer inline-block pr-4">&gt;</button>
+                            </div>
                             {showExpMenu === 'open' &&
                                 <ul className="pl-4">
                                     <li className="py-3">
@@ -193,12 +196,40 @@ export default function Menu({links} : {links:any}) {
                         </li>
                         <li className="py-3"><a target="_blank" href={links['amministrazione_trasparente']}>Amministrazione
                             trasparente</a></li>
+
+                        <li className="py-3">
+                            <Link
+                                href="/links"
+                                onNavigate={() => toggleMenu('close')}
+                            >
+                                Link utili
+                            </Link>
+                        </li>
+
                         <li className="py-3">
                             <Link
                                 href="/contact"
                                 onNavigate={() => toggleMenu('close')}
                             >
                                 Contatti
+                            </Link>
+                        </li>
+
+                        <li className="py-3">
+                            <Link
+                                href="/press"
+                                onNavigate={() => toggleMenu('close')}
+                            >
+                                Area Stampa
+                            </Link>
+                        </li>
+
+                        <li className="py-3">
+                            <Link
+                                href="/operators"
+                                onNavigate={() => toggleMenu('close')}
+                            >
+                                Area Operatori
                             </Link>
                         </li>
                     </ul>
