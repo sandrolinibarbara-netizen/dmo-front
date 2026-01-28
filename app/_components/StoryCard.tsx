@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function StoryCard({el}) {
     return(
-        <div className="w-[calc(23.6%-4px)] h-[450px] rounded-xl bg-white relative">
+        <div className="w-[calc(23.6%-4px)] h-[450px] rounded-xl bg-white relative border border-orange-500">
             <div className="w-full h-[250px]">
                 <Image
                     className="w-[400px] h-[300px] object-cover rounded-t-xl"

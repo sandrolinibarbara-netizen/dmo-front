@@ -1,6 +1,7 @@
 import TaleCard from "@/app/_components/TaleCard";
 import MemberCard from "@/app/_components/MemberCard";
 import Image from "next/image";
+import Newsreel from "@/app/_components/Newsreel";
 
 export default async function Who() {
     let content;
@@ -30,6 +31,7 @@ export default async function Who() {
     }
 
 
+
   return (
       <>
           <div className="w-full h-[80vh] mt-[79px] relative fadein-slower">
@@ -41,7 +43,18 @@ export default async function Who() {
               />
           </div>
 
-          <section className="flex flex-col md:flex-row gap-20 w-[90vw] md:w-[80vw] mx-auto justify-center px-4 md:px-8 pt-20 pb-24">
+          <section
+              className="flex flex-col md:flex-row gap-20 w-[90vw] md:w-[80vw] mx-auto px-4 md:px-8 pt-20 pb-24">
+              <div className="flex flex-col gap-2 w-full">
+                  <h2 className="font-bold text-4xl my-8">News</h2>
+
+                  <Newsreel/>
+
+              </div>
+          </section>
+
+          <section
+              className="flex flex-col md:flex-row gap-20 w-[90vw] md:w-[80vw] mx-auto justify-center px-4 md:px-8 pt-20 pb-24">
               <div className="flex flex-col gap-2 w-full md:w-2/4">
                   <h2 className="font-bold text-4xl mt-8">{content.data['sub_hero_titolo']}</h2>
                   <p className="w-full mt-2 pl-1 whitespace-pre-line">{content.data['sub_hero_descrizione']}</p>
@@ -94,13 +107,13 @@ export default async function Who() {
               <div className="flex gap-12 justify-center mt-16 flex-wrap">
 
                   <MemberCard
-                  avatar={[
-                      process.env.NEXT_PUBLIC_BASE_URL + content.data['team_1'][0].avatar.url,
-                      content.data['team_1'][0].avatar.alternativeText
+                      avatar={[
+                          process.env.NEXT_PUBLIC_BASE_URL + content.data['team_1'][0].avatar.url,
+                          content.data['team_1'][0].avatar.alternativeText
                       ]}
-                  name={content.data['team_1'][0].nome}
-                  job={content.data['team_1'][0].ruolo}
-                  link={content.data['team_1'][0]['profilo_linkedin']}
+                      name={content.data['team_1'][0].nome}
+                      job={content.data['team_1'][0].ruolo}
+                      link={content.data['team_1'][0]['profilo_linkedin']}
                   />
 
                   <MemberCard
