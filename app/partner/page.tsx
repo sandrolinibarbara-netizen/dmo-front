@@ -1,4 +1,6 @@
 import Image from "next/image";
+import ContactForm from "@/app/_components/ContactForm";
+import {PDF} from "@/app/_components/_icons/PDF";
 
 export default async function Who() {
     let content;
@@ -55,18 +57,32 @@ export default async function Who() {
 
   return (
       <>
-          <section className="w-[90vw] md:w-[80vw] mx-auto text-center md:text-left mt-[79px] pt-[69px] mb-[80px] min-h-[65vh] fadein-slower">
+          <section
+              className="w-[90vw] md:w-[80vw] mx-auto text-center md:text-left mt-[79px] pt-[69px] mb-[80px] min-h-[65vh] fadein-slower">
               <h2 className="font-bold text-4xl">{content.data['partners_titolo']}</h2>
               <div className="grid justify-items-center grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-4 mt-8">
-              {partnersInfo &&
-                  partnersInfo.map((el:any) => {
-                      if(!el[0]) {
-                          return
-                      } else {
-                          if(el[0].link) {
-                              return (
-                                  <div className="max-w-[200px] w-auto h-24 relative" key={Math.random()}>
-                                      <a href={el[0].link} target="_blank">
+                  {partnersInfo &&
+                      partnersInfo.map((el: any) => {
+                          if (!el[0]) {
+                              return
+                          } else {
+                              if (el[0].link) {
+                                  return (
+                                      <div className="max-w-[200px] w-auto h-24 relative" key={Math.random()}>
+                                          <a href={el[0].link} target="_blank">
+                                              <Image
+                                                  width={200}
+                                                  height={100}
+                                                  className="rounded-xl"
+                                                  src={process.env.NEXT_PUBLIC_BASE_URL + el[0].immagine.url}
+                                                  alt={el[0].immagine.alternativeText}
+                                              />
+                                          </a>
+                                      </div>
+                                  )
+                              } else {
+                                  return (
+                                      <div className="max-w-[200px] w-auto h-24 relative" key={Math.random()}>
                                           <Image
                                               width={200}
                                               height={100}
@@ -74,32 +90,74 @@ export default async function Who() {
                                               src={process.env.NEXT_PUBLIC_BASE_URL + el[0].immagine.url}
                                               alt={el[0].immagine.alternativeText}
                                           />
-                                      </a>
-                                  </div>
-                              )
-                          } else {
-                              return (
-                                  <div className="max-w-[200px] w-auto h-24 relative" key={Math.random()}>
-                                      <Image
-                                          width={200}
-                                          height={100}
-                                          className="rounded-xl"
-                                          src={process.env.NEXT_PUBLIC_BASE_URL + el[0].immagine.url}
-                                          alt={el[0].immagine.alternativeText}
-                                      />
-                                  </div>
-                              )
+                                      </div>
+                                  )
+                              }
                           }
-                      }
 
-                  })
-              }
+                      })
+                  }
               </div>
 
               <h2 className="font-bold text-4xl mt-16">{content.data['diventa_partner_titolo']}</h2>
-              {/*<p className="w-full pl-1 columns-2 mt-8 whitespace-pre-line">{content.data['diventa_partner_descrizione']}</p>*/}
-              <p className="w-full text-center md:text-left font-semibold mt-4">Per maggiori informazioni scrivici a <a href="mailto:info@visitcremona.com" className="underline">info@visitcremona.com</a>
+              <p className="w-full pl-1 columns-2 mt-8 whitespace-pre-line">
+                  The standard Lorem Ipsum passage, used since the 1500s
+                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                  et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                  aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+                  officia deserunt mollit anim id est laborum."
+                  Section 1.10.32 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC
+                  "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
+                  totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta
+                  sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
+                  consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui
+                  dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora
+                  incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum
+                  exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis
+                  autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel
+                  illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
               </p>
+              <ContactForm newsletter={false} partner={true}/>
+
+              <h2 className="font-bold text-4xl mt-20 mb-8">Scaricabili</h2>
+              <div className="flex gap-4 w-full">
+                  <div
+                      className="p-8 w-[33%] h-[200px] rounded-xl bg-corpo-blue text-white flex flex-col items-center justify-center">
+                      <p className="font-bold">Scarica la mappa cicloturistica del territorio cremonese</p>
+                      <div className="flex gap-4 items-center mt-2">
+                          <PDF className="cursor-pointer w-20 h-20"/>
+                          <p className="text-sm">
+                              Sette percorsi che coprono una totalità di circa 300 km, proponendo anche diverse
+                              varianti.
+                          </p>
+                      </div>
+                  </div>
+
+                  <div
+                      className="p-8 w-[33%] h-[200px] rounded-xl bg-corpo-blue text-white flex flex-col items-center justify-center">
+                      <p className="font-bold">Consulta la mappa delle piste ciclabili di Cremona e dintorni</p>
+                      <div className="flex gap-4 items-center mt-2">
+                          <PDF className="cursor-pointer w-20 h-20"/>
+                          <p className="text-sm">
+                              La lista completa con mappa di tutta la pista ciclabile urbana ed extraurbana di
+                              Cremona.
+                          </p>
+                      </div>
+                  </div>
+
+                  <div
+                      className="p-8 w-[33%] h-[200px] rounded-xl bg-corpo-blue text-white flex flex-col items-center justify-center">
+                      <p className="font-bold">Consulta la mappa delle piste ciclabili di Crema</p>
+                      <div className="flex gap-4 items-center mt-2">
+                          <PDF className="cursor-pointer w-20 h-20"/>
+                          <p className="text-sm">
+                              La lista completa con mappa di tutta la pista ciclabile urbana ed extraurbana di
+                              Crema.
+                          </p>
+                      </div>
+                  </div>
+              </div>
           </section>
       </>
   );

@@ -46,12 +46,12 @@ export default function ContemporaryExperiences() {
                     <div className="flex flex-col gap-4 w-full">
                         <p className="text-sm w-2/4"><span className="font-semibold">Home / Esperienze /</span> Contemporanee</p>
 
-                        <div className="flex gap-4 my-8">
-                            <div className="w-2/4">
+                        <div className="flex gap-20 my-8">
+                            <div className="w-[40%]">
                                 <h2 className="font-bold text-4xl break-title">Esperienze Contemporanee</h2>
                             </div>
 
-                            <div className="w-2/4">
+                            <div className="w-[60%] pl-2">
                                 <p>Approfondire la conoscenza di Cremona e del suo territorio vivendola in modi diversi e speciali con visite guidate tematiche, degustazioni,
                                     itinerari in bicicletta e in barca e molto altro, a ritmi più lenti, tempi diversi e personalizzati.
                                 </p>

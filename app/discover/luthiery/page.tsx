@@ -71,17 +71,6 @@ export default function Cycling() {
                             </p>
                         </div>
                     </div>
-
-                    <div
-                        className="p-8 w-[33%] h-[200px] rounded-xl bg-corpo-blue text-white flex flex-col items-center justify-center">
-                        <p className="font-bold">Scopri tour ed esperienze a tema musicale</p>
-                        <div className="flex gap-4 items-center mt-2">
-                            <PDF className="cursor-pointer w-20 h-20"/>
-                            <p className="text-sm">
-                                La lista aggiornata degli eventi musicali a Cremona: dal Monteverdi Festival alle serate Tanta Robba.
-                            </p>
-                        </div>
-                    </div>
                 </div>
             </section>
 

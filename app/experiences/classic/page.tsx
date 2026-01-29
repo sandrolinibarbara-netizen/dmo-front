@@ -46,12 +46,12 @@ export default function ClassicExperiences() {
                     <div className="flex flex-col gap-4 w-full">
                         <p className="text-sm w-2/4"><span className="font-semibold">Home / Esperienze /</span> Classiche</p>
 
-                        <div className="flex gap-4 my-8">
-                            <div className="w-2/4">
+                        <div className="flex gap-20 my-8">
+                            <div className="w-[40%]">
                                 <h2 className="font-bold text-4xl break-title">Esperienze Classiche</h2>
                             </div>
 
-                            <div className="w-2/4">
+                            <div className="w-[60%] pl-2">
                                 <p>Scoprire Cremona attraverso i suoi monumenti monumenti principali, i musei e le
                                     peculiarità che l'hanno resa famosa nel mondo,
                                     musica e la liuteria, arte, palazzi e dimore storiche attraverso visite guidate sempre

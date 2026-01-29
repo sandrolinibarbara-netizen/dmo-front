@@ -4,7 +4,6 @@ import {Hamburger} from "@/app/_components/_icons/Hamburger";
 import {useState} from "react";
 import {Close} from "@/app/_components/_icons/Close";
 import Image from "next/image";
-import {Search} from "@/app/_components/_icons/Search";
 import {Cart} from "@/app/_components/_icons/Cart";
 
 export default function Menu({links} : {links:any}) {
@@ -46,10 +45,11 @@ export default function Menu({links} : {links:any}) {
                     </Link>
                     <div className="flex gap-4 items-center">
                         <Link href='/experiences' className="text-black transition duration-500 hover:bg-corpo-orange bg-soft-orange rounded-full px-4 py-3">Esperienze</Link>
-                        <div className="flex relative items-center">
-                            <Search className="text-gray-600 absolute left-[16px] w-5 h-5"/>
-                            <input type="text" placeholder="Cerca eventi o esperienze" className="w-[272px] py-3 pr-8 pl-12 rounded-full bg-white text-black"/>
-                        </div>
+                        <Link href='/experiences' className="text-black transition duration-500 hover:bg-corpo-orange bg-soft-orange rounded-full px-5 py-3">Eventi</Link>
+                        {/*<div className="flex relative items-center">*/}
+                        {/*    <Search className="text-gray-600 absolute left-[16px] w-5 h-5"/>*/}
+                        {/*    <input type="text" placeholder="Cerca eventi o esperienze" className="w-[272px] py-3 pr-8 pl-12 rounded-full bg-white text-black"/>*/}
+                        {/*</div>*/}
                         <Cart className="cursor-pointer w-8 h-8"/>
                         <Hamburger className="w-8 h-8 cursor-pointer" onClick={() => toggleMenu('open')}/>
                         <Image src="/images/it.png" className="cursor-pointer rounded-full w-6 h-6" alt="italian flag" width={64} height={64}/>
@@ -109,10 +109,8 @@ export default function Menu({links} : {links:any}) {
                         </li>
 
                         <li className="w-full flex flex-col">
-                            <div className="py-3 flex justify-between items-center">Esperienze <button type="button"
-                                                                                                       onClick={toggleExpMenu}
-                                                                                                       className="cursor-pointer inline-block pr-4">&gt;</button>
-                            </div>
+                            <button type="button" onClick={toggleExpMenu} className="cursor-pointer pr-4 py-3 flex justify-between items-center"><span>Esperienze</span> <span>&gt;</span>
+                            </button>
                             {showExpMenu === 'open' &&
                                 <ul className="pl-4">
                                     <li className="py-3">

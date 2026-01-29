@@ -61,23 +61,20 @@ export default function Cycling() {
             </section>
 
             <section className="w-[90vw] md:w-[80vw] mx-auto items-center justify-center px-4 md:px-8 pt-2 pb-24">
-                <div
-                    className="h-[500px] mb-4 rounded-xl border-green-500 border bg-green-100 flex items-center justify-center">
-                    Komoot Map #1
-                </div>
-                <div className="flex gap-4 w-full">
-                    <div
-                        className="w-[33%] h-[200px] rounded-xl border-green-500 border bg-green-100 flex items-center justify-center">
-                        Komoot Map #2
-                    </div>
-                    <div
-                        className="w-[33%] h-[200px] rounded-xl border-green-500 border bg-green-100 flex items-center justify-center">
-                        Komoot Map #3
-                    </div>
-                    <div
-                        className="w-[33%] h-[200px] rounded-xl border-green-500 border bg-green-100 flex items-center justify-center">
-                        Komoot Map #4
-                    </div>
+                <iframe
+                    src="https://www.komoot.com/it-it/tour/2528630754/embed?share_token=aDAXylT815iCdp5SdXij0rX82fx37ZPsFL0jWwJDzDJpuMddZF"
+                    width="100%" height="700" frameBorder="0" scrolling="no"></iframe>
+
+                <div className="flex gap-4 w-full mt-8">
+                    <iframe
+                        src="https://www.komoot.com/it-it/tour/2528924920/embed?share_token=aL3hwjQZ7SWuXvhhPDsuoctfuqkPCY9Fck1XJU7ueC06f8GkX2"
+                        width="33%" height="200" frameBorder="0" scrolling="no"></iframe>
+                    <iframe
+                        src="https://www.komoot.com/it-it/tour/2528926095/embed?share_token=aDqugpwDksE7ArubbtiTKRrNbU27V7fe1U4si0q2NJByr7it08"
+                        width="33%" height="200" frameBorder="0" scrolling="no"></iframe>
+                    <iframe
+                        src="https://www.komoot.com/it-it/tour/2528927055/embed?share_token=ahYAYfXQmZLbk1dAe3H5aO3xnEIW4cqnIt7psTgFxjVZ2Tm4yK"
+                        width="33%" height="200" frameBorder="0" scrolling="no"></iframe>
                 </div>
 
                 <div className="mt-5 flex gap-4 w-full">
