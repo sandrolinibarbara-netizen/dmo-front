@@ -27,9 +27,11 @@ export default function UniqueExperiences() {
                             </div>
 
                             <div className="w-2/4">
-                                <p>Se cerchi qualcosa di speciale, qui trovi il lato più autentico del territorio.
+                                <p><span className="font-semibold block pb-2">Proposte su misura</span>
+                                    Se cerchi qualcosa di speciale, qui trovi il lato più autentico del territorio.
                                     Sono esperienze che uniscono storia e arte, musica e gastronomia, natura e paesaggio. Ogni proposta è pensata per farti entrare davvero nell’atmosfera cremonese, con dettagli curati e incontri autentici.
-                                    Porti a casa un ricordo pieno, non solo una visita
+                                    Porti a casa un ricordo pieno, non solo una visita.
+
                                 </p>
                             </div>
                         </div>

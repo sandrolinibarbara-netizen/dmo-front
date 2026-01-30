@@ -87,7 +87,7 @@ export default async function Discover() {
                     </p>
 
                     <div className="mt-12 flex gap-4">
-                        <Link href='#cycling' className="bg-violet-300 rounded-full px-4 py-3 text-sm">Cycling</Link>
+                        <Link href='#cycling' className="bg-[#918FC7] rounded-full px-4 py-3 text-sm">Cycling</Link>
                         <Link href='#luthiery' className="bg-sky-300 rounded-full px-4 py-3 text-sm">Music & luthiery</Link>
                     </div>
 
@@ -109,12 +109,13 @@ export default async function Discover() {
                         <div className="flex flex-col gap-2 ">
                             <div className="flex gap-2">
                                 <div
-                                    className="text-sm rounded-xl w-[50%] h-[150px] bg-violet-300 py-4 px-8 flex items-center justify-center">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    className="text-sm rounded-xl w-[50%] h-[164px] bg-[#918FC7] py-4 px-8 flex items-center justify-center">
+                                    Il cicloturismo nel territorio di Cremona, Crema e Casalmaggiore offre una varietà di paesaggi
+                                    che si sviluppano tra fiumi, canali e cascine storiche. Un itinerario di oltre 300 chilometri
+                                    lungo piste ciclabili ben segnalate e strade a basso traffico ti permette di scoprire bellezze
+                                    artistiche, natura e specialità gastronomiche locali.
                                 </div>
-                                <Image className="object-cover rounded-xl w-[50%] h-[150px]"
+                                <Image className="object-cover rounded-xl w-[50%] h-[164px]"
                                        src="/images/stories/town.webp" alt="pic" width={200} height={100}/>
                             </div>
                             <LocalMap homepage={false} autoFilter={1}/>
@@ -143,12 +144,11 @@ export default async function Discover() {
                         <div className="flex flex-col gap-2 ">
                             <div className="flex gap-2">
                                 <div
-                                    className="text-sm rounded-xl w-[50%] h-[150px] bg-sky-300 py-4 px-8 flex items-center justify-center">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    className="text-sm rounded-xl w-[50%] h-[164px] bg-sky-300 py-4 px-8 flex items-center justify-center">
+                                    Esplora le meravigliose piste ciclabili di Cremona, immerse nella natura e ricche di storia.
+                                    Scopri itinerari adatti a tutti, dai principianti agli esperti, e goditi un'esperienza unica su due ruote.
                                 </div>
-                                <Image className="object-cover rounded-xl w-[50%] h-[150px]"
+                                <Image className="object-cover rounded-xl w-[50%] h-[164px]"
                                        src="/images/stories/lab.webp" alt="pic" width={200} height={100}/>
                             </div>
                             <LocalMap homepage={false} autoFilter={2}/>

@@ -7,7 +7,7 @@ export default function TalesLogo({theme} : {theme:string}) {
         {
             title: "cycling",
             logo: "cycling-logo.svg",
-            color: "text-violet-300"
+            color: "text-[#918FC7]"
         },
      luthiery:
         {

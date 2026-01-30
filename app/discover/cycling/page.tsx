@@ -21,7 +21,12 @@ export default function Cycling() {
                         </div>
 
                         <div className="flex flex-col gap-2 w-full md:w-2/4">
-                            <p className="w-full mt-2 pl-1 whitespace-pre-line">Il cicloturismo nel territorio di Cremona, Crema e Casalmaggiore offre una varietà di paesaggi che si sviluppano tra fiumi, canali e cascine storiche. Un itinerario di oltre 300 chilometri lungo piste ciclabili ben segnalate e strade a basso traffico ti permette di scoprire bellezze artistiche, natura e specialità gastronomiche locali.</p>
+                            <p className="w-full mt-2 pl-1 whitespace-pre-line">
+                                Pedalare nel territorio di Cremona, Crema e Casalmaggiore significa cambiare paesaggio senza cambiare ritmo.
+                                Ti muovi tra argini, canali, strade di campagna e cascine storiche. In totale hai oltre 300 chilometri di
+                                percorsi: piste ciclabili segnalate e tratti a basso traffico dove la bici è a suo agio. Lungo il tragitto
+                                incontri borghi, corti agricole, piccoli musei e soste dove assaggiare i prodotti locali.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -30,25 +35,16 @@ export default function Cycling() {
                     className="flex flex-col md:flex-row gap-20 w-[90vw] md:w-[80vw] mx-auto justify-center px-4 md:px-8 pt-12 pb-4">
                     <div className="flex flex-col gap-2 w-full md:w-2/4">
                         <h2 className="font-bold text-4xl mt-8">Sali in sella!</h2>
-                        <p className="w-full mt-2 pl-1 whitespace-pre-line">Il territorio cremasco, con Crema come
-                            cuore, è
-                            ideale per il cicloturismo. L'itinerario più noto segue l'alzaia del Canale Vacchelli, una
-                            via
-                            d'acqua del '900, immersa nel verde. Si pedala lungo i Fontanili e il Parco del Serio, tra
-                            fontanili e piccoli borghi.
-                            Scoprite un angolo di medioevo visitando i castelli di Pandino e Soncino.<br/>
-                            Cremona e il suo territorio offrono un'esperienza cicloturistica tutta da godere. In città,
-                            si
-                            pedala tra il Torrazzo e il Museo del Violino. La rete di piste ciclabili e strade minori
-                            segue
-                            gli argini del Po e dell’Adda, interseca riserve naturali e conduce a borghi ricchi di
-                            storia
-                            come Pizzighettone, Torre de’ Picenardi e Castelleone.
-                            Il Casalasco, tra Po e Oglio, è dominato dagli ambienti fluviali, come nel caso di
-                            Casalmaggiore. Numerosi itinerari permettono di scoprire oasi e riserve naturali, borghi
-                            affascinanti e siti di archeologia industriale. Diversi edifici storici come Villa Medici
-                            del
-                            Vascello e Villa Mina della Scala impreziosiscono il paesaggio.</p>
+                        <div className="w-full mt-2 pl-1 whitespace-pre-line">
+                            <h4 className="font-semibold pt-4 pb-2">Cremona e dintorni</h4>
+                            A Cremona inizi dal centro: passi sotto il Torrazzo e arrivi al Museo del Violino. Poi lasci la città e segui la rete di ciclabili e strade minori sugli argini del Po e dell’Adda. Il percorso entra in riserve naturali e ti porta in borghi come Pizzighettone, Torre de’ Picenardi e Castelleone. Qui la pianura è ampia, l’orizzonte è basso e la strada scorre.
+
+                            <h4 className="font-semibold pt-4 pb-2">Crema e il Cremasco</h4>
+                            Il Cremasco è pianeggiante e facile da percorrere anche con calma. Crema è il punto di partenza ideale. Uno dei tratti più amati segue l’alzaia del Canale Vacchelli: attraversi i fontanili e il Parco del Serio, tra campi, filari di pioppi e piccoli borghi. Se ti va una deviazione nella storia, arrivi ai castelli di Pandino e Soncino.
+
+                            <h4 className="font-semibold pt-4 pb-2">Casalasco e Casalmaggiore</h4>
+                            Nel Casalasco pedali tra Po e Oglio, con ambienti fluviali che cambiano colore durante l’anno. Gli itinerari attraversano oasi e riserve naturali e toccano paesi sull’acqua e luoghi di archeologia industriale. Sullo sfondo trovi ville storiche come Villa Medici del Vascello e Villa Mina della Scala, immerse nel paesaggio di campagna.
+                        </div>
                     </div>
 
                     <div className="w-full h-[500px] md:w-2/4 md:h-auto">
@@ -65,7 +61,7 @@ export default function Cycling() {
                     src="https://www.komoot.com/it-it/tour/2528630754/embed?share_token=aDAXylT815iCdp5SdXij0rX82fx37ZPsFL0jWwJDzDJpuMddZF"
                     width="100%" height="700" frameBorder="0" scrolling="no"></iframe>
 
-                <div className="flex gap-4 w-full mt-8">
+                <div className="flex gap-4 w-full mt-4">
                     <iframe
                         src="https://www.komoot.com/it-it/tour/2528924920/embed?share_token=aL3hwjQZ7SWuXvhhPDsuoctfuqkPCY9Fck1XJU7ueC06f8GkX2"
                         width="33%" height="200" frameBorder="0" scrolling="no"></iframe>
@@ -79,37 +75,23 @@ export default function Cycling() {
 
                 <div className="mt-5 flex gap-4 w-full">
                     <div
-                        className="p-8 w-[33%] h-[200px] rounded-xl bg-corpo-blue text-white flex flex-col items-center justify-center">
-                        <p className="font-bold">Scarica la mappa cicloturistica del territorio cremonese</p>
+                        className="p-8 w-[33%] h-[200px] rounded-xl bg-corpo-blue text-white flex flex-col gap-6">
+                        <p className="font-bold">Mappa cicloturistica del territorio cremonese</p>
                         <div className="flex gap-4 items-center mt-2">
-                            <PDF className="cursor-pointer w-20 h-20"/>
+                            <PDF className="cursor-pointer w-10 h-10"/>
                             <p className="text-sm">
-                                Sette percorsi che coprono una totalità di circa 300 km, proponendo anche diverse
-                                varianti.
+                                Scaricala qui.
                             </p>
                         </div>
                     </div>
 
                     <div
-                        className="p-8 w-[33%] h-[200px] rounded-xl bg-corpo-blue text-white flex flex-col items-center justify-center">
-                        <p className="font-bold">Consulta la mappa delle piste ciclabili di Cremona e dintorni</p>
+                        className="p-8 w-[33%] h-[200px] rounded-xl bg-corpo-blue text-white flex flex-col gap-6">
+                        <p className="font-bold">Piste ciclabili di Cremona e dintorni (FIAB Cremona)</p>
                         <div className="flex gap-4 items-center mt-2">
-                            <PDF className="cursor-pointer w-20 h-20"/>
+                            <PDF className="cursor-pointer w-10 h-10"/>
                             <p className="text-sm">
-                                La lista completa con mappa di tutta la pista ciclabile urbana ed extraurbana di
-                                Cremona.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div
-                        className="p-8 w-[33%] h-[200px] rounded-xl bg-corpo-blue text-white flex flex-col items-center justify-center">
-                        <p className="font-bold">Consulta la mappa delle piste ciclabili di Crema</p>
-                        <div className="flex gap-4 items-center mt-2">
-                            <PDF className="cursor-pointer w-20 h-20"/>
-                            <p className="text-sm">
-                                La lista completa con mappa di tutta la pista ciclabile urbana ed extraurbana di
-                                Crema.
+                                Consulta la mappa.
                             </p>
                         </div>
                     </div>
@@ -134,22 +116,30 @@ export default function Cycling() {
                     <h2 className="font-bold text-3xl mb-8">Servizi utili al tuo itinerario in bici</h2>
 
                     <div className="rounded-xl border border-white p-4 w-fit mb-6">
-                        <p>Necessiti di conoscere strutture bike friendly?
-                            <Link href="/discover/cycling/bike-friendly" className="font-bold text-corpo-orange underline ml-2">Clicca qui &gt;</Link>
+                        <p><span
+                            className="font-semibold block pb-2">Vendita, noleggio e riparazione di biciclette</span>
+
+                            Se non hai la bici con te, la trovi qui. Puoi scegliere un modello tradizionale o a pedalata
+                            assistita e partire subito. Ti basta decidere da dove iniziare: argini del Po e dell’Adda,
+                            strade tra le cascine, borghi fortificati o città d’arte. Pedali, ti fermi quando vuoi, e
+                            lungo la strada incontri sapori e botteghe del territorio.
+                            Qui trovi anche l’elenco delle ciclofficine dove poter riparare il tuo mezzo a due ruote.
+                            Vedi l’elenco completo dei servizi per ciclismo e cicloturismo in provincia di Cremona:
+
+                            <Link href="/discover/cycling/rent"
+                                  className="block font-bold text-corpo-orange underline pt-4">Clicca qui &gt;</Link>
                         </p>
                     </div>
 
                     <div className="rounded-xl border border-white p-4 w-fit mb-6">
-                        <p>Vuoi sapere dove sono i servizi a noleggio nel nostro territorio?
-                            <Link href="/discover/cycling/rent" className="font-bold text-corpo-orange underline ml-2">Clicca qui &gt;</Link>
+                        <p><span className="font-semibold block pb-2">Ricettività per il cicloturismo</span>
+                            Queste strutture offrono ai clienti uno spazio sicuro per le biciclette, attrezzi per la manutenzione di base e un’attenzione particolare per chi va sulle due ruote.
+                            Scopri la lista delle strutture bike-friendly presenti sul territorio:
+                            <Link href="/discover/cycling/bike-friendly"
+                                  className="block font-bold text-corpo-orange underline pt-4">Clicca qui &gt;</Link>
                         </p>
                     </div>
 
-                    <div className="rounded-xl border border-white p-4 w-fit">
-                        <p>Prima di metterti in viaggio scarica il disciplinare.
-                            <Link href="/" className="font-bold text-corpo-orange underline ml-2">Clicca qui &gt;</Link>
-                        </p>
-                    </div>
                 </div>
             </section>
 

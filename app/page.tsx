@@ -149,10 +149,8 @@ export default async function Home() {
                   <div className="flex justify-between">
                       <h2 className="font-bold text-4xl w-full text-center md:text-left break-title">Esperienze
                           Classiche</h2>
-                      <p className="max-w-[40vw]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-                          feugiat scelerisque ex sed luctus.
-                          Nullam non cursus tortor, eu interdum nisi. Etiam congue magna nec quam vehicula imperdiet.
-                          Praesent vitae scelerisque eros, quis aliquam justo. In hac habitasse platea dictumst.
+                      <p className="max-w-[40vw]">Scoprire Cremona attraverso i suoi monumenti monumenti principali, i musei e le peculiarità che l'hanno resa famosa nel mondo,
+                          musica e la liuteria, arte, palazzi e dimore storiche attraverso visite guidate sempre disponibili per turisti e visitatori.
                       </p>
                   </div>
 
@@ -181,11 +179,8 @@ export default async function Home() {
                   <div className="flex justify-between">
                       <h2 className="font-bold text-4xl w-full text-center md:text-left break-title">Esperienze
                           Contemporanee</h2>
-                      <p className="max-w-[40vw]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-                          feugiat
-                          scelerisque ex sed luctus.
-                          Nullam non cursus tortor, eu interdum nisi. Etiam congue magna nec quam vehicula imperdiet.
-                          Praesent vitae scelerisque eros, quis aliquam justo. In hac habitasse platea dictumst.
+                      <p className="max-w-[40vw]">Approfondire la conoscenza di Cremona e del suo territorio vivendola in modi diversi e speciali con visite guidate tematiche, degustazioni,
+                          itinerari in bicicletta e in barca e molto altro, a ritmi più lenti, tempi diversi e personalizzati.
                       </p>
                   </div>
 
@@ -214,11 +209,8 @@ export default async function Home() {
                   <div className="flex justify-between">
                       <h2 className="font-bold text-4xl w-full text-center md:text-left break-title">Esperienze
                           Uniche</h2>
-                      <p className="max-w-[40vw]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-                          feugiat
-                          scelerisque ex sed luctus.
-                          Nullam non cursus tortor, eu interdum nisi. Etiam congue magna nec quam vehicula imperdiet.
-                          Praesent vitae scelerisque eros, quis aliquam justo. In hac habitasse platea dictumst.
+                      <p className="max-w-[40vw]">Una vera e propria immersione nel territorio cremonese, con esperienze esclusive che coniugano storia e arte, musica e gastronomia,
+                          natura e ambiente, rendendo ognuna indimenticabile e da fissare nei ricordi.
                       </p>
                   </div>
 

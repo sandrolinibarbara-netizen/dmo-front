@@ -52,8 +52,11 @@ export default function ContemporaryExperiences() {
                             </div>
 
                             <div className="w-[60%] pl-2">
-                                <p>Approfondire la conoscenza di Cremona e del suo territorio vivendola in modi diversi e speciali con visite guidate tematiche, degustazioni,
-                                    itinerari in bicicletta e in barca e molto altro, a ritmi più lenti, tempi diversi e personalizzati.
+                                <p><span className="font-semibold block pb-2">Proposte tematiche</span>
+                                    Scopri Cremona e il suo territorio attraverso esperienze curiose e particolari.
+                                    Scegli tra degustazioni, visite tematiche, itinerari in bici o in barca, incontri con artigiani e luoghi meno noti.
+                                    Le attività sono organizzate in date precise, consultabili in calendario.
+                                    Scegli quella che fa per te, prenoti e vivi l’esperienza.
                                 </p>
                             </div>
                         </div>

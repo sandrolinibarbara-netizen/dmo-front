@@ -52,10 +52,12 @@ export default function ClassicExperiences() {
                             </div>
 
                             <div className="w-[60%] pl-2">
-                                <p>Scoprire Cremona attraverso i suoi monumenti monumenti principali, i musei e le
-                                    peculiarità che l'hanno resa famosa nel mondo,
-                                    musica e la liuteria, arte, palazzi e dimore storiche attraverso visite guidate sempre
-                                    disponibili per turisti e visitatori
+                                <p>
+                                    <span className="font-semibold block pb-2">Proposte a partenza garantita</span>
+                                    Vuoi conoscere l’anima di Cremona? Parti dai suoi luoghi simbolo.
+                                    Visita i monumenti principali e i musei, entra nei palazzi e nelle dimore storiche della città. Scopri la musica e la liuteria che hanno reso Cremona famosa nel mondo.
+                                    Le visite guidate sono disponibili tutto l’anno e ti accompagnano in un percorso imperdibile, con un ritmo adatto a tutti.
+
                                 </p>
                             </div>
                         </div>
