@@ -54,7 +54,7 @@ export default function Cycling() {
                 </div>
             </section>
 
-            <section className="w-[90vw] md:w-[80vw] mx-auto items-center justify-center px-4 md:px-8 pt-2 pb-24">
+            <section className="w-[90vw] md:w-[80vw] mx-auto items-center justify-center px-4 md:px-8 pt-8 pb-24">
                 <div
                     className="h-[500px] mb-4 rounded-xl border-sky-500 border bg-sky-100 flex items-center justify-center">
                     Content
@@ -62,22 +62,22 @@ export default function Cycling() {
 
                 <div className="mt-5 flex gap-4 w-full">
                     <div
-                        className="p-8 w-[33%] h-[200px] rounded-xl bg-corpo-blue text-white flex flex-col gap-6">
+                        className="p-8 w-[33%] min-h-[172px] rounded-xl bg-corpo-blue text-white flex flex-col gap-6">
                         <p className="font-bold">Scopri tutti gli eventi e i festival mese per mese: </p>
                         <div className="flex gap-4 items-center mt-2">
-                            <PDF className="cursor-pointer w-10 h-10"/>
-                            <p className="text-sm">
+                            <PDF className="cursor-pointer w-12 h-12"/>
+                            <p className="text-sm w-[75%]">
                                 Scaricali da qui.
                             </p>
                         </div>
                     </div>
 
                     <div
-                        className="p-8 w-[33%] h-[200px] rounded-xl bg-corpo-blue text-white flex flex-col gap-6">
+                        className="p-8 w-[33%] min-h-[172px] rounded-xl bg-corpo-blue text-white flex flex-col gap-6">
                         <p className="font-bold">Scarica la mappa turistico - musicale del territorio cremonese</p>
                         <div className="flex gap-4 items-center mt-2">
-                            <PDF className="cursor-pointer w-10 h-10"/>
-                            <p className="text-sm">
+                            <PDF className="cursor-pointer w-12 h-12"/>
+                            <p className="text-sm w-[75%]">
                                Consulta la mappa.
                             </p>
                         </div>

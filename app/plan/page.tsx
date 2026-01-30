@@ -95,15 +95,15 @@ export default function Plan() {
                         name="Infopoint Cremona e Provincia"
                         address="Piazza del Comune n. 5 - 26100 Cremona"
                         phone="0372 407081"
-                        email="info.turismo@comune.cremona.it "
+                        email="info.turismo@comune.cremona.it"
                         url="https://nextjs.org/docs/app/guides/mdx"
                     />
 
                     <InfoCard
                         name="Infopoint Crema"
-                        address="Piazza del Comune n. 5 - 26100 Cremona"
-                        phone="0372 407081"
-                        email="info.turismo@comune.cremona.it "
+                        address="Piazza Duomo 22 - 26013 Crema"
+                        phone="0373 81020"
+                        email="info@prolococrema.it"
                         url="https://nextjs.org/docs/app/guides/mdx"
                     />
                 </div>

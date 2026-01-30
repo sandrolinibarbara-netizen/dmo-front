@@ -109,10 +109,10 @@ export default function Menu({links} : {links:any}) {
                         </li>
 
                         <li className="w-full flex flex-col">
-                            <button type="button" onClick={toggleExpMenu} className="cursor-pointer pr-4 py-3 flex justify-between items-center"><span>Esperienze</span> <span>&gt;</span>
+                            <button type="button" onClick={toggleExpMenu} className="cursor-pointer pr-4 py-3 flex justify-between items-center"><span>Esperienze</span>
+                                <span className={`${showExpMenu === 'open' ? 'rotate-90' : 'rotate-0'} transition-all duration-500 origin-center`}>&gt;</span>
                             </button>
-                            {showExpMenu === 'open' &&
-                                <ul className="pl-4">
+                                <ul className={`${showExpMenu === 'open' ? 'h-[192px]' : 'h-0'} pl-4 transition-all duration-500 overflow-hidden`}>
                                     <li className="py-3">
                                         <Link
                                             href="/experiences"
@@ -146,7 +146,6 @@ export default function Menu({links} : {links:any}) {
                                         </Link>
                                     </li>
                                 </ul>
-                            }
                         </li>
 
 

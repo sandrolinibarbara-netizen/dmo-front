@@ -123,37 +123,34 @@ export default async function Who() {
               <h2 className="font-bold text-4xl mt-20 mb-8">Scaricabili</h2>
               <div className="flex gap-4 w-full">
                   <div
-                      className="p-8 w-[33%] h-[200px] rounded-xl bg-corpo-blue text-white flex flex-col items-center justify-center">
-                      <p className="font-bold">Scarica la mappa cicloturistica del territorio cremonese</p>
+                      className="p-8 w-[33%] min-h-[172px] rounded-xl bg-corpo-blue text-white flex flex-col gap-6">
+                      <p className="font-bold">Lorem ipsum dolor sit amet</p>
                       <div className="flex gap-4 items-center mt-2">
-                          <PDF className="cursor-pointer w-20 h-20"/>
-                          <p className="text-sm">
-                              Sette percorsi che coprono una totalità di circa 300 km, proponendo anche diverse
-                              varianti.
+                          <PDF className="cursor-pointer w-12 h-12"/>
+                          <p className="text-sm w-[75%]">
+                              Sed mollis cursus ex, nec interdum mi ultrices et. Fusce ut accumsan magna.
                           </p>
                       </div>
                   </div>
 
                   <div
-                      className="p-8 w-[33%] h-[200px] rounded-xl bg-corpo-blue text-white flex flex-col items-center justify-center">
-                      <p className="font-bold">Consulta la mappa delle piste ciclabili di Cremona e dintorni</p>
+                      className="p-8 w-[33%] min-h-[172px] rounded-xl bg-corpo-blue text-white flex flex-col gap-6">
+                      <p className="font-bold">Lorem ipsum dolor sit amet</p>
                       <div className="flex gap-4 items-center mt-2">
-                          <PDF className="cursor-pointer w-20 h-20"/>
-                          <p className="text-sm">
-                              La lista completa con mappa di tutta la pista ciclabile urbana ed extraurbana di
-                              Cremona.
+                          <PDF className="cursor-pointer w-12 h-12"/>
+                          <p className="text-sm w-[75%]">
+                              Sed mollis cursus ex, nec interdum mi ultrices et. Fusce ut accumsan magna.
                           </p>
                       </div>
                   </div>
 
                   <div
-                      className="p-8 w-[33%] h-[200px] rounded-xl bg-corpo-blue text-white flex flex-col items-center justify-center">
-                      <p className="font-bold">Consulta la mappa delle piste ciclabili di Crema</p>
+                      className="p-8 w-[33%] min-h-[172px] rounded-xl bg-corpo-blue text-white flex flex-col gap-6">
+                      <p className="font-bold">Lorem ipsum dolor sit amet</p>
                       <div className="flex gap-4 items-center mt-2">
-                          <PDF className="cursor-pointer w-20 h-20"/>
-                          <p className="text-sm">
-                              La lista completa con mappa di tutta la pista ciclabile urbana ed extraurbana di
-                              Crema.
+                          <PDF className="cursor-pointer w-12 h-12"/>
+                          <p className="text-sm w-[75%]">
+                              Sed mollis cursus ex, nec interdum mi ultrices et. Fusce ut accumsan magna.
                           </p>
                       </div>
                   </div>

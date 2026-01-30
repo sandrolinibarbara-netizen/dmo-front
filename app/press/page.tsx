@@ -8,36 +8,24 @@ export default function Press() {
                 <h1 className="font-bold text-4xl mt-8 mb-16">Area stampa</h1>
                 <div className="flex gap-4 flex-wrap">
                     <LinkCard
-                        title="Press1"
+                        title="Materiali del brand"
                         url="/Visit Cremona_Brand Guide_V6.pdf"
-                        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat."
+                        description="In questa sezione puoi trovare gli asset da scaricare oltre che alla brand identity"
                         download={true}/>
                     <LinkCard
-                        title="Press2"
+                        title="Materiali fotografici"
                         url="/Visit Cremona_Brand Guide_V6.pdf"
-                        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat."
+                        description="In questa sezione puoi le fotografie di ogni esperienza per le tue pubblicazioni"
                         download={true}/>
                     <LinkCard
-                        title="Press3"
+                        title="Materiali Esperienze"
                         url="/Visit Cremona_Brand Guide_V6.pdf"
-                        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat."
+                        description="Per tutte le esperienze vi sono i vari comunicati stampa da cui potrete trovare le informazioni adatte"
                         download={true}/>
                     <LinkCard
-                        title="Press4"
+                        title="Cartina geografica"
                         url="/Visit Cremona_Brand Guide_V6.pdf"
-                        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat."
+                        description="La cartina della provincia per una visione totale del nostro territorio"
                         download={true}/>
                 </div>
             </div>

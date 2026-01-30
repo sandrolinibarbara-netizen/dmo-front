@@ -19,36 +19,19 @@ export default function Operators() {
                             <h1 className="font-bold text-4xl mt-8 mb-16">Area operatori</h1>
                             <div className="flex gap-4 flex-wrap">
                                 <LinkCard
-                                    title="Operators1"
+                                    title="Risorse del Brand"
                                     url="/Visit Cremona_Brand Guide_V6.pdf"
-                                    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                                laboris nisi ut aliquip ex ea commodo consequat."
+                                    description="Qui troverai le linee guida del marchio e gli elementi scaricabili."
                                     download={true}/>
                                 <LinkCard
-                                    title="Operators2"
+                                    title="Archivio Fotografico"
                                     url="/Visit Cremona_Brand Guide_V6.pdf"
-                                    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                                laboris nisi ut aliquip ex ea commodo consequat."
+                                    description="Immagini ad alta risoluzione delle nostre esperienze."
                                     download={true}/>
                                 <LinkCard
-                                    title="Operators3"
+                                    title="Materiali delle Attività"
                                     url="/Visit Cremona_Brand Guide_V6.pdf"
-                                    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                                laboris nisi ut aliquip ex ea commodo consequat."
-                                    download={true}/>
-                                <LinkCard
-                                    title="Operators4"
-                                    url="/Visit Cremona_Brand Guide_V6.pdf"
-                                    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                                laboris nisi ut aliquip ex ea commodo consequat."
+                                    description="Comunicati stampa e informazioni utili per ogni attività."
                                     download={true}/>
                             </div>
                         </div>

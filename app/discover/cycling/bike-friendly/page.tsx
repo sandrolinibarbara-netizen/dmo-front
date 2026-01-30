@@ -13,61 +13,30 @@ export default function BikeFriendly() {
 
                     <div className="flex gap-4 flex-wrap">
                         <InfoCard
-                            name="Infopoint Cremona e Provincia"
-                            address="Piazza del Comune n. 5 - 26100 Cremona"
-                            phone="0372 407081"
-                            email="info.turismo@comune.cremona.it "
+                            name="Bed & Bike Cremona"
+                            address="Via Roma 90 - Crotta D’Adda (CR)"
+                            phone="+39 331 7914435"
+                            email="info@bedandbikecremona.it"
                             url="https://nextjs.org/docs/app/guides/mdx"
                         >
-                            <div className="flex gap-4 w-full">
-                                <ul>
-                                    <li>Lunedi</li>
-                                    <li>Martedi</li>
-                                    <li>Mercoledi</li>
-                                    <li>Giovedi</li>
-                                    <li>Venerdi</li>
-                                    <li>Sabato</li>
-                                    <li>Domenica</li>
-                                </ul>
-                                <ul className="w-full">
-                                    <li className="text-ellipsis whitespace-nowrap overflow-x-auto">9:00 - 12:00 | 15:00 - 18:00</li>
-                                    <li className="text-ellipsis whitespace-nowrap overflow-x-auto">9:00 - 12:00 | 15:00 - 18:00</li>
-                                    <li className="text-ellipsis whitespace-nowrap overflow-x-auto">9:00 - 12:00 | 15:00 - 18:00</li>
-                                    <li className="text-ellipsis whitespace-nowrap overflow-x-auto">9:00 - 12:00 | 15:00 - 18:00</li>
-                                    <li className="text-ellipsis whitespace-nowrap overflow-x-auto">9:00 - 12:00 | 15:00 - 18:00</li>
-                                    <li className="text-ellipsis whitespace-nowrap overflow-x-auto">Chiuso</li>
-                                    <li className="text-ellipsis whitespace-nowrap overflow-x-auto">Chiuso</li>
-                                </ul>
-                            </div>
                         </InfoCard>
 
                         <InfoCard
-                            name="Infopoint Crema"
-                            address="Piazza del Comune n. 5 - 26100 Cremona"
-                            phone="0372 407081"
-                            email="info.turismo@comune.cremona.it "
+                            name="Velo & Relax Cremona"
+                            address="Piazza Virgiliana - 26100 Cremona (CR)"
+                            phone="+39 0376 28899"
+                            email="info@veloerelax.it"
                             url="https://nextjs.org/docs/app/guides/mdx"
                         >
-                            <div className="flex gap-4 w-full">
-                                <ul>
-                                    <li>Lunedi</li>
-                                    <li>Martedi</li>
-                                    <li>Mercoledi</li>
-                                    <li>Giovedi</li>
-                                    <li>Venerdi</li>
-                                    <li>Sabato</li>
-                                    <li>Domenica</li>
-                                </ul>
-                                <ul className="w-full">
-                                    <li className="text-ellipsis whitespace-nowrap overflow-x-auto">9:00 - 12:00 | 15:00 - 18:00</li>
-                                    <li className="text-ellipsis whitespace-nowrap overflow-x-auto">9:00 - 12:00 | 15:00 - 18:00</li>
-                                    <li className="text-ellipsis whitespace-nowrap overflow-x-auto">9:00 - 12:00 | 15:00 - 18:00</li>
-                                    <li className="text-ellipsis whitespace-nowrap overflow-x-auto">9:00 - 12:00 | 15:00 - 18:00</li>
-                                    <li className="text-ellipsis whitespace-nowrap overflow-x-auto">9:00 - 12:00 | 15:00 - 18:00</li>
-                                    <li className="text-ellipsis whitespace-nowrap overflow-x-auto">Chiuso</li>
-                                    <li className="text-ellipsis whitespace-nowrap overflow-x-auto">Chiuso</li>
-                                </ul>
-                            </div>
+                        </InfoCard>
+
+                        <InfoCard
+                            name="Bici & Natura"
+                            address="Viale Rimembranze - 26100 Cremona (CR)"
+                            phone="+39 0371 420876"
+                            email="info@bicieNatura.it"
+                            url="https://nextjs.org/docs/app/guides/mdx"
+                        >
                         </InfoCard>
                     </div>
                 </div>
