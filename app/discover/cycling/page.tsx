@@ -57,9 +57,8 @@ export default function Cycling() {
             </section>
 
             <section className="w-[90vw] md:w-[80vw] mx-auto items-center justify-center px-4 md:px-8 pt-8 pb-24">
-                <iframe
-                    src="https://www.komoot.com/it-it/tour/2528630754/embed?share_token=aDAXylT815iCdp5SdXij0rX82fx37ZPsFL0jWwJDzDJpuMddZF"
-                    width="100%" height="700" frameBorder="0" scrolling="no"></iframe>
+                <iframe src="https://www.komoot.com/it-it/collection/3284381/embed" width="100%" height="700"
+                        frameBorder="0" scrolling="no"></iframe>
 
                 <div className="flex gap-4 w-full mt-4">
                     <iframe
