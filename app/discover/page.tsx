@@ -1,21 +1,23 @@
 import Image from "next/image";
 import LocalMap from "@/app/_components/LocalMap";
 import TalesLogo from "@/app/_components/TalesLogo";
-import data from "@/utils/experiences.json"
-import SingleExperienceCard from "@/app/_components/SingleExperienceCard";
 import Link from "next/link";
 import AnimatedHoverButton from "@/app/_components/AnimatedHoverButton";
+import FilteredExperiences from "@/app/_components/FilteredExperiences";
+import {getExperiences} from "@/app/lib/domnia-experiences";
 
 export default async function Discover() {
     let content;
 
     try {
-        let data = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/discover?populate=*',
+        const data = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/discover?populate=*',
             { next: { revalidate: 1000 }});
         content = await data.json();
     } catch(error) {
         console.log(error);
     }
+
+    const pages = await getExperiences('/discover');
 
     return(
         <>
@@ -89,15 +91,9 @@ export default async function Discover() {
                         <TalesLogo theme="cycling"/>
                     </div>
                     <div className="flex gap-4">
-                        <div className="hidden md:flex flex-col gap-2">
-                            {data.cycling.map((el, i) => {
-                                if (i < 2) {
-                                    return (
-                                        <SingleExperienceCard key={el.titolo} el={el} grid={false}/>
-                                    )
-                                }
-                            })}
-                        </div>
+
+                        <FilteredExperiences type='cycling' pages={pages}/>
+
                         <div className="flex flex-col gap-2 ">
                             <div className="flex md:flex-row flex-col gap-2">
                                 <div
@@ -117,21 +113,16 @@ export default async function Discover() {
                             </div>
                         </div>
                     </div>
+
                     {/*Tales of Luthiery*/}
                     <div id="luthiery" aria-hidden={true} className="h-[80px]"></div>
                     <div id="luthiery" className="mt-2 mb-8">
                         <TalesLogo theme="luthiery"/>
                     </div>
                     <div className="flex gap-4">
-                        <div className="hidden md:flex flex-col gap-2">
-                            {data.luthiery.map((el, i) => {
-                                if (i < 2) {
-                                    return (
-                                        <SingleExperienceCard key={el.titolo} el={el} grid={false}/>
-                                    )
-                                }
-                            })}
-                        </div>
+
+                        <FilteredExperiences type="luthiery" pages={pages}/>
+
                         <div className="flex flex-col gap-2 ">
                             <div className="flex md:flex-row flex-col gap-2">
                                 <div

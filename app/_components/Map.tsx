@@ -42,7 +42,7 @@ export default function Map({homepage, autoFilter, fullPage, composers} : {homep
                     </li>
                 </ul>
             </div>}
-            <MapContainer className={`${homepage || fullPage ? 'h-[600px]' : 'h-[532px] md:w-[866px]'} w-full rounded-xl z-100`}
+            <MapContainer className={`${homepage || fullPage ? 'h-[600px]' : 'h-[532px] md:w-[800px]'} w-full rounded-xl z-100`}
                           center={(composers && composers[0].name.includes('Paderno')) ? [45.23906740340918, 9.928271781708482] : [45.136887, 10.028458]}
                           zoom={composers ? 14 : 10}
                           scrollWheelZoom={false}>

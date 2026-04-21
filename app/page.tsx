@@ -1,22 +1,21 @@
 import Carousel from "@/app/_components/Carousel";
-// import ExperienceCard from "@/app/_components/ExperienceCard";
 import VisitCard from "@/app/_components/VisitCard";
 import Link from "next/link";
 import Image from "next/image";
 import AnimatedHoverButton from "@/app/_components/AnimatedHoverButton";
 import LocalMap from "@/app/_components/LocalMap";
 import data from "@/utils/experiences.json"
-import SingleExperienceCard from "@/app/_components/SingleExperienceCard";
 import Event from "@/app/_components/Event";
 import Stories from "@/app/_components/Stories";
 import ContactForm from "@/app/_components/ContactForm";
+import ExperienceSection from "@/app/_components/ExperienceSection";
+import {getExperiences} from "@/app/lib/domnia-experiences";
 
 export default async function Home() {
     const arrData = [...data.cycling, ...data.luthiery];
-
     let content, contentLinks;
     try {
-        let data = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/homepage' +
+        const data = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/homepage' +
             '?populate[0]=hero_carosello' +
             '&populate[1]=sub_hero_image' +
             '&populate[2]=card_1' +
@@ -32,13 +31,16 @@ export default async function Home() {
         );
         content = await data.json();
 
-        let dataLinks = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/link',
+        const dataLinks = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/link',
             { next: { revalidate: 1000 }});
         contentLinks = await dataLinks.json();
 
     } catch(error) {
         console.log(error);
     }
+
+    const pages = await getExperiences('/');
+    console.log(pages)
 
   return (
       <>
@@ -119,60 +121,9 @@ export default async function Home() {
               </div>
           </section>
 
-          <section className="w-full bg-pastel-yellow">
-              <div
-                  className="flex flex-col gap-16 w-[95vw] md:w-[80vw] mx-auto justify-center px-4 md:px-8 pb-24 pt-20">
-                  <div className="flex flex-col md:flex-row justify-between">
-                      <h2 className="font-bold text-4xl w-full text-left break-title mb-8 md:mb-0">{content.data['esperienze_classiche'][0]['nome']}</h2>
-                      <p className="w-full md:max-w-[40vw]">{content.data['esperienze_classiche'][0]['descrizione']}</p>
-                  </div>
+          <ExperienceSection type="classic" name={content.data['esperienze_classiche'][0]['nome']} description={content.data['esperienze_classiche'][0]['descrizione']} pages={pages}/>
+          <ExperienceSection type="contemporary" name={content.data['esperienze_contemporanee'][0]['nome']} description={content.data['esperienze_contemporanee'][0]['descrizione']} pages={pages}/>
 
-                  <div className="flex gap-4 md:justify-end flex-wrap">
-                      {
-                          arrData.filter(el => el.tipo === 'CL').map((el, i) => {
-                              if (i < 3) {
-                                  return (
-                                      <SingleExperienceCard key={el.titolo} el={el} grid={true}/>
-                                  )
-                              }
-                          })
-                      }
-                  </div>
-
-                  <div className="w-full text-right mt-4">
-                      <Link href="/experiences/classic" className="font-bold underline relative">
-                          <AnimatedHoverButton content="Vai alle Esperienze Classiche"/>
-                      </Link>
-                  </div>
-              </div>
-          </section>
-          <section className="w-full bg-pastel-orange">
-              <div
-                  className="flex flex-col gap-16 w-[95vw] md:w-[80vw] mx-auto justify-center px-4 md:px-8 pb-24 pt-20">
-                  <div className="flex flex-col md:flex-row justify-between">
-                      <h2 className="font-bold text-4xl w-full text-left break-title mb-8 md:mb-0">{content.data['esperienze_contemporanee'][0]['nome']}</h2>
-                      <p className="w-full md:max-w-[40vw]">{content.data['esperienze_contemporanee'][0]['descrizione']}</p>
-                  </div>
-
-                  <div className="flex gap-4 md:justify-end flex-wrap">
-                      {
-                          arrData.filter(el => el.tipo === 'CO').map((el, i) => {
-                              if (i < 3) {
-                                  return (
-                                      <SingleExperienceCard key={el.titolo} el={el} grid={true}/>
-                                  )
-                              }
-                          })
-                      }
-                  </div>
-
-                  <div className="w-full text-right mt-4">
-                      <Link href="/experiences/contemporary" className="font-bold underline relative">
-                          <AnimatedHoverButton content="Vai alle Esperienze Contemporanee"/>
-                      </Link>
-                  </div>
-              </div>
-          </section>
           <section className="w-full bg-pastel-pink">
               <div
                   className="flex flex-col gap-16 w-[95vw] md:w-[80vw] mx-auto justify-center px-4 md:px-8 pb-24 pt-20">

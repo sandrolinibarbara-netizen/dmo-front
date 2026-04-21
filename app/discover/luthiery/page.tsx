@@ -1,18 +1,19 @@
 import data from "@/utils/experiences.json"
 import TalesLogo from "@/app/_components/TalesLogo";
-import SingleExperienceCard from "@/app/_components/SingleExperienceCard";
 import Event from "@/app/_components/Event";
 import LocalMap from "@/app/_components/LocalMap";
 import {PDF} from "@/app/_components/_icons/PDF";
 import Markdown from "react-markdown";
 import Composers from "@/app/_components/Composers";
+import AllExperiences from "@/app/_components/AllExperiences";
+import {getExperiences} from "@/app/lib/domnia-experiences";
 
-export default async function Cycling() {
+export default async function Luthiery() {
 
     let content;
 
     try {
-        let data = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/liuteria'+
+        const data = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/liuteria'+
             '?populate[0]=elements' +
             '&populate[1]=compositore_1' +
             '&populate[2]=compositore_1.immagine' +
@@ -22,10 +23,11 @@ export default async function Cycling() {
             '&populate[6]=compositore_3.immagine',
             { next: { revalidate: 1000 }});
         content = await data.json();
-        console.log(content.data)
     } catch(error) {
         console.log(error);
     }
+
+    const pages = await getExperiences('/discover/luthiery');
 
     return (
         <>
@@ -104,18 +106,7 @@ export default async function Cycling() {
                 </div>
             </section>
 
-            <section className="w-[95vw] md:w-[80vw] mx-auto items-center justify-center px-4 md:px-8 pb-24">
-                <h2 className="font-bold text-4xl mt-8 mb-16">Tutte le esperienze</h2>
-                <div className="flex gap-4 flex-wrap">
-                    {
-                        data.luthiery.map(el => {
-                            return (
-                                <SingleExperienceCard el={el} grid={true} key={el.titolo + Math.random()}/>
-                            )
-                        })
-                    }
-                </div>
-            </section>
+            <AllExperiences type='luthiery' pages={pages}/>
 
             <section className="w-[95vw] md:w-[80vw] mx-auto items-center justify-center px-4 md:px-8 pb-24">
                 <h2 className="font-bold text-4xl mt-8 mb-16">Tutti gli eventi</h2>
@@ -124,7 +115,7 @@ export default async function Cycling() {
                         data.luthiery.map(el => {
                             return (
                                 <Event
-                                    key={el.titolo + Math.random()}
+                                    key={el.titolo}
                                     what={el.titolo}
                                     where={el.luogo}
                                     when={el.data}

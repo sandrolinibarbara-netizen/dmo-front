@@ -8,8 +8,6 @@ export default function Carousel({pics}:{pics:any}) {
 
     const [slide, setSlide] = useState<number>(0);
     const [placeholder, setPlaceholder] = useState<number>(slide);
-
-
     function setCurrentSlide(fn:string) {
         document.getElementById('prevBtn')?.setAttribute('disabled', 'disabled');
         document.getElementById('nextBtn')?.setAttribute('disabled', 'disabled');
@@ -41,7 +39,7 @@ export default function Carousel({pics}:{pics:any}) {
             document.getElementById('nextBtn')?.removeAttribute('disabled');
             setPlaceholder(slide);
         }, 1500)
-    }, [slide])
+    }, [slide]);
 
    return(
        <div className="flex flex-col items-center gap-4 w-full max-w-[100%]">

@@ -1,30 +1,42 @@
 import data from "@/utils/experiences.json"
 import TalesLogo from "@/app/_components/TalesLogo";
-import SingleExperienceCard from "@/app/_components/SingleExperienceCard";
 import Link from "next/link";
 import Event from "@/app/_components/Event";
 import LocalMap from "@/app/_components/LocalMap";
 import {PDF} from "@/app/_components/_icons/PDF";
 import Markdown from "react-markdown";
 import Image from "next/image";
+import AllExperiences from "@/app/_components/AllExperiences";
+import {getExperiences} from "@/app/lib/domnia-experiences";
+
+type CyclingToursResponse = {
+    data: Array<{
+        documentId: string;
+        id: number;
+        link: string;
+        ordine: number;
+    }>;
+};
 
 export default async function Cycling() {
-
-    let content, contentTours;
+    let content;
+    let contentTours: CyclingToursResponse = { data: [] };
 
     try {
-        let data = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/cicloturismo'+
+        const data = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/cicloturismo'+
                 '?populate[0]=elements'+
                 '&populate[1]=elements.immagine',
             { next: { revalidate: 1000 }});
         content = await data.json();
 
-        let dataTours = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/cycling-tours',
+        const dataTours = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/cycling-tours',
             { next: { revalidate: 1000 }});
         contentTours = await dataTours.json();
     } catch(error) {
         console.log(error);
     }
+
+    const pages = await getExperiences('/discover/cycling');
 
     return (
         <>
@@ -78,7 +90,7 @@ export default async function Cycling() {
 
                 <div className="flex md:flex-row flex-col gap-4 w-full mt-4">
 
-                    {contentTours.data.map((el:any) => {
+                    {contentTours.data.map((el) => {
                         if(el.ordine > 3) return;
                         else {
                             return (
@@ -91,7 +103,7 @@ export default async function Cycling() {
                                             className="text-black transition duration-500 hover:bg-corpo-orange bg-soft-orange rounded-full px-3 py-2 text-sm"
                                             href={`/discover/cycling/${el.documentId}`}
                                         >
-                                            Guarda l'itinerario
+                                            Guarda l&apos;itinerario
                                         </Link>
                                     </div>
                                 </div>
@@ -140,18 +152,7 @@ export default async function Cycling() {
                 </div>
             </section>
 
-            <section className="w-[95vw] md:w-[80vw] mx-auto items-center justify-center px-4 md:px-8 pb-24">
-                <h2 className="font-bold text-4xl mt-8 mb-16">Tutte le esperienze</h2>
-                <div className="flex gap-4 flex-wrap">
-                    {
-                        data.cycling.map(el => {
-                            return (
-                                <SingleExperienceCard el={el} grid={true} key={el.titolo + Math.random()}/>
-                            )
-                        })
-                    }
-                </div>
-            </section>
+            <AllExperiences type='cycling' pages={pages}/>
 
             <section className="w-full bg-corpo-blue text-white">
                 <div className="flex flex-col w-[95vw] md:w-[80vw] mx-auto px-4 md:px-8 pt-20 pb-20 md:pb-24">
@@ -197,7 +198,7 @@ export default async function Cycling() {
                         data.cycling.map(el => {
                             return (
                                 <Event
-                                    key={el.titolo + Math.random()}
+                                    key={el.titolo}
                                     what={el.titolo}
                                     where={el.luogo}
                                     when={el.data}

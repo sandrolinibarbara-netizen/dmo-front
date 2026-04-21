@@ -1,13 +1,10 @@
-'use client'
-import data from "@/utils/experiences.json"
 import SingleExperienceCard from "@/app/_components/SingleExperienceCard";
-import {useState} from "react";
-import {useFilterStore} from "@/app/_stores/filter";
+import {getExperiences} from "@/app/lib/domnia-experiences";
+import SearchTaggedExperiences from "@/app/_components/SearchTaggedExperiences";
 
-export default function UniqueExperiences() {
-    const arrData = [...data.cycling, ...data.luthiery];
-    const uniqueExp = arrData.filter(el => el.tipo === 'UN');
-    const [displayedExp, setDisplayedExp] = useState(uniqueExp);
+export default async function UniqueExperiences() {
+
+    const pages = await getExperiences('/experiences/unique');
 
     return (
         <>
@@ -36,16 +33,7 @@ export default function UniqueExperiences() {
 
                     </div>
 
-
-                    <div className="flex flex-wrap gap-4 w-full">
-                            {
-                                displayedExp.map((el) => {
-                                    return (
-                                        <SingleExperienceCard key={el.titolo} el={el} grid={true}/>
-                                    )
-                                })
-                            }
-                    </div>
+                    <SearchTaggedExperiences pages={pages} type='unique'/>
                 </div>
 
             </section>
