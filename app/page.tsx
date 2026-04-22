@@ -4,7 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import AnimatedHoverButton from "@/app/_components/AnimatedHoverButton";
 import LocalMap from "@/app/_components/LocalMap";
-import data from "@/utils/experiences.json"
 import Event from "@/app/_components/Event";
 import Stories from "@/app/_components/Stories";
 import ContactForm from "@/app/_components/ContactForm";
@@ -12,7 +11,6 @@ import ExperienceSection from "@/app/_components/ExperienceSection";
 import {getExperiences} from "@/app/lib/domnia-experiences";
 
 export default async function Home() {
-    const arrData = [...data.cycling, ...data.luthiery];
     let content, contentLinks;
     try {
         const data = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/homepage' +
@@ -40,7 +38,6 @@ export default async function Home() {
     }
 
     const pages = await getExperiences('/');
-    console.log(pages)
 
   return (
       <>
@@ -78,7 +75,7 @@ export default async function Home() {
           {/*default: pt-20*/}
           <section className="w-[95vw] md:w-[80vw] mx-auto px-4 md:px-8 pb-24">
               <h2 className="font-bold text-4xl mt-8 mb-12">Scopri cosa offre il territorio vicino a te</h2>
-              <LocalMap homepage={true} autoFilter={0}/>
+              <LocalMap homepage={true} autoFilter={0} pages={pages}/>
           </section>
 
           <section className="flex flex-col gap-8 w-[95vw] md:w-[80vw] mx-auto justify-center px-4 md:px-8 pb-24">
@@ -159,13 +156,7 @@ export default async function Home() {
                   className="flex flex-col gap-16 w-[95vw] md:w-[80vw] mx-auto justify-center px-4 md:px-8 pb-24 pt-20">
                   <h2 className="font-bold text-4xl w-full text-left break-title">Eventi</h2>
 
-                  <Event
-                      what={arrData[0].titolo}
-                      where={arrData[0].luogo}
-                      when={arrData[0].data}
-                      how={arrData[0].descrizione}
-                      img={`/images/experiences/${arrData[0].immagine}`}
-                  />
+                  <Event/>
 
                   <div className="w-full text-right mt-4">
                       <Link href="/discover" className="font-bold underline relative">

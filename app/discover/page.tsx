@@ -104,7 +104,7 @@ export default async function Discover() {
                                        src="/images/stories/town.webp" alt="pic" width={200} height={100}/>
                             </div>
 
-                            <LocalMap homepage={false} autoFilter={1}/>
+                            <LocalMap homepage={false} autoFilter={1} pages={pages}/>
 
                             <div className="w-full text-right mt-4">
                                 <Link href="/discover/cycling" className="font-bold underline relative">
@@ -132,7 +132,7 @@ export default async function Discover() {
                                 <Image className="object-cover rounded-xl w-full md:w-[50%] h-[164px]"
                                        src="/images/stories/lab.webp" alt="pic" width={200} height={100}/>
                             </div>
-                            <LocalMap homepage={false} autoFilter={2}/>
+                            <LocalMap homepage={false} autoFilter={2} pages={pages}/>
                             <div className="w-full text-right mt-4">
                                 <Link href="/discover/luthiery" className="font-bold underline relative">
                                     <AnimatedHoverButton content="Scopri Tales of Music and Luthiery"/>

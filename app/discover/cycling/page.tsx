@@ -213,7 +213,7 @@ export default async function Cycling() {
 
             <section className="w-[95vw] md:w-screen md:mb-0 mb-8 md:px-0 px-4 mx-auto items-center justify-center">
                 <h2 className="md:w-[80vw] mx-auto px-4 md:px-8 font-bold text-4xl mt-8 mb-16">Visualizza tutti gli Eventi e le Esperienze sulla mappa</h2>
-                <LocalMap homepage={false} autoFilter={1} fullPage={true}/>
+                <LocalMap homepage={false} autoFilter={1} fullPage={true} pages={pages}/>
             </section>
 
         </>

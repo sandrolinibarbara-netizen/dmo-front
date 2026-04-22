@@ -16,7 +16,7 @@ export default function SearchAllExperiences({pages}:{pages:any}) {
         let filtered;
         switch(filters.type) {
             case 'unique':
-                filtered = pages.filter((el:any) => el.tagIds.includes(1));
+                filtered = pages.filter((el:any) => el.tagIds.includes(6));
                 break;
             case 'classic':
                 filtered = pages.filter((el:any) => el.tagIds.includes(4));

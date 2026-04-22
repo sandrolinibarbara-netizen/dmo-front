@@ -1,13 +1,24 @@
 import SingleExperienceCard from "@/app/_components/SingleExperienceCard";
 
 export default function FilteredExperiences({type, pages}:{type:string, pages:any}) {
+    let expToDisplay;
+    switch(type) {
+        case 'luthiery':
+            expToDisplay = 2;
+            break;
+        case 'cycling':
+            expToDisplay = 3;
+            break;
+        default:
+            expToDisplay = 1;
+    }
 
     return (
 
         <div className="hidden md:flex flex-col gap-2">
             {pages &&
-                pages.filter((el: any) => el.tagIds.includes(1)).map((el: any, i: number) => {
-                    if (i < 3) {
+                pages.filter((el: any) => el.tagIds.includes(expToDisplay)).map((el: any, i: number) => {
+                    if (i < 2) {
                         return (
                             <SingleExperienceCard key={el.documentId} el={el} grid={false}/>
                         )

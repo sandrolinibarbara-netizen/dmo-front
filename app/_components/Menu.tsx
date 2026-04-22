@@ -10,6 +10,7 @@ export default function Menu({links} : {links:any}) {
 
     const [showMenu, setShowMenu] = useState<string>('initial');
     const [showExpMenu, setShowExpMenu] = useState<string>('close');
+
     function toggleMenu(action:'open'|'close') {
         if(action === 'open' && (showMenu === 'close' || showMenu === 'initial')) {
             setShowMenu('open');
@@ -33,7 +34,7 @@ export default function Menu({links} : {links:any}) {
                 <div className="w-full px-2 md:px-0 md:w-[90%] md:mx-auto h-full p-0.5 text-white flex items-center justify-between">
                     <Link
                         href="/"
-                        onNavigate={() => toggleMenu('close')}
+                        onClick={() => toggleMenu('close')}
                     >
                         <Image
                             src='/logo.webp'
@@ -84,7 +85,7 @@ export default function Menu({links} : {links:any}) {
                         <li className="py-3">
                             <Link
                                 href="/"
-                                onNavigate={() => toggleMenu('close')}
+                                onClick={() => toggleMenu('close')}
                             >
                                 Homepage
                             </Link>
@@ -92,7 +93,7 @@ export default function Menu({links} : {links:any}) {
                         <li className="py-3">
                             <Link
                                 href="/discover"
-                                onNavigate={() => toggleMenu('close')}
+                                onClick={() => toggleMenu('close')}
                             >
                                 Scopri il territorio
                             </Link>
@@ -100,7 +101,7 @@ export default function Menu({links} : {links:any}) {
                         <li className="py-3">
                             <Link
                                 href="/discover/cycling"
-                                onNavigate={() => toggleMenu('close')}
+                                onClick={() => toggleMenu('close')}
                             >
                                 Cicloturismo
                             </Link>
@@ -108,7 +109,7 @@ export default function Menu({links} : {links:any}) {
                         <li className="py-3">
                             <Link
                                 href="/discover/luthiery"
-                                onNavigate={() => toggleMenu('close')}
+                                onClick={() => toggleMenu('close')}
                             >
                                 Musica e liuteria
                             </Link>
@@ -122,7 +123,7 @@ export default function Menu({links} : {links:any}) {
                                     <li className="py-3">
                                         <Link
                                             href="/experiences"
-                                            onNavigate={() => toggleMenu('close')}
+                                            onClick={() => toggleMenu('close')}
                                         >
                                             Tutte le esperienze
                                         </Link>
@@ -130,7 +131,7 @@ export default function Menu({links} : {links:any}) {
                                     <li className="py-3">
                                         <Link
                                             href="/experiences/classic"
-                                            onNavigate={() => toggleMenu('close')}
+                                            onClick={() => toggleMenu('close')}
                                         >
                                             Esperienze Classiche
                                         </Link>
@@ -138,7 +139,7 @@ export default function Menu({links} : {links:any}) {
                                     <li className="py-3">
                                         <Link
                                             href="/experiences/contemporary"
-                                            onNavigate={() => toggleMenu('close')}
+                                            onClick={() => toggleMenu('close')}
                                         >
                                             Esperienze Contemporanee
                                         </Link>
@@ -146,7 +147,7 @@ export default function Menu({links} : {links:any}) {
                                     <li className="py-3">
                                         <Link
                                             href="/experiences/unique"
-                                            onNavigate={() => toggleMenu('close')}
+                                            onClick={() => toggleMenu('close')}
                                         >
                                             Esperienze Uniche
                                         </Link>
@@ -158,7 +159,7 @@ export default function Menu({links} : {links:any}) {
                         <li className="py-3">
                             <Link
                                 href="/plan"
-                                onNavigate={() => toggleMenu('close')}
+                                onClick={() => toggleMenu('close')}
                             >
                                 Pianifica il tuo viaggio
                             </Link>
@@ -167,7 +168,7 @@ export default function Menu({links} : {links:any}) {
                         <li className="py-3">
                             <Link
                                 href="/stories"
-                                onNavigate={() => toggleMenu('close')}
+                                onClick={() => toggleMenu('close')}
                             >
                                 Stories
                             </Link>
@@ -176,7 +177,7 @@ export default function Menu({links} : {links:any}) {
                         <li className="py-3">
                             <Link
                                 href="/partner"
-                                onNavigate={() => toggleMenu('close')}
+                                onClick={() => toggleMenu('close')}
                             >
                                 Partner
                             </Link>
@@ -184,7 +185,7 @@ export default function Menu({links} : {links:any}) {
                         <li className="py-3">
                             <Link
                                 href="/who"
-                                onNavigate={() => toggleMenu('close')}
+                                onClick={() => toggleMenu('close')}
                             >
                                 Chi siamo
                             </Link>
@@ -192,7 +193,7 @@ export default function Menu({links} : {links:any}) {
                         <li className="py-3">
                             <Link
                                 href="/accessibility"
-                                onNavigate={() => toggleMenu('close')}
+                                onClick={() => toggleMenu('close')}
                             >
                                 Dichiarazione di accessibilità
                             </Link>
@@ -203,7 +204,7 @@ export default function Menu({links} : {links:any}) {
                         <li className="py-3">
                             <Link
                                 href="/links"
-                                onNavigate={() => toggleMenu('close')}
+                                onClick={() => toggleMenu('close')}
                             >
                                 Link utili
                             </Link>
@@ -212,7 +213,7 @@ export default function Menu({links} : {links:any}) {
                         <li className="py-3">
                             <Link
                                 href="/contact"
-                                onNavigate={() => toggleMenu('close')}
+                                onClick={() => toggleMenu('close')}
                             >
                                 Contatti
                             </Link>
@@ -221,7 +222,7 @@ export default function Menu({links} : {links:any}) {
                         <li className="py-3">
                             <Link
                                 href="/press"
-                                onNavigate={() => toggleMenu('close')}
+                                onClick={() => toggleMenu('close')}
                             >
                                 Area Stampa
                             </Link>
@@ -230,7 +231,7 @@ export default function Menu({links} : {links:any}) {
                         <li className="py-3">
                             <Link
                                 href="/operators"
-                                onNavigate={() => toggleMenu('close')}
+                                onClick={() => toggleMenu('close')}
                             >
                                 Area Operatori
                             </Link>

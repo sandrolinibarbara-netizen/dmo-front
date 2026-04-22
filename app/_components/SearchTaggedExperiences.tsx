@@ -17,6 +17,9 @@ export default function SearchTaggedExperiences({pages, type}:{pages:any, type:s
         case 'contemporary':
             expToDisplay = 5;
             break;
+        case 'unique':
+            expToDisplay = 6;
+            break;
         default:
             expToDisplay = 1;
     }

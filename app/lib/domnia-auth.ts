@@ -218,10 +218,17 @@ export async function ensureDomniaSession(): Promise<{
     if (
         isValidToken(storedSession.refreshToken, storedSession.refreshExpiresAt)
     ) {
-        return {
-            session: await refreshSession(storedSession.refreshToken!),
-            shouldPersist: true,
-        };
+        try {
+            return {
+                session: await refreshSession(storedSession.refreshToken!),
+                shouldPersist: true,
+            };
+        } catch (error) {
+            console.warn(
+                'Failed to refresh Domnia session, creating a new session instead',
+                error,
+            );
+        }
     }
 
     return {
@@ -263,6 +270,21 @@ export async function requireDomniaAccessToken(returnTo: string) {
         isValidToken(storedSession.accessToken, storedSession.accessExpiresAt)
     ) {
         return storedSession.accessToken!;
+    }
+
+    if (
+        isValidToken(storedSession.refreshToken, storedSession.refreshExpiresAt)
+    ) {
+        try {
+            const session = await refreshSession(storedSession.refreshToken!);
+
+            return session.accessToken;
+        } catch (error) {
+            console.warn(
+                'Inline Domnia refresh failed, falling back to session bootstrap route',
+                error,
+            );
+        }
     }
 
     redirect(

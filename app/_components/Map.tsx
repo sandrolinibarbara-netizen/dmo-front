@@ -4,12 +4,10 @@ import Image from "next/image";
 import "leaflet/dist/leaflet.css"
 import "leaflet-defaulticon-compatibility"
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css"
-import data from "@/utils/experiences.json"
-import Link from "next/link";
 import {useState} from "react";
 import {ComposerLocation} from "@/app/_types/types";
 
-export default function Map({homepage, autoFilter, fullPage, composers} : {homepage:boolean, autoFilter?:undefined|number, fullPage?:undefined|boolean, composers?:undefined|ComposerLocation[]}) {
+export default function Map({homepage, autoFilter, fullPage, composers, pages} : {homepage:boolean, autoFilter?:undefined|number, fullPage?:undefined|boolean, composers?:undefined|ComposerLocation[], pages:any}) {
     const [filter, setFilter] = useState<string>('all');
 
     return (
@@ -50,22 +48,23 @@ export default function Map({homepage, autoFilter, fullPage, composers} : {homep
                     attribution="Google Maps"
                     url="https://www.google.cn/maps/vt?lyrs=m@189&gl=cn&x={x}&y={y}&z={z}"
                 />
-                {((filter === 'all' && autoFilter === 0) || filter === 'cycling' || autoFilter === 1) && data.cycling.map(el => {
+                {((filter === 'all' && autoFilter === 0) || filter === 'cycling' || autoFilter === 1) && pages.filter((el:any) => el.tagIds.includes(3)).map(el => {
                     return(
-                        <Marker key={el.coordinate[0] + ', ' + el.coordinate[1]} position={[el.coordinate[0], el.coordinate[1]]}>
+                        <Marker key={el.documentId} position={[el.locations[0].lat, el.locations[0].lng]}>
                             <Popup className="border border-orange-500 rounded-xl">
-                                <Image className="rounded-t-xl w-full h-[136px] object-cover" width={200} height={100} src={`/images/experiences/${el.immagine}`} alt="immagine"/>
+                                <Image className="rounded-t-xl w-full h-[136px] object-cover" width={200} height={100} src={`/images/experiences/villa2.webp`} alt="immagine"/>
                                 <div className="px-4 pt-4 pb-2">
-                                    <h4 className="font-bold">{el.titolo}</h4>
-                                    <p>{el.descrizione}</p>
+                                    <h4 className="font-bold">{el.title}</h4>
+                                    <p className="line-clamp-6">{el.description?.[0].children[0].text ?? "Lorem ipsum dolor sit amet, " +
+                                        "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}</p>
                                     <div className="flex justify-between items-center">
                                         <p className="font-bold">{
                                             new Intl.NumberFormat("de-DE", {
                                                 style: "currency",
                                                 currency: "EUR"
-                                            }).format(el.costo)
+                                            }).format(el.cheapest)
                                         }</p>
-                                        <Link href='/' className="text-black transition duration-500 hover:bg-corpo-orange bg-soft-orange rounded-full py-2 px-3">Scopri</Link>
+                                        <a href={`https://multishop-cremona.collaudo.domniapass.com/products/${el.slug}`} className="text-black transition duration-500 hover:bg-corpo-orange bg-soft-orange rounded-full py-2 px-3">Scopri</a>
                                     </div>
                                 </div>
                             </Popup>
@@ -73,22 +72,24 @@ export default function Map({homepage, autoFilter, fullPage, composers} : {homep
                     )
                 })}
 
-                {((filter === 'all' && autoFilter === 0) || filter === 'luthiery' || autoFilter === 2) && data.luthiery.map(el => {
+                {((filter === 'all' && autoFilter === 0) || filter === 'luthiery' || autoFilter === 2) && pages.filter((el:any) => el.tagIds.includes(2)).map(el => {
                     return(
-                        <Marker key={el.coordinate[0] + ', ' + el.coordinate[1]} position={[el.coordinate[0], el.coordinate[1]]}>
+                        <Marker key={el.documentId} position={[el.locations[0].lat, el.locations[0].lng]}>
                             <Popup className="border border-orange-500 rounded-xl">
-                                <Image className="rounded-t-xl w-full h-[136px] object-cover" width={200} height={100} src={`/images/experiences/${el.immagine}`} alt="immagine"/>
+                                <Image className="rounded-t-xl w-full h-[136px] object-cover" width={200} height={100} src={`/images/experiences/villa1.webp`} alt="immagine"/>
                                 <div className="px-4 pt-4 pb-2">
-                                    <h4 className="font-bold">{el.titolo}</h4>
-                                    <p>{el.descrizione}</p>
+                                    <h4 className="font-bold">{el.title}</h4>
+                                    <p className="line-clamp-6">{el.description?.[0].children[0].text ?? "Lorem ipsum dolor sit amet, " +
+                                        "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}</p>
                                     <div className="flex justify-between items-center">
                                         <p className="font-bold">{
                                             new Intl.NumberFormat("de-DE", {
                                                 style: "currency",
                                                 currency: "EUR"
-                                            }).format(el.costo)
+                                            }).format(el.cheapest)
                                         }</p>
-                                        <Link href='/' className="text-black transition duration-500 hover:bg-corpo-orange bg-soft-orange rounded-full py-2 px-3">Scopri</Link>
+                                        <a href={`https://multishop-cremona.collaudo.domniapass.com/products/${el.slug}`}
+                                              className="text-black transition duration-500 hover:bg-corpo-orange bg-soft-orange rounded-full py-2 px-3">Scopri</a>
                                     </div>
                                 </div>
                             </Popup>
@@ -97,7 +98,7 @@ export default function Map({homepage, autoFilter, fullPage, composers} : {homep
                 })}
 
                 {composers && composers.map(el => {
-                    return(
+                    return (
                         <Marker key={el.lat + ', ' + el.long} position={[el.lat, el.long]}>
                             <Popup className="border border-orange-500 rounded-xl">
                                 <div className="px-4 pt-4 pb-2">
