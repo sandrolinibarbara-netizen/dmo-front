@@ -1,4 +1,3 @@
-import data from "@/utils/experiences.json"
 import TalesLogo from "@/app/_components/TalesLogo";
 import Event from "@/app/_components/Event";
 import LocalMap from "@/app/_components/LocalMap";
@@ -7,6 +6,7 @@ import Markdown from "react-markdown";
 import Composers from "@/app/_components/Composers";
 import AllExperiences from "@/app/_components/AllExperiences";
 import {getExperiences} from "@/app/lib/domnia-experiences";
+import getEvents from "@/app/lib/edt-events";
 
 export default async function Luthiery() {
 
@@ -28,6 +28,7 @@ export default async function Luthiery() {
     }
 
     const pages = await getExperiences('/discover/luthiery');
+    const dataEvents = await getEvents('/discover/luthiery', '12');
 
     return (
         <>
@@ -108,25 +109,23 @@ export default async function Luthiery() {
 
             <AllExperiences type='luthiery' pages={pages}/>
 
-            <section className="w-[95vw] md:w-[80vw] mx-auto items-center justify-center px-4 md:px-8 pb-24">
-                <h2 className="font-bold text-4xl mt-8 mb-16">Tutti gli eventi</h2>
-                <div className="flex gap-4 flex-wrap">
-                    {
-                        data.luthiery.map(el => {
-                            return (
-                                <Event
-                                    key={el.titolo}
-                                    what={el.titolo}
-                                    where={el.luogo}
-                                    when={el.data}
-                                    how={el.descrizione}
-                                    img={`/images/experiences/${el.immagine}`}
-                                />
-                            )
-                        })
-                    }
-                </div>
-            </section>
+            {dataEvents.events &&
+                <section className="w-[95vw] md:w-[80vw] mx-auto items-center justify-center px-4 md:px-8 pt-16 pb-24">
+                    <h2 className="font-bold text-4xl mt-8 mb-16">Tutti gli eventi</h2>
+                    <div className="flex gap-4 flex-wrap">
+                        {
+                            dataEvents.events.map(el => {
+                                if((new Date()).getTime() > (new Date(el.dates.endDate)).getTime()) {
+                                    return;
+                                }
+                                return (
+                                    <Event key={el.identifier} event={el}/>
+                                )
+                            })
+                        }
+                    </div>
+                </section>
+            }
 
             <section className="w-[95vw] md:w-screen md:mb-0 mb-8 md:px-0 px-4 mx-auto items-center justify-center">
                 <h2 className="md:w-[80vw] mx-auto px-4 md:px-8 font-bold text-4xl mt-8 mb-16">Visualizza tutti gli

@@ -46,7 +46,7 @@ export default function Menu({links} : {links:any}) {
                     </Link>
                     <div className="flex gap-4 items-center">
                         <Link href='/experiences' className="hidden md:block text-black transition duration-500 hover:bg-corpo-orange bg-soft-orange rounded-full px-4 py-3">Esperienze</Link>
-                        <Link href='/experiences' className="hidden md:block text-black transition duration-500 hover:bg-corpo-orange bg-soft-orange rounded-full px-5 py-3">Eventi</Link>
+                        <Link href='/events' className="hidden md:block text-black transition duration-500 hover:bg-corpo-orange bg-soft-orange rounded-full px-5 py-3">Eventi</Link>
                         {/*<div className="flex relative items-center">*/}
                         {/*    <Search className="text-gray-600 absolute left-[16px] w-5 h-5"/>*/}
                         {/*    <input type="text" placeholder="Cerca eventi o esperienze" className="w-[272px] py-3 pr-8 pl-12 rounded-full bg-white text-black"/>*/}

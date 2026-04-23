@@ -61,12 +61,13 @@ export default function SearchAllExperiences({pages}:{pages:any}) {
 
             </div>
             <div className="flex flex-wrap gap-4 w-full md:w-[60%]">
-                {filteredExperiences &&
-                    filteredExperiences.map((el) => {
+                {filteredExperiences
+                    ? filteredExperiences.map((el) => {
                         return (
                             <SingleExperienceCard key={el.documentId} el={el} grid={false} altGrid={true}/>
                         )
                     })
+                    : <div className="h-[300px] w-full flex items-center justify-center">Loading...</div>
                 }
             </div>
         </div>

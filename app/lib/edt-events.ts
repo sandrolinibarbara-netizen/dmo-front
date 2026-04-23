@@ -7,6 +7,7 @@ import {
 } from '@/app/lib/edt-auth';
 
 const DEFAULT_LOCATION = process.env.EDT_DEFAULT_LOCATION ?? '27177';
+const DEFAULT_TAG = process.env.EDT_DEFAULT_TAG ?? '2';
 
 type EdtTranslation = {
     description?: string;
@@ -48,11 +49,11 @@ async function fetchEdtJson<T>(path: string, accessToken: string): Promise<T> {
     return response.json() as Promise<T>;
 }
 
-export async function getEvents(returnTo: string, location = DEFAULT_LOCATION) {
+export async function getEvents(returnTo: string, tag:string = DEFAULT_TAG, location:string = DEFAULT_LOCATION) {
     const accessToken = await requireEdtAccessToken(returnTo);
 
     return fetchEdtJson<EdtEventsResponse>(
-        `/event?locations=${encodeURIComponent(location)}`,
+        `/event?locations=${encodeURIComponent(location)}&tags=${encodeURIComponent(tag)}`,
         accessToken,
     );
 }

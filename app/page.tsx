@@ -9,6 +9,7 @@ import Stories from "@/app/_components/Stories";
 import ContactForm from "@/app/_components/ContactForm";
 import ExperienceSection from "@/app/_components/ExperienceSection";
 import {getExperiences} from "@/app/lib/domnia-experiences";
+import getEvents from "@/app/lib/edt-events";
 
 export default async function Home() {
     let content, contentLinks;
@@ -38,6 +39,7 @@ export default async function Home() {
     }
 
     const pages = await getExperiences('/');
+    const dataEvents = await getEvents('/');
 
   return (
       <>
@@ -151,20 +153,22 @@ export default async function Home() {
               </div>
           </section>
 
-          <section className="w-full">
-              <div
-                  className="flex flex-col gap-16 w-[95vw] md:w-[80vw] mx-auto justify-center px-4 md:px-8 pb-24 pt-20">
-                  <h2 className="font-bold text-4xl w-full text-left break-title">Eventi</h2>
+          {dataEvents.events &&
+              <section className="w-full">
+                  <div
+                      className="flex flex-col gap-16 w-[95vw] md:w-[80vw] mx-auto justify-center px-4 md:px-8 pb-24 pt-20">
+                      <h2 className="font-bold text-4xl w-full text-left break-title">Eventi</h2>
 
-                  <Event/>
+                      <Event event={dataEvents.events[0]}/>
 
-                  <div className="w-full text-right mt-4">
-                      <Link href="/discover" className="font-bold underline relative">
-                          <AnimatedHoverButton content="Vai agli Eventi"/>
-                      </Link>
+                      <div className="w-full text-right mt-4">
+                          <Link href="/discover" className="font-bold underline relative">
+                              <AnimatedHoverButton content="Vai agli Eventi"/>
+                          </Link>
+                      </div>
                   </div>
-              </div>
-          </section>
+            </section>
+          }
 
           <section className="flex flex-col gap-8 w-full justify-center pb-24">
               <Stories description={content.data['stories_testo']} gallery={content.data['stories_gallery']}/>
