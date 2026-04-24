@@ -24,7 +24,7 @@ export default function SingleExperienceCard({el, grid, altGrid} : {el:any, grid
                             currency: "EUR"
                         }).format(el.cheapest)
                     }</p>}
-                    <a href={`https://multishop-cremona.collaudo.domniapass.com/products/${el.slug}`}
+                    <a href={`https://multishop-cremona.collaudo.domniapass.com/it/products/${el.slug}`}
                        className="text-black transition duration-500 hover:bg-corpo-orange bg-soft-orange rounded-full py-2 px-3">
                         Scopri</a>
                 </div>

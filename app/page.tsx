@@ -39,6 +39,7 @@ export default async function Home() {
     }
 
     const pages = await getExperiences('/');
+    console.log(pages)
     const dataEvents = await getEvents('/');
 
   return (
@@ -162,7 +163,7 @@ export default async function Home() {
                       <Event event={dataEvents.events[0]}/>
 
                       <div className="w-full text-right mt-4">
-                          <Link href="/discover" className="font-bold underline relative">
+                          <Link href="/events" className="font-bold underline relative">
                               <AnimatedHoverButton content="Vai agli Eventi"/>
                           </Link>
                       </div>

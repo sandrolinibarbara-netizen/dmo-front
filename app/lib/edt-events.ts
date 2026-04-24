@@ -7,7 +7,7 @@ import {
 } from '@/app/lib/edt-auth';
 
 const DEFAULT_LOCATION = process.env.EDT_DEFAULT_LOCATION ?? '27177';
-const DEFAULT_TAG = process.env.EDT_DEFAULT_TAG ?? '2';
+const DEFAULT_TAG = process.env.EDT_DEFAULT_TAG ?? '';
 
 type EdtTranslation = {
     description?: string;
@@ -24,8 +24,10 @@ export type EdtEvent = {
         telephone?: string;
     };
     dates?: {
+        endDate?: string;
         startDate?: string;
     };
+    identifier?: string;
     translations?: {
         it?: EdtTranslation;
     };
@@ -47,6 +49,20 @@ async function fetchEdtJson<T>(path: string, accessToken: string): Promise<T> {
     }
 
     return response.json() as Promise<T>;
+}
+
+function getEventStartTimestamp(event: EdtEvent) {
+    const timestamp = Date.parse(event.dates?.startDate ?? '');
+
+    return Number.isNaN(timestamp) ? Number.POSITIVE_INFINITY : timestamp;
+}
+
+export function sortEventsByStartDate(events: EdtEvent[]) {
+    return [...events].sort(
+        (firstEvent, secondEvent) =>
+            getEventStartTimestamp(firstEvent) -
+            getEventStartTimestamp(secondEvent),
+    );
 }
 
 export async function getEvents(returnTo: string, tag:string = DEFAULT_TAG, location:string = DEFAULT_LOCATION) {

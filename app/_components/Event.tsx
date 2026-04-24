@@ -32,7 +32,7 @@ export default function Event({event}:{event:any}) {
                     className="w-full rounded-xl border-1 flex md:flex-row flex-col p-4 gap-8 overflow-y-auto md:overflow-y-none md:h-[558px]">
                     <img src={imageSource} alt="copertina esperienza"
                            className="rounded-xl w-full md:w-[40%] h-[524px] object-cover"/>
-                    <div>
+                    <div className="md:w-[55%]">
                         <div className="p-4 md:h-[456px]">
                             <h5 className="mb-2 font-semibold text-2xl md:line-clamp-1">{title}</h5>
                             <div className="flex flex-col gap-4 my-4 border-b-1 border-orange-800 pb-4">
@@ -67,7 +67,7 @@ export default function Event({event}:{event:any}) {
                                     </div>
                                 </div>
                             </div>
-                            <div className="text-sm md:h-[50%] overflow-y-auto" dangerouslySetInnerHTML={{ __html: description }}></div>
+                            <div className="text-sm md:h-[50%] w-full overflow-y-auto overflow-x-hidden" dangerouslySetInnerHTML={{ __html: description }}></div>
                         </div>
 
 

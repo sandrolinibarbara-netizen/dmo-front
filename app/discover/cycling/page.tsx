@@ -7,7 +7,7 @@ import Markdown from "react-markdown";
 import Image from "next/image";
 import AllExperiences from "@/app/_components/AllExperiences";
 import {getExperiences} from "@/app/lib/domnia-experiences";
-import getEvents from "@/app/lib/edt-events";
+import getEvents, {sortEventsByStartDate} from "@/app/lib/edt-events";
 
 type CyclingToursResponse = {
     data: Array<{
@@ -38,6 +38,7 @@ export default async function Cycling() {
 
     const pages = await getExperiences('/discover/cycling');
     const dataEvents = await getEvents('/discover/cycling', '4');
+    const sortedEvents = sortEventsByStartDate(dataEvents.events ?? []);
 
     return (
         <>
@@ -192,12 +193,12 @@ export default async function Cycling() {
                 </div>
             </section>
 
-            {dataEvents.events &&
+            {sortedEvents.length > 0 &&
                 <section className="w-[95vw] md:w-[80vw] mx-auto items-center justify-center px-4 md:px-8 pt-16 pb-24">
                     <h2 className="font-bold text-4xl mt-8 mb-16">Tutti gli eventi</h2>
                     <div className="flex gap-4 flex-wrap">
                         {
-                            dataEvents.events.map(el => {
+                            sortedEvents.map(el => {
                                 if((new Date()).getTime() > (new Date(el.dates.endDate)).getTime()) {
                                     return;
                                 }

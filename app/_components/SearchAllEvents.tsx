@@ -8,7 +8,8 @@ export default function SearchAllEvents({events}:{events:any}) {
     const filters = useFilterStore((state) => state.filters);
     const [filteredEvents, setFilteredEvents] = useState();
     useEffect(() => {
-        setFilteredEvents(events)
+        const filtered = events.filter(el => (new Date()).getTime() < (new Date(el.dates.endDate)).getTime())
+        setFilteredEvents(filtered)
     }, [])
 
     function applyFilters() {
@@ -26,7 +27,11 @@ export default function SearchAllEvents({events}:{events:any}) {
                 });
         }
 
-        if(filters.end) {
+        if(filters.start && filters.end) {
+            filtered = filtered.filter(el => {
+                return (new Date(el.dates.endDate)).getTime() >= (new Date(filters.end).getTime());
+            });
+        } else if (filters.end) {
                 filtered = events.filter(el => {
                     if((new Date(el.dates.startDate)).getTime() === (new Date(el.dates.endDate)).getTime()) {
                         return (new Date(el.dates.endDate)).getTime() <= (new Date(filters.end).getTime())
@@ -37,7 +42,6 @@ export default function SearchAllEvents({events}:{events:any}) {
         }
 
         setFilteredEvents(filtered);
-
     }
 
     return (
