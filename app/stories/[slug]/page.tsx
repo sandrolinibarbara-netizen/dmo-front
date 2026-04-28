@@ -1,22 +1,34 @@
-import exp from '@/utils/experiences.json';
 import Markdown from "react-markdown";
 import Image from "next/image";
 import SingleExperienceCard from "@/app/_components/SingleExperienceCard";
+import {getExperiences} from "@/app/lib/domnia-experiences";
 export default async function Story({params}: { params: Promise<{ slug: string }> }) {
 
-    let content;
+    let content, contentExpImages;
 
     try {
         const { slug } = await params;
         let data = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/stories/'+ slug +'?populate=*',
             { next: { revalidate: 1000 }});
         content = await data.json();
-        console.log(content)
+
+        let dataExpImages = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/experiences-images?populate=*',
+            { next: { revalidate: 1000 }});
+        contentExpImages = await dataExpImages.json();
     } catch(error) {
         console.log(error);
     }
 
-    const arrData = [...exp.cycling, ...exp.luthiery];
+    const pages = await getExperiences('/');
+    for(const page of pages) {
+        for(const pic of contentExpImages.data) {
+            if(pic.slug === page.slug) {
+                page.imageUrl = pic.image.url;
+                break;
+            }
+        }
+    }
+
 
     return(
         <>
@@ -44,10 +56,10 @@ export default async function Story({params}: { params: Promise<{ slug: string }
             <section className="w-[95vw] md:w-[80vw] mx-auto items-center justify-center px-4 md:px-8 pt-2 md:pt-8 pb-24">
                 <h2 className="font-bold text-4xl mb-8">Esperienze correlate</h2>
                 <div className="flex gap-4 flex-wrap">
-                    {
-                        arrData.map(el => {
+                    {pages &&
+                        pages.map(el => {
                             return(
-                                <SingleExperienceCard el={el} grid={true} key={el.titolo}/>
+                                <SingleExperienceCard el={el} grid={true} key={el.documentId}/>
                             )
                         })
                     }

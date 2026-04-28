@@ -1,36 +1,25 @@
-import SingleExperienceCard from "@/app/_components/SingleExperienceCard";
-import Filter from "@/app/_components/Filter";
 import {getExperiences} from "@/app/lib/domnia-experiences";
 import SearchTaggedExperiences from "@/app/_components/SearchTaggedExperiences";
 
 export default async function ClassicExperiences() {
 
-    const pages = await getExperiences('/experiences/classic');
-    function applyFilters() {
-        // const newArr = [...classicExp];
-        // let filtered;
-        //
-        // switch(filters.category) {
-        //     case 'cycling':
-        //         filtered = newArr.filter(el => el.categoria === 'cycling');
-        //         break;
-        //     case 'luthiery':
-        //         filtered = newArr.filter(el => el.categoria === 'luthiery');
-        //         break;
-        //     default:
-        //         filtered = newArr;
-        // }
-        //
-        // if(filters.start) {
-        //     filtered = filtered.filter(el => new Date(el.data).getTime() >= new Date(filters.start).getTime());
-        // }
-        //
-        // if(filters.end) {
-        //     filtered = filtered.filter(el => new Date(el.data).getTime() <= new Date(filters.end).getTime());
-        // }
-        //
-        // setDisplayedExp(filtered);
+    let contentExpImages;
+    try {
+        let dataExpImages = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/experiences-images?populate=*',
+            { next: { revalidate: 1000 }});
+        contentExpImages = await dataExpImages.json();
 
+    } catch(error) {
+        console.log(error);
+    }
+    const pages = await getExperiences('/experiences/classic');
+    for(const page of pages) {
+        for(const pic of contentExpImages.data) {
+            if(pic.slug === page.slug) {
+                page.imageUrl = pic.image.url;
+                break;
+            }
+        }
     }
 
     return (

@@ -3,50 +3,114 @@ import {useEffect, useState} from "react";
 import Filter from "@/app/_components/Filter";
 import SingleExperienceCard from "@/app/_components/SingleExperienceCard";
 import {useFilterStore} from "@/app/_stores/filter";
+import type {ExperienceCardData, ProductResponse} from "@/app/lib/domnia-types";
 
-export default function SearchAllExperiences({pages}:{pages:any}) {
-    const filters = useFilterStore((state) => state.filters);
-    const [filteredExperiences, setFilteredExperiences] = useState();
+type FilteredExperience = ExperienceCardData & {
+    products?: ProductResponse[];
+};
+
+export default function SearchAllExperiences({pages}:{pages:ExperienceCardData[]}) {
+    const filters = useFilterStore((state: any) => state.filters);
+    const [filteredExperiences, setFilteredExperiences] = useState<FilteredExperience[]>();
     useEffect(() => {
         setFilteredExperiences(pages)
-    }, [])
+    }, [pages])
 
-    function applyFilters() {
+    async function applyFilters() {
 
-        let filtered;
+        let filtered: FilteredExperience[] = pages.slice();
+        const datesFilter = [];
+
         switch(filters.type) {
             case 'unique':
-                filtered = pages.filter((el:any) => el.tagIds.includes(6));
+                filtered = filtered.filter((el) => el.tagIds?.includes(6));
                 break;
             case 'classic':
-                filtered = pages.filter((el:any) => el.tagIds.includes(4));
+                filtered = filtered.filter((el) => el.tagIds?.includes(4));
                 break;
             case 'contemp':
-                filtered = pages.filter((el:any) => el.tagIds.includes(5));
+                filtered = filtered.filter((el) => el.tagIds?.includes(5));
                 break;
-            default:
-                filtered = pages;
         }
 
         switch(filters.category) {
             case 'cycling':
-                filtered = filtered.filter((el:any) => el.tagIds.includes(3));
+                filtered = filtered.filter((el) => el.tagIds?.includes(3));
                 break;
             case 'luthiery':
-                filtered = filtered.filter((el:any) => el.tagIds.includes(2));
+                filtered = filtered.filter((el) => el.tagIds?.includes(2));
                 break;
             default:
         }
 
-        // if(filters.start) {
-        //     filtered = filtered.filter(el => new Date(el.base_price.start_date).getTime() >= new Date(filters.start).getTime());
-        // }
-        //
-        // if(filters.end) {
-        //     filtered = filtered.filter(el => new Date(el.base_price.end_date).getTime() <= new Date(filters.end).getTime());
-        // }
+        if(filters.start || filters.end) {
+            try {
+                const response = await fetch('/api/bb/products/salable', {
+                    cache: 'no-store',
+                });
 
-        setFilteredExperiences(filtered);
+                if (!response.ok) {
+                    throw new Error(`Products request failed with status ${response.status}`);
+                }
+
+                const products = (await response.json()) as ProductResponse[];
+
+                filtered = filtered
+                    .map((experience) => {
+                        const connectedProducts = new Set(
+                            (Array.isArray(experience.connectedProducts)
+                                ? experience.connectedProducts
+                                : []
+                            ).map((productId) => productId.toString()),
+                        );
+
+                        return {
+                            ...experience,
+                            products: (Array.isArray(products) ? products : []).filter((product) => {
+                                const productId = product.base_price?.product_id;
+
+                                return (
+                                    productId !== undefined &&
+                                    connectedProducts.has(productId.toString())
+                                );
+                            }),
+                        };
+                    });
+
+                console.log(filtered)
+
+                    for(const experience of filtered) {
+                        if(experience.products && experience.products.length > 0) {
+                            const startDate = new Date(experience.products[0].base_price?.start_date).getTime();
+                            const endDate = new Date(experience.products[0].base_price?.end_date).getTime();
+                            const startFilter = new Date(filters.start).getTime();
+                            const endFilter = new Date(filters.end).getTime();
+
+                            if(filters.start && !filters.end) {
+                                if(startDate >= startFilter) {
+                                    datesFilter.push(experience);
+                                } else if(startDate !== endDate && startDate < startFilter && endDate >= startFilter) {
+                                    datesFilter.push(experience);
+                                }
+                            } else if(filters.start && filters.end) {
+                                if(endDate >= startFilter && startDate <= endFilter) {
+                                    datesFilter.push(experience);
+                                }
+                            }
+                        }
+                    }
+
+                console.log(datesFilter)
+            } catch (error) {
+                console.error('Failed to fetch products for experience filters', error);
+            }
+        }
+
+        if(datesFilter.length > 0) {
+            setFilteredExperiences(datesFilter);
+        } else {
+            setFilteredExperiences(filtered);
+        }
 
     }
 

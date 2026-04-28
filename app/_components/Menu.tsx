@@ -116,43 +116,46 @@ export default function Menu({links} : {links:any}) {
                         </li>
 
                         <li className="w-full flex flex-col">
-                            <button type="button" onClick={toggleExpMenu} className="cursor-pointer pr-4 py-3 flex justify-between items-center"><span>Esperienze</span>
-                                <span className={`${showExpMenu === 'open' ? 'rotate-90' : 'rotate-0'} transition-all duration-500 origin-center`}>&gt;</span>
+                            <button type="button" onClick={toggleExpMenu}
+                                    className="cursor-pointer pr-4 py-3 flex justify-between items-center">
+                                <span>Esperienze</span>
+                                <span
+                                    className={`${showExpMenu === 'open' ? 'rotate-90' : 'rotate-0'} transition-all duration-500 origin-center`}>&gt;</span>
                             </button>
-                                <ul className={`${showExpMenu === 'open' ? 'max-h-[1000px]' : 'max-h-0'} pl-4 transition-all duration-500 overflow-hidden`}>
-                                    <li className="py-3">
-                                        <Link
-                                            href="/experiences"
-                                            onClick={() => toggleMenu('close')}
-                                        >
-                                            Tutte le esperienze
-                                        </Link>
-                                    </li>
-                                    <li className="py-3">
-                                        <Link
-                                            href="/experiences/classic"
-                                            onClick={() => toggleMenu('close')}
-                                        >
-                                            Esperienze Classiche
-                                        </Link>
-                                    </li>
-                                    <li className="py-3">
-                                        <Link
-                                            href="/experiences/contemporary"
-                                            onClick={() => toggleMenu('close')}
-                                        >
-                                            Esperienze Contemporanee
-                                        </Link>
-                                    </li>
-                                    <li className="py-3">
-                                        <Link
-                                            href="/experiences/unique"
-                                            onClick={() => toggleMenu('close')}
-                                        >
-                                            Esperienze Uniche
-                                        </Link>
-                                    </li>
-                                </ul>
+                            <ul className={`${showExpMenu === 'open' ? 'max-h-[1000px]' : 'max-h-0'} pl-4 transition-all duration-500 overflow-hidden`}>
+                                <li className="py-3">
+                                    <Link
+                                        href="/experiences"
+                                        onClick={() => toggleMenu('close')}
+                                    >
+                                        Tutte le esperienze
+                                    </Link>
+                                </li>
+                                <li className="py-3">
+                                    <Link
+                                        href="/experiences/classic"
+                                        onClick={() => toggleMenu('close')}
+                                    >
+                                        Esperienze Classiche
+                                    </Link>
+                                </li>
+                                <li className="py-3">
+                                    <Link
+                                        href="/experiences/contemporary"
+                                        onClick={() => toggleMenu('close')}
+                                    >
+                                        Esperienze Contemporanee
+                                    </Link>
+                                </li>
+                                <li className="py-3">
+                                    <Link
+                                        href="/experiences/unique"
+                                        onClick={() => toggleMenu('close')}
+                                    >
+                                        Esperienze Uniche
+                                    </Link>
+                                </li>
+                            </ul>
                         </li>
 
 
@@ -162,6 +165,15 @@ export default function Menu({links} : {links:any}) {
                                 onClick={() => toggleMenu('close')}
                             >
                                 Pianifica il tuo viaggio
+                            </Link>
+                        </li>
+
+                        <li className="py-3">
+                            <Link
+                                href="/events"
+                                onClick={() => toggleMenu('close')}
+                            >
+                                Eventi
                             </Link>
                         </li>
 

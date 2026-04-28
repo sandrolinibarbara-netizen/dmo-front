@@ -81,8 +81,8 @@ export default async function Discover() {
                     </p>
 
                     <div className="mt-12 flex gap-4">
-                        <Link href='#cycling' className="bg-[#918FC7] rounded-full px-4 py-3 text-sm">Cycling</Link>
-                        <Link href='#luthiery' className="bg-sky-300 rounded-full px-4 py-3 text-sm">Music & luthiery</Link>
+                        <Link href='#cycling' className="bg-[#918FC7] rounded-full px-4 py-3 text-sm">Cicloturismo</Link>
+                        <Link href='#luthiery' className="bg-sky-300 rounded-full px-4 py-3 text-sm">Musica e liuteria</Link>
                     </div>
 
                     {/*Tales of Cycling*/}

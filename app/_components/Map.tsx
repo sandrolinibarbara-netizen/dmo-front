@@ -6,9 +6,18 @@ import "leaflet-defaulticon-compatibility"
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css"
 import {useState} from "react";
 import {ComposerLocation} from "@/app/_types/types";
+import L from 'leaflet';
+import cyclingMarker from '../../public/icons/cycling-marker.svg';
+import luthieryMarker from '../../public/icons/luthiery-marker.svg';
 
 export default function Map({homepage, autoFilter, fullPage, composers, pages} : {homepage:boolean, autoFilter?:undefined|number, fullPage?:undefined|boolean, composers?:undefined|ComposerLocation[], pages:any}) {
     const [filter, setFilter] = useState<string>('all');
+    const cyclingIcon = new L.Icon({
+        iconUrl: cyclingMarker.src,
+    });
+    const luthieryIcon = new L.Icon({
+        iconUrl: luthieryMarker.src,
+    });
 
     return (
         <section id="map">
@@ -17,6 +26,7 @@ export default function Map({homepage, autoFilter, fullPage, composers, pages} :
                     <li>
                         <button type="button"
                                 className="flex items-center border bg-gray-500 border-gray-500 text-white rounded-full px-4 py-2">
+                            <Image src="/icons/filter.svg" alt="filter icon" width={12} height={12} className="mr-1.5"/>
                             Filtri
                         </button>
                     </li>
@@ -50,9 +60,9 @@ export default function Map({homepage, autoFilter, fullPage, composers, pages} :
                 />
                 {((filter === 'all' && autoFilter === 0) || filter === 'cycling' || autoFilter === 1) && pages.filter((el:any) => el.tagIds.includes(3)).map(el => {
                     return(
-                        <Marker key={el.documentId} position={[el.locations[0].lat, el.locations[0].lng]}>
+                        <Marker key={el.documentId} position={[el.locations[0].lat, el.locations[0].lng]} icon={cyclingIcon}>
                             <Popup className="border border-orange-500 rounded-xl">
-                                <Image className="rounded-t-xl w-full h-[136px] object-cover" width={200} height={100} src={`/images/experiences/villa2.webp`} alt="immagine"/>
+                                <Image className="rounded-t-xl w-full h-[136px] object-cover" width={200} height={100} src={el.imageUrl ? process.env.NEXT_PUBLIC_BASE_URL + el.imageUrl :`/images/experiences/violin1.webp`} alt="immagine"/>
                                 <div className="px-4 pt-4 pb-2">
                                     <h4 className="font-bold">{el.title}</h4>
                                     <p className="line-clamp-6">{el.description?.[0].children[0].text ?? "Lorem ipsum dolor sit amet, " +
@@ -74,9 +84,9 @@ export default function Map({homepage, autoFilter, fullPage, composers, pages} :
 
                 {((filter === 'all' && autoFilter === 0) || filter === 'luthiery' || autoFilter === 2) && pages.filter((el:any) => el.tagIds.includes(2)).map(el => {
                     return(
-                        <Marker key={el.documentId} position={[el.locations[0].lat, el.locations[0].lng]}>
+                        <Marker key={el.documentId} position={[el.locations[0].lat, el.locations[0].lng]} icon={luthieryIcon}>
                             <Popup className="border border-orange-500 rounded-xl">
-                                <Image className="rounded-t-xl w-full h-[136px] object-cover" width={200} height={100} src={`/images/experiences/villa1.webp`} alt="immagine"/>
+                                <Image className="rounded-t-xl w-full h-[136px] object-cover" width={200} height={100} src={el.imageUrl ? process.env.NEXT_PUBLIC_BASE_URL + el.imageUrl :`/images/experiences/violin1.webp`} alt="immagine"/>
                                 <div className="px-4 pt-4 pb-2">
                                     <h4 className="font-bold">{el.title}</h4>
                                     <p className="line-clamp-6">{el.description?.[0].children[0].text ?? "Lorem ipsum dolor sit amet, " +
@@ -99,7 +109,7 @@ export default function Map({homepage, autoFilter, fullPage, composers, pages} :
 
                 {composers && composers.map(el => {
                     return (
-                        <Marker key={el.lat + ', ' + el.long} position={[el.lat, el.long]}>
+                        <Marker key={el.lat + ', ' + el.long} position={[el.lat, el.long]} icon={luthieryIcon}>
                             <Popup className="border border-orange-500 rounded-xl">
                                 <div className="px-4 pt-4 pb-2">
                                     <h4 className="font-bold">{el.name}</h4>

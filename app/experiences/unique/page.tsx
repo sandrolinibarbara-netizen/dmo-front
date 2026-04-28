@@ -1,10 +1,26 @@
-import SingleExperienceCard from "@/app/_components/SingleExperienceCard";
 import {getExperiences} from "@/app/lib/domnia-experiences";
 import SearchTaggedExperiences from "@/app/_components/SearchTaggedExperiences";
 
 export default async function UniqueExperiences() {
 
+    let contentExpImages;
+    try {
+        let dataExpImages = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/experiences-images?populate=*',
+            { next: { revalidate: 1000 }});
+        contentExpImages = await dataExpImages.json();
+
+    } catch(error) {
+        console.log(error);
+    }
     const pages = await getExperiences('/experiences/unique');
+    for(const page of pages) {
+        for(const pic of contentExpImages.data) {
+            if(pic.slug === page.slug) {
+                page.imageUrl = pic.image.url;
+                break;
+            }
+        }
+    }
 
     return (
         <>

@@ -10,9 +10,10 @@ import ContactForm from "@/app/_components/ContactForm";
 import ExperienceSection from "@/app/_components/ExperienceSection";
 import {getExperiences} from "@/app/lib/domnia-experiences";
 import getEvents from "@/app/lib/edt-events";
+// import Refresh from "@/app/_components/Refresh";
 
 export default async function Home() {
-    let content, contentLinks;
+    let content, contentLinks, contentExpImages;
     try {
         const data = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/homepage' +
             '?populate[0]=hero_carosello' +
@@ -34,16 +35,29 @@ export default async function Home() {
             { next: { revalidate: 1000 }});
         contentLinks = await dataLinks.json();
 
+        let dataExpImages = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/experiences-images?populate=*',
+            { next: { revalidate: 1000 }});
+        contentExpImages = await dataExpImages.json();
+
     } catch(error) {
         console.log(error);
     }
 
     const pages = await getExperiences('/');
-    console.log(pages)
+    for(const page of pages) {
+        for(const pic of contentExpImages.data) {
+            if(pic.slug === page.slug) {
+                page.imageUrl = pic.image.url;
+                break;
+            }
+        }
+    }
+
     const dataEvents = await getEvents('/');
 
   return (
       <>
+          {/*<Refresh/>*/}
           <section className="mt-[79px] fadein-slower w-full">
               <Carousel pics={content.data['hero_carosello']}/>
           </section>
@@ -105,7 +119,10 @@ export default async function Home() {
                       price={content.data['card_1'][0]['prezzo']}
                       details={[
                           content.data['card_1'][0]['dettaglio_1'],
-                          content.data['card_1'][0]['dettaglio_2']
+                          content.data['card_1'][0]['dettaglio_2'],
+                          content.data['card_1'][0]['dettaglio_3'],
+                          content.data['card_1'][0]['dettaglio_4'],
+                          content.data['card_1'][0]['dettaglio_5']
                       ]}
                   />
 
@@ -115,7 +132,9 @@ export default async function Home() {
                       details={[
                           content.data['card_2'][0]['dettaglio_1'],
                           content.data['card_2'][0]['dettaglio_2'],
-                          content.data['card_2'][0]['dettaglio_3']
+                          content.data['card_2'][0]['dettaglio_3'],
+                          content.data['card_2'][0]['dettaglio_4'],
+                          content.data['card_2'][0]['dettaglio_5']
                       ]}
                   />
               </div>
@@ -154,6 +173,14 @@ export default async function Home() {
               </div>
           </section>
 
+          <section className="w-full bg-alt-blue text-white">
+              <div className="flex flex-col items-center gap-8 w-[95vw] md:w-[80vw] mx-auto px-4 md:px-8 pt-20 pb-20">
+                  <Image src="/icons/Lonely Planet Logo.png" alt="lonely planet logo" width={250} height={100}/>
+                  <p className="font-bold text-xl text-center w-[60%]">“Cremona, capitale della liuteria, dove il Torrazzo veglia sulle botteghe artigiane, tra atmosfere sospese nel tempo e un patrimonio culturale straordinario”</p>
+                  <a href="https://www.youtube.com/watch?v=tr3nQWO6Jwk" target="_blank" className="cursor-pointer w-[164px] px-4 py-3 text-black transition duration-500 hover:bg-corpo-orange bg-soft-orange rounded-full text-center">Guarda il video</a>
+              </div>
+          </section>
+
           {dataEvents.events &&
               <section className="w-full">
                   <div
@@ -183,28 +210,29 @@ export default async function Home() {
                       </h2>
                       <div className="flex gap-4 pb-16">
                           {contentLinks.data.facebook &&
-                              <a href={contentLinks.data.facebook} target="_blank"
-                              className="flex items-center justify-center w-12 h-12 border-1 border-slate-950 rounded-xl font-bold text-2xl">F
+                              <a href={contentLinks.data.facebook} target="_blank">
+                                  <Image src="/icons/facebook-blue.svg" alt="facebook logo" width={48} height={48}/>
                               </a>
                           }
                           {contentLinks.data.instagram &&
-                              <a href={contentLinks.data.instagram} target="_blank"
-                                 className="flex items-center justify-center w-12 h-12 border-1 border-slate-950 rounded-xl font-bold text-2xl">I
+                              <a href={contentLinks.data.instagram} target="_blank">
+                                  <Image src="/icons/instagram-blue.svg" alt="instagram logo" width={48} height={48}/>
                               </a>
                           }
                           {contentLinks.data.whatsapp &&
-                              <a href={contentLinks.data.whatsapp} target="_blank"
-                                 className="flex items-center justify-center w-12 h-12 border-1 border-slate-950 rounded-xl font-bold text-2xl">W
+                              <a href={contentLinks.data.whatsapp} target="_blank">
+                                  <Image src="/icons/whatsapp-blue.svg" alt="whatsapp logo" width={48} height={48}/>
                               </a>
                           }
                           {contentLinks.data.youtube &&
-                              <a href={contentLinks.data.youtube} target="_blank"
-                                 className="flex items-center justify-center w-12 h-12 border-1 border-slate-950 rounded-xl font-bold text-2xl">Y
+                              <a href={contentLinks.data.youtube} target="_blank">
+                                  <Image src="/icons/youtube-blue.svg" alt="youtube logo" width={48} height={48}/>
                               </a>
                           }
                       </div>
                   </div>
-                  <img className="hidden md:block w-1/3" src={process.env.NEXT_PUBLIC_BASE_URL + content.data['social_immagine'].url} alt={content.data['social_immagine'].alternativeText}/>
+                  <img className="hidden md:block w-1/3"
+                       src={process.env.NEXT_PUBLIC_BASE_URL + content.data['social_immagine'].url} alt={content.data['social_immagine'].alternativeText}/>
               </div>
           </section>
 

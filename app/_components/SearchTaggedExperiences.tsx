@@ -30,14 +30,14 @@ export default function SearchTaggedExperiences({pages, type}:{pages:any, type:s
 
     function applyFilters() {
 
-        let filtered;
+        let filtered = pages.slice();
 
         switch(filters.category) {
             case 'cycling':
-                filtered = pages.filter((el:any) => el.tagIds.includes(3) && el.tagIds.includes(expToDisplay));
+                filtered = filtered.filter((el:any) => el.tagIds.includes(3) && el.tagIds.includes(expToDisplay));
                 break;
             case 'luthiery':
-                filtered = pages.filter((el:any) => el.tagIds.includes(2) && el.tagIds.includes(expToDisplay));
+                filtered = filtered.filter((el:any) => el.tagIds.includes(2) && el.tagIds.includes(expToDisplay));
                 break;
             default:
         }

@@ -33,10 +33,13 @@ export default function Footer({links, contacts} : {links:any, contacts:any}) {
                     </div>
                 </div>
                 <div className="w-full lg:w-[35vw] text-center lg:text-left">
-                    <p className="mb-8">Destination Management Organization di Cremona</p>
-                    <p className="mb-4">Contatti</p>
-                    <p><a className="hover:text-corpo-orange" href={`mailto:${contacts.email}`}>{contacts.email}</a></p>
-                    <p><a className="hover:text-corpo-orange" href={`tel:${contacts.telefono.split(' ').join('')}`}>{contacts.telefono}</a></p>
+                    <p className="font-semibold mb-4">Contatti</p>
+                    <p>Sede: {contacts.indirizzo}</p>
+                    <p><a className="hover:text-corpo-orange"
+                          href={`tel:${contacts.telefono.split(' ').join('')}`}>Tel.: {contacts.telefono}</a></p>
+                    <p>REA: {contacts.rea} | P.IVA {contacts.pIva}</p>
+                    <p>Cap. Soc. {contacts.capitale_sociale}</p>
+                    <p>PEC: {contacts.pec}</p>
                     <div className="mt-3 mb-2 flex gap-4 justify-center lg:justify-start">
                         Seguici sui social:
                         <ul className="flex gap-4 items-center">
@@ -54,26 +57,22 @@ export default function Footer({links, contacts} : {links:any, contacts:any}) {
                             </li>
                             {links.whatsapp &&
                                 <li>
-                                <a target="_blank" href={links.whatsapp}>
-                                    <Image src="/icons/hugeicons_facebook-02.webp" alt="facebook logo" width={24}
-                                           height={24}/>
-                                </a>
+                                    <a target="_blank" href={links.whatsapp}>
+                                        <Image src="/icons/hugeicons_facebook-02.webp" alt="facebook logo" width={24}
+                                               height={24}/>
+                                    </a>
                                 </li>
                             }
                             {links.youtube &&
                                 <li>
-                                <a target="_blank" href={links.youtube}>
-                                    <Image src="/icons/logo-instagram.webp" alt="instagram logo" width={24}
-                                           height={24}/>
-                                </a>
+                                    <a target="_blank" href={links.youtube}>
+                                        <Image src="/icons/logo-youtube.svg" alt="instagram logo" width={24}
+                                               height={24}/>
+                                    </a>
                                 </li>
                             }
                         </ul>
                     </div>
-                    <p className="mt-8">Coordinamento a cura di <a className="underline text-corpo-orange"
-                                                                   href="https://www.reindustria.com/" target="_blank">REI
-                        Reindustria</a>
-                    </p>
                 </div>
                 <div
                     className="w-full lg:w-[45vw] flex justify-center lg:justify-start gap-6 underline text-corpo-orange">
@@ -83,7 +82,7 @@ export default function Footer({links, contacts} : {links:any, contacts:any}) {
                         <li><a target="_blank" href={links['amministrazione_trasparente']}>Amministrazione
                             trasparente</a></li>
                         <li><Link href="/partner">Partner</Link></li>
-                        <li><a target="_blank" href={links['osservatorio_cremona']}>Osservatorio di Cremona</a></li>
+                        <li><a target="_blank" href={links['osservatorio_cremona']}>Osservatorio Turistico Cremonese</a></li>
                     </ul>
                     <ul className="flex flex-col gap-6 text-center lg:text-left">
                         <li><Link href="/who">Chi siamo</Link></li>

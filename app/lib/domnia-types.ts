@@ -13,3 +13,12 @@ export type ExperienceCardData = {
     tipo?: string;
     [key: string]: unknown;
 };
+
+export type ProductResponse = {
+    base_price?: {
+        end_date?: string;
+        product_id?: number | string;
+        start_date?: string;
+        value?: number;
+    };
+};

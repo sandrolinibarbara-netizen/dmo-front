@@ -2,6 +2,7 @@
 import {useState} from "react";
 import Link from "next/link";
 import AnimatedHoverButton from "@/app/_components/AnimatedHoverButton";
+import Image from "next/image";
 
 type GalleryImage = {
     url: string,
@@ -56,8 +57,8 @@ export default function Stories({gallery, description} : {description: string, g
 
                     <button type="button"
                             disabled={disabled} onClick={() => slide('prev')}
-                            className="cursor-pointer p-3 hidden md:flex items-center justify-center w-12 h-12 border-1 border-orange-800 text-orange-800 rounded-xl font-bold text-2xl">
-                        &lt;
+                            className="cursor-pointer hidden md:flex items-center justify-center min-w-[36px] w-[128px]">
+                        <Image src="/icons/prev.svg" alt="previous image icon" width={48} height={48}/>
                     </button>
                     <div>
                         <h2 className="font-bold text-3xl">Le storie del territorio</h2>
@@ -71,8 +72,8 @@ export default function Stories({gallery, description} : {description: string, g
                         </div>
                     </div>
                     <button type="button" disabled={disabled} onClick={() => slide('next')}
-                            className="cursor-pointer p-3 hidden md:flex items-center justify-center w-12 h-12 border-1 border-orange-800 text-orange-800 rounded-xl font-bold text-2xl">
-                        &gt;
+                            className="cursor-pointer hidden md:flex items-center justify-center min-w-[36px] w-[128px]">
+                        <Image src="/icons/next.svg" alt="next image icon" width={48} height={48}/>
                     </button>
                 </div>
                 <div className="md:hidden block w-[90%] mx-auto h-[400px]">

@@ -1,3 +1,4 @@
+import Image from "next/image";
 export default function Event({event}:{event:any}) {
     const title = event?.translations?.it?.title ?? '';
     const description = event?.translations?.it?.description ?? '';
@@ -37,18 +38,18 @@ export default function Event({event}:{event:any}) {
                             <h5 className="mb-2 font-semibold text-2xl md:line-clamp-1">{title}</h5>
                             <div className="flex flex-col gap-4 my-4 border-b-1 border-orange-800 pb-4">
                                 <div className="flex gap-4 items-center">
-                                    <div
-                                        className="flex items-center justify-center w-8 h-8 border-1 border-orange-500 rounded-lg font-bold text-orange-500">Q
+                                    <div className="flex items-center justify-center w-[10%]">
+                                        <Image src="/icons/calendar-outline.svg" alt="calendar icon" width={32} height={32}/>
                                     </div>
-                                    <div className="text-sm flex flex-col">
+                                    <div className="text-sm flex flex-col w-[90%]">
                                         <p className="md:line-clamp-1">{date}</p>
                                     </div>
                                 </div>
                                 <div className="flex gap-4 items-center">
-                                    <div
-                                        className="flex items-center justify-center w-8 h-8 border-1 border-orange-500 rounded-lg font-bold text-orange-500">D
+                                    <div className="flex items-center justify-center w-[10%]">
+                                        <Image src="/icons/map-pin.svg" alt="calendar icon" width={32} height={32}/>
                                     </div>
-                                    <div className="text-sm flex flex-col">
+                                    <div className="text-sm flex flex-col w-[90%]">
                                         {address !== ''
                                             ? <p className="md:line-clamp-1">{address}</p>
                                             : <p>-</p>
@@ -56,10 +57,10 @@ export default function Event({event}:{event:any}) {
                                     </div>
                                 </div>
                                 <div className="flex gap-4 items-center">
-                                    <div
-                                        className="flex items-center justify-center w-8 h-8 border-1 border-orange-500 rounded-lg font-bold text-orange-500">C
+                                    <div className="flex items-center justify-center w-[10%]">
+                                        <Image src="/icons/call-outline.svg" alt="calendar icon" width={34} height={34}/>
                                     </div>
-                                    <div className="text-sm flex flex-col">
+                                    <div className="text-sm flex flex-col w-[90%]">
                                         {telephone !== ''
                                             ? <p className="md:line-clamp-1">{telephone}</p>
                                             : <p>-</p>
