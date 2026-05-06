@@ -1,16 +1,16 @@
 import TalesLogo from "@/app/_components/TalesLogo";
 import LocalMap from "@/app/_components/LocalMap";
-import {PDF} from "@/app/_components/_icons/PDF";
 import Markdown from "react-markdown";
 import Composers from "@/app/_components/Composers";
 import AllExperiences from "@/app/_components/AllExperiences";
 import DiscoverEventsSection from "@/app/_components/DiscoverEventsSection";
 import {getExperiences} from "@/app/lib/domnia-experiences";
 import getEvents, {sortEventsByStartDate} from "@/app/lib/edt-events";
+import Downloads from "@/app/_components/Downloads";
 
 export default async function Luthiery() {
 
-    let content;
+    let content, contentExpImages;
 
     try {
         const data = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/liuteria'+
@@ -20,14 +20,33 @@ export default async function Luthiery() {
             '&populate[3]=compositore_2' +
             '&populate[4]=compositore_2.immagine' +
             '&populate[5]=compositore_3' +
-            '&populate[6]=compositore_3.immagine',
+            '&populate[6]=compositore_3.immagine' +
+            '&populate[7]=download_1' +
+            '&populate[8]=download_1.download' +
+            '&populate[9]=download_2' +
+            '&populate[10]=download_2.download' +
+            '&populate[11]=download_3' +
+            '&populate[12]=download_3.download',
             { next: { revalidate: 1000 }});
         content = await data.json();
+
+        let dataExpImages = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/experiences-images?populate=*',
+            { next: { revalidate: 1000 }});
+        contentExpImages = await dataExpImages.json();
     } catch(error) {
         console.log(error);
     }
 
     const pages = await getExperiences('/discover/luthiery');
+    for(const page of pages) {
+        for(const pic of contentExpImages.data) {
+            if(pic.slug === page.slug) {
+                page.imageUrl = pic.image.url;
+                break;
+            }
+        }
+    }
+
     const dataEvents = await getEvents('/discover/luthiery', '12');
     const sortedEvents = sortEventsByStartDate(dataEvents.events ?? []);
 
@@ -80,32 +99,8 @@ export default async function Luthiery() {
                 <h3 className="font-bold text-3xl my-8">Scopri il territorio  attraverso i principali personaggi della storia della musica</h3>
 
                 <Composers info={content.data}/>
+                <Downloads info={content.data}/>
 
-                <div className="mt-5 flex flex-col md:flex-row gap-4 w-full">
-                    <div
-                        className="p-8 w-full md:w-[33%] min-h-[172px] rounded-xl bg-corpo-blue text-white flex flex-col gap-6">
-                        <p className="font-bold">Scopri tutti gli eventi e i festival mese per mese qui</p>
-                        <a href="/Mappa Musica versione definitiva.pdf" download
-                           className="flex gap-4 items-center mt-2">
-                            <PDF className="cursor-pointer w-12 h-12"/>
-                            <p className="text-sm w-[75%]">
-                                Scaricali qui.
-                            </p>
-                        </a>
-                    </div>
-
-                    <div
-                        className="p-8 w-full md:w-[33%] min-h-[172px] rounded-xl bg-corpo-blue text-white flex flex-col gap-6">
-                        <p className="font-bold">Scarica la mappa turistico - musicale del territorio cremonese</p>
-                        <a href="/Mappa Musica versione definitiva.pdf" download
-                           className="flex gap-4 items-center mt-2">
-                            <PDF className="cursor-pointer w-12 h-12"/>
-                            <p className="text-sm w-[75%]">
-                                Consulta la mappa.
-                            </p>
-                        </a>
-                    </div>
-                </div>
             </section>
 
             <AllExperiences type='luthiery' pages={pages}/>

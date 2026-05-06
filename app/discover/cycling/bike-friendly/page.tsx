@@ -29,6 +29,7 @@ export default async function BikeFriendly() {
                                 <InfoCard
                                     key={el.nome}
                                     name={el.nome}
+                                    type={el.tipo}
                                     address={el.indirizzo}
                                     phone={el.telefono}
                                     email={el.email}

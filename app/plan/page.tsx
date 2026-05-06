@@ -41,7 +41,7 @@ export default async function Plan() {
                         <div className="flex gap-4 items-center my-4">
                             <div className="w-12">
                                 <Image
-                                    src='/icons/car.png' alt="icona automobile" width={64} height={64}
+                                    src='/icons/by-car.svg' alt="icona automobile" width={64} height={64}
                                     className="w-full"
                                 />
                             </div>
@@ -67,11 +67,11 @@ export default async function Plan() {
                         <div className="flex gap-4 items-center my-4">
                             <div className="w-12">
                                 <Image
-                                    src='/icons/plane.png' alt="icona aereo" width={64} height={64}
+                                    src='/icons/by-plane.svg' alt="icona aereo" width={64} height={64}
                                     className="w-full"
                                 />
                             </div>
-                            <h2 className="font-bold text-2xl">Con l'aereo</h2>
+                            <h2 className="font-bold text-2xl">In aereo</h2>
                         </div>
                     </AccordionSummary>
                     <AccordionDetails>
@@ -91,11 +91,11 @@ export default async function Plan() {
                         <div className="flex gap-4 items-center my-4">
                             <div className="w-12">
                                 <Image
-                                    src='/icons/bus.png' alt="icona bus" width={64} height={64}
+                                    src='/icons/by-bus.svg' alt="icona bus" width={64} height={64}
                                     className="w-full"
                                 />
                             </div>
-                            <h2 className="font-bold text-2xl">Con l'autobus</h2>
+                            <h2 className="font-bold text-2xl">In autobus</h2>
                         </div>
                     </AccordionSummary>
                     <AccordionDetails>
@@ -106,7 +106,7 @@ export default async function Plan() {
                         </div>
                     </AccordionDetails>
                 </Accordion>
-                <Accordion sx={{backgroundColor: 'transparent', boxShadow: 'none'}}>
+                <Accordion sx={{backgroundColor: 'transparent', boxShadow: 'none', borderBottom: '1px solid #000'}}>
                     <AccordionSummary
                         expandIcon={<Plus/>}
                         aria-controls="panel4-content"
@@ -115,7 +115,7 @@ export default async function Plan() {
                         <div className="flex gap-4 items-center my-4">
                             <div className="w-12">
                                 <Image
-                                    src='/icons/info.png' alt="icona info" width={64} height={64}
+                                    src='/icons/info.svg' alt="icona info" width={64} height={64}
                                     className="w-full"
                                 />
                             </div>
@@ -133,6 +133,7 @@ export default async function Plan() {
                                         phone={el.telefono}
                                         email={el.email}
                                         hours={el.orari}
+                                        url={el.link}
                                     >
                                     </InfoCard>
                                 )
@@ -140,19 +141,31 @@ export default async function Plan() {
                         </div>
                     </AccordionDetails>
                 </Accordion>
-            </section>
-
-            <section className="w-full bg-alt-blue text-white">
-                <div className="flex flex-col w-[95vw] md:w-[80vw] mx-auto px-4 md:px-8 pt-20 pb-20 md:pb-24">
-                    <h2 className="font-bold text-3xl mb-8">Dove dormire</h2>
-
-                    <div className="rounded-xl border border-white p-4 w-fit">
-                        <p>Guarda tutte le infrastrutture
-                            <a target="_blank" href="https://www.turismocremona.it/it/dove-dormire" className="font-bold text-corpo-orange underline ml-2">Clicca qui &gt;</a>
-                        </p>
-                    </div>
-
-                </div>
+                <Accordion sx={{backgroundColor: 'transparent', boxShadow: 'none'}}>
+                    <AccordionSummary
+                        expandIcon={<Plus/>}
+                        aria-controls="panel3-content"
+                        id="panel3-header"
+                    >
+                        <div className="flex gap-4 items-center my-4">
+                            <div className="w-12">
+                                <Image
+                                    src='/icons/where-sleep.svg' alt="icona bus" width={64} height={64}
+                                    className="w-full"
+                                />
+                            </div>
+                            <h2 className="font-bold text-2xl">Dove dormire</h2>
+                        </div>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <div className="p-4 w-fit">
+                            <p>Per consultare tutte le strutture dove dormire clicca al seguente
+                                <a target="_blank" href="https://www.turismocremona.it/it/dove-dormire"
+                                   className="font-bold text-corpo-orange underline ml-2">link</a>
+                            </p>
+                        </div>
+                    </AccordionDetails>
+                </Accordion>
             </section>
         </>
     )

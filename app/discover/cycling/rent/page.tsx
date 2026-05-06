@@ -28,31 +28,34 @@ export default async function Rent() {
                             <InfoCard
                                 key={el.nome}
                                 name={el.nome}
+                                type={el.tipo}
                                 address={el.indirizzo}
                                 phone={el.telefono}
-                                email={el.telefono}
+                                email={el.email}
                                 url={el.link}
                             >
-                                <div className="flex gap-4 w-full">
-                                    <ul>
-                                        <li>Lunedi</li>
-                                        <li>Martedi</li>
-                                        <li>Mercoledi</li>
-                                        <li>Giovedi</li>
-                                        <li>Venerdi</li>
-                                        <li>Sabato</li>
-                                        <li>Domenica</li>
-                                    </ul>
-                                    <ul className="w-full">
-                                        <li className="text-ellipsis whitespace-nowrap overflow-x-auto">{el.lun}</li>
-                                        <li className="text-ellipsis whitespace-nowrap overflow-x-auto">{el.mar}</li>
-                                        <li className="text-ellipsis whitespace-nowrap overflow-x-auto">{el.mer} </li>
-                                        <li className="text-ellipsis whitespace-nowrap overflow-x-auto">{el.gio}</li>
-                                        <li className="text-ellipsis whitespace-nowrap overflow-x-auto">{el.ven}</li>
-                                        <li className="text-ellipsis whitespace-nowrap overflow-x-auto">{el.sab}</li>
-                                        <li className="text-ellipsis whitespace-nowrap overflow-x-auto">{el.dom}</li>
-                                    </ul>
-                                </div>
+                                {el.lun &&
+                                    <div className="flex gap-4 w-full">
+                                        <ul>
+                                            <li>Lunedi</li>
+                                            <li>Martedi</li>
+                                            <li>Mercoledi</li>
+                                            <li>Giovedi</li>
+                                            <li>Venerdi</li>
+                                            <li>Sabato</li>
+                                            <li>Domenica</li>
+                                        </ul>
+                                        <ul className="w-full">
+                                            <li className="text-ellipsis whitespace-nowrap overflow-x-auto">{el.lun}</li>
+                                            <li className="text-ellipsis whitespace-nowrap overflow-x-auto">{el.mar}</li>
+                                            <li className="text-ellipsis whitespace-nowrap overflow-x-auto">{el.mer} </li>
+                                            <li className="text-ellipsis whitespace-nowrap overflow-x-auto">{el.gio}</li>
+                                            <li className="text-ellipsis whitespace-nowrap overflow-x-auto">{el.ven}</li>
+                                            <li className="text-ellipsis whitespace-nowrap overflow-x-auto">{el.sab}</li>
+                                            <li className="text-ellipsis whitespace-nowrap overflow-x-auto">{el.dom}</li>
+                                        </ul>
+                                    </div>
+                                }
                             </InfoCard>
                         )
                     })

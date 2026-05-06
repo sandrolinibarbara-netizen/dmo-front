@@ -1,13 +1,13 @@
 import TalesLogo from "@/app/_components/TalesLogo";
 import Link from "next/link";
 import LocalMap from "@/app/_components/LocalMap";
-import {PDF} from "@/app/_components/_icons/PDF";
 import Markdown from "react-markdown";
 import Image from "next/image";
 import AllExperiences from "@/app/_components/AllExperiences";
 import DiscoverEventsSection from "@/app/_components/DiscoverEventsSection";
 import {getExperiences} from "@/app/lib/domnia-experiences";
 import getEvents, {sortEventsByStartDate} from "@/app/lib/edt-events";
+import Downloads from "@/app/_components/Downloads";
 
 type CyclingToursResponse = {
     data: Array<{
@@ -19,24 +19,43 @@ type CyclingToursResponse = {
 };
 
 export default async function Cycling() {
-    let content;
+    let content, contentExpImages;
     let contentTours: CyclingToursResponse = { data: [] };
 
     try {
         const data = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/cicloturismo'+
                 '?populate[0]=elements'+
-                '&populate[1]=elements.immagine',
+                '&populate[1]=elements.immagine' +
+                '&populate[2]=download_1' +
+                '&populate[3]=download_1.download' +
+                '&populate[4]=download_2' +
+                '&populate[5]=download_2.download' +
+                '&populate[6]=download_3' +
+                '&populate[7]=download_3.download',
             { next: { revalidate: 1000 }});
         content = await data.json();
 
         const dataTours = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/cycling-tours',
             { next: { revalidate: 1000 }});
         contentTours = await dataTours.json();
+
+        let dataExpImages = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/experiences-images?populate=*',
+            { next: { revalidate: 1000 }});
+        contentExpImages = await dataExpImages.json();
     } catch(error) {
         console.log(error);
     }
 
     const pages = await getExperiences('/discover/cycling');
+    for(const page of pages) {
+        for(const pic of contentExpImages.data) {
+            if(pic.slug === page.slug) {
+                page.imageUrl = pic.image.url;
+                break;
+            }
+        }
+    }
+
     const dataEvents = await getEvents('/discover/cycling', '4');
     const sortedEvents = sortEventsByStartDate(dataEvents.events ?? []);
 
@@ -91,7 +110,6 @@ export default async function Cycling() {
                         frameBorder="0" scrolling="no"></iframe>
 
                 <div className="flex md:flex-row flex-col gap-4 w-full mt-4">
-
                     {contentTours.data.map((el) => {
                         if(el.ordine > 3) return;
                         else {
@@ -112,46 +130,10 @@ export default async function Cycling() {
                             )
                         }
                     })}
-
                 </div>
 
-                <div className="mt-5 flex md:flex-row flex-col gap-4 w-full">
-                    <div
-                        className="p-8 w-full md:w-[33%] min-h-[172px] rounded-xl bg-corpo-blue text-white flex flex-col gap-6">
-                        <p className="font-bold">Mappa cicloturistica del territorio cremonese</p>
-                        <a href="/Mappa cicloturismo Cremona_stampa luglio_2.pdf" download
-                           className="flex gap-4 items-center mt-2">
-                            <PDF className="cursor-pointer w-12 h-12"/>
-                            <p className="text-sm w-[75%]">
-                                Scaricala qui.
-                            </p>
-                        </a>
-                    </div>
+                <Downloads info={content.data}/>
 
-                    <div
-                        className="p-8 w-full md:w-[33%] min-h-[172px] rounded-xl bg-corpo-blue text-white flex flex-col gap-6">
-                        <p className="font-bold">Piste ciclabili di Cremona e dintorni (FIAB Cremona)</p>
-                        <a href="/Mappa cicloturismo Cremona_stampa luglio_2.pdf" download
-                           className="flex gap-4 items-center mt-2">
-                            <PDF className="cursor-pointer w-12 h-12"/>
-                            <p className="text-sm w-[75%]">
-                                Consulta la mappa.
-                            </p>
-                        </a>
-                    </div>
-
-                    <div
-                        className="p-8 w-full md:w-[33%] min-h-[172px] rounded-xl bg-corpo-blue text-white flex flex-col gap-6">
-                        <p className="font-bold">Disciplinare del progetto Cicloturismo Visit Cremona 2026</p>
-                        <a href="/Disciplinare progetto cicloturismo Visit Cremona 2026.pdf" download
-                           className="flex gap-4 items-center mt-2">
-                            <PDF className="cursor-pointer w-12 h-12"/>
-                            <p className="text-sm w-[75%]">
-                                Scaricalo qui.
-                            </p>
-                        </a>
-                    </div>
-                </div>
             </section>
 
             <AllExperiences type='cycling' pages={pages}/>

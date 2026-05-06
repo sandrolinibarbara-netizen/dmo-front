@@ -52,7 +52,7 @@ export default function Map({homepage, autoFilter, fullPage, composers, pages} :
             </div>}
             <MapContainer className={`${homepage || fullPage ? 'h-[600px]' : 'h-[532px] md:w-[800px]'} w-full rounded-xl z-100`}
                           center={(composers && composers[0].name.includes('Paderno')) ? [45.23906740340918, 9.928271781708482] : [45.136887, 10.028458]}
-                          zoom={composers ? 14 : 10}
+                          zoom={composers ? 14 : 13}
                           scrollWheelZoom={false}>
                 <TileLayer
                     attribution="Google Maps"
@@ -65,7 +65,7 @@ export default function Map({homepage, autoFilter, fullPage, composers, pages} :
                                 <Image className="rounded-t-xl w-full h-[136px] object-cover" width={200} height={100} src={el.imageUrl ? process.env.NEXT_PUBLIC_BASE_URL + el.imageUrl :`/images/experiences/violin1.webp`} alt="immagine"/>
                                 <div className="px-4 pt-4 pb-2">
                                     <h4 className="font-bold">{el.title}</h4>
-                                    <p className="line-clamp-6">{el.description?.[0].children[0].text ?? "Lorem ipsum dolor sit amet, " +
+                                    <p className="line-clamp-6">{el.description?.[0].children?.[0].text ?? "Lorem ipsum dolor sit amet, " +
                                         "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}</p>
                                     <div className="flex justify-between items-center">
                                         <p className="font-bold">{
@@ -89,7 +89,7 @@ export default function Map({homepage, autoFilter, fullPage, composers, pages} :
                                 <Image className="rounded-t-xl w-full h-[136px] object-cover" width={200} height={100} src={el.imageUrl ? process.env.NEXT_PUBLIC_BASE_URL + el.imageUrl :`/images/experiences/violin1.webp`} alt="immagine"/>
                                 <div className="px-4 pt-4 pb-2">
                                     <h4 className="font-bold">{el.title}</h4>
-                                    <p className="line-clamp-6">{el.description?.[0].children[0].text ?? "Lorem ipsum dolor sit amet, " +
+                                    <p className="line-clamp-6">{el.description?.[0].children?.[0].text ?? "Lorem ipsum dolor sit amet, " +
                                         "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}</p>
                                     <div className="flex justify-between items-center">
                                         <p className="font-bold">{

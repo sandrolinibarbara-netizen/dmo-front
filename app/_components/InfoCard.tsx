@@ -1,23 +1,25 @@
-export default function InfoCard({name, address, phone, email, children, url, hours} : {name:string, address:string, phone:string, email:string, children?:undefined|React.ReactNode, url?:string|undefined, hours?:string|undefined}) {
+export default function InfoCard({name, address, phone, email, children, url, hours, type} : {name:string, address:string, phone:string, email:string, children?:undefined|React.ReactNode, url?:string|undefined, hours?:string|undefined, type?:string|undefined}) {
     return(
-        <div className={`w-full md:w-[calc(33%-8px)] bg-white rounded-xl p-8 ${children ? 'h-[65vh]' : 'h-[372px]' } relative`}>
-            <h4 className="font-bold text-2xl h-[64px] line-clamp-2">{name}</h4>
+        <div className="w-full md:w-[calc(33%-8px)]">
+        <div className={`bg-white rounded-t-xl pt-8 px-8 ${children ? 'h-[65vh]' : hours ? 'h-[396px]' : 'h-[300px]' } relative overflow-y-auto`}>
+            <h4 className={`font-bold text-2xl ${type ? '' : 'h-[64px]'} line-clamp-2`}>{name}</h4>
+            <h5 className="font-medium line-clamp-1">{type}</h5>
             <div className={`${children ? 'h-[70%] overflow-y-auto mt-4' : ''}`}>
                 {children}
                 <ul className="my-4">
-                    <li className="overflow-x-auto w-full whitespace-nowrap mt-2">
+                    <li className="w-full mt-2">
                         <span className="font-semibold">Indirizzo:</span><br/>
                         {address}
                     </li>
-                    <li className="overflow-x-auto w-full whitespace-nowrap mt-2">
+                    <li className="mt-2">
                         <span className="font-semibold">Telefono:</span><br/>
-                        {phone}
+                        <a href={`tel:+39${phone}`} className="underline">{phone}</a>
                     </li>
-                    <li className="overflow-x-auto w-full mt-2">
+                    {email && <li className="w-full mt-2">
                         <span className="font-semibold">Email:</span><br/>
                         <a href={`mailto:${email}`} className="underline">{email}</a>
-                    </li>
-                    {hours && <li className="overflow-x-auto w-full whitespace-nowrap mt-2">
+                    </li>}
+                    {hours && <li className="w-full mt-2">
                         <span className="font-semibold">Orari di apertura:</span><br/>
                         {name.includes("Soncino")
                             ? <a href="/orario-infopoint-1.pdf" download className="underline">{hours}</a>
@@ -26,12 +28,16 @@ export default function InfoCard({name, address, phone, email, children, url, ho
                     </li>}
                 </ul>
             </div>
-            {url && <div className="w-full text-right absolute bottom-8 right-8">
-                <a href={url} target="_blank"
-                   className="text-sm cursor-pointer mt-4 w-full text-black transition duration-500 hover:bg-corpo-orange bg-soft-orange rounded-full px-4 py-3">
-                    Vail al sito &gt;
-                </a>
-            </div>}
+        </div>
+        {url ? <div className="w-full p-8 text-right bg-white rounded-b-xl">
+            <a href={url} target="_blank"
+               className="text-sm cursor-pointer w-full text-black transition duration-500 hover:bg-corpo-orange bg-soft-orange rounded-full px-4 py-3">
+                Vail al sito &gt;
+            </a>
+        </div>
+            : <div className="w-full p-8 text-right bg-white rounded-b-xl h-[87.99px]"></div>
+        }
+
         </div>
     )
 }

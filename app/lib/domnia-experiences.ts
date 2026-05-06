@@ -5,17 +5,14 @@ import {
     getDomniaApiHeaders,
     requireDomniaAccessToken,
 } from '@/app/lib/domnia-auth';
-import type { ExperienceCardData } from '@/app/lib/domnia-types';
+import mockProductGroupsResponse from '@/app/lib/mocks/domnia-product-groups.json';
+import type {
+    ExperienceCardData,
+    ProductResponse,
+} from '@/app/lib/domnia-types';
 
 type ProductGroupResponse = {
     data: ExperienceCardData[];
-};
-
-type ProductResponse = {
-    base_price?: {
-        product_id?: number | string;
-        value?: number;
-    };
 };
 
 async function fetchDomniaJson<T>(path: string, accessToken: string): Promise<T> {
@@ -30,6 +27,95 @@ async function fetchDomniaJson<T>(path: string, accessToken: string): Promise<T>
     }
 
     return response.json() as Promise<T>;
+}
+
+function getMockProductGroups() {
+    return (
+        Array.isArray(mockProductGroupsResponse.data)
+            ? mockProductGroupsResponse.data
+            : []
+    ).map((productGroup) => ({
+        ...productGroup,
+    })) as ExperienceCardData[];
+}
+
+function attachFallbackConnectedProducts(
+    productGroups: ExperienceCardData[],
+    products: ProductResponse[],
+) {
+    const availableProducts = products.filter(
+        (product) => product.base_price?.product_id !== undefined,
+    );
+
+    if (availableProducts.length === 0) {
+        return productGroups;
+    }
+
+    return productGroups.map((productGroup, index) => {
+        if (
+            Array.isArray(productGroup.connectedProducts) &&
+            productGroup.connectedProducts.length > 0
+        ) {
+            return productGroup;
+        }
+
+        const fallbackProduct =
+            availableProducts[index % availableProducts.length];
+        const fallbackProductId = fallbackProduct.base_price?.product_id;
+        const fallbackPrice = fallbackProduct.base_price?.value;
+
+        return {
+            ...productGroup,
+            cheapest:
+                fallbackPrice !== undefined
+                    ? fallbackPrice
+                    : productGroup.cheapest,
+            connectedProducts:
+                fallbackProductId !== undefined ? [fallbackProductId] : [],
+        };
+    });
+}
+
+async function fetchProductGroupsWithFallback(accessToken: string) {
+    try {
+        const response = await fetchDomniaJson<ProductGroupResponse>(
+            '/api/shop/product-groups',
+            accessToken,
+        );
+
+        return {
+            data: Array.isArray(response.data) ? response.data : [],
+            isFallback: false,
+        };
+    } catch (error) {
+        console.warn(
+            'Domnia product groups unavailable, using local mock response',
+            error,
+        );
+
+        return {
+            data: getMockProductGroups(),
+            isFallback: true,
+        };
+    }
+}
+
+async function fetchProductsWithFallback(accessToken: string) {
+    try {
+        const response = await fetchDomniaJson<ProductResponse[]>(
+            '/api/bb/products/salable',
+            accessToken,
+        );
+
+        return Array.isArray(response) ? response : [];
+    } catch (error) {
+        console.warn(
+            'Domnia salable products unavailable, continuing without enrichment',
+            error,
+        );
+
+        return [];
+    }
 }
 
 function enrichExperiences(
@@ -61,7 +147,7 @@ function enrichExperiences(
             }
 
             return lowest;
-        }, undefined);
+        }, productGroup.cheapest);
 
         return {
             ...productGroup,
@@ -71,20 +157,17 @@ function enrichExperiences(
 }
 
 export async function fetchExperiencesWithAccessToken(accessToken: string) {
-    const [productGroups, products] = await Promise.all([
-        fetchDomniaJson<ProductGroupResponse>(
-            '/api/shop/product-groups',
-            accessToken,
-        ),
-        fetchDomniaJson<ProductResponse[]>(
-            '/api/bb/products/salable',
-            accessToken,
-        ),
+    const [productGroupsResult, products] = await Promise.all([
+        fetchProductGroupsWithFallback(accessToken),
+        fetchProductsWithFallback(accessToken),
     ]);
+    const productGroups = productGroupsResult.isFallback
+        ? attachFallbackConnectedProducts(productGroupsResult.data, products)
+        : productGroupsResult.data;
 
     return enrichExperiences(
-        Array.isArray(productGroups.data) ? productGroups.data : [],
-        Array.isArray(products) ? products : [],
+        productGroups,
+        products,
     );
 }
 

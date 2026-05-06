@@ -18,7 +18,7 @@ export default function Operators() {
                             <h2 className="font-bold text-2xl mb-4">Area operatori</h2>
                             <input
                                 placeholder="Password"
-                                className="border p-2 rounded-full"
+                                className="border py-2 px-4 rounded-full"
                                 value={password}
                                 type="password"
                                 onChange={(e) => setPassword(e.currentTarget.value)}/>

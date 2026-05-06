@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 
 export default function VisitCard({title, price, details} : {title:string|undefined, price:number|undefined, details:string[]|undefined}) {
     return(
@@ -57,9 +56,9 @@ export default function VisitCard({title, price, details} : {title:string|undefi
                 </>
             }
             <div className="w-full text-end absolute bottom-8 right-8">
-                <Link href="/"
+                <a href={`https://multishop-cremona.collaudo.domniapass.com/it/products/${title === 'Welcome card' ? 'welcome-card' : 'visit-cremona-card'}`}
                       className="text-black text-sm transition duration-500 hover:bg-corpo-orange bg-soft-orange rounded-full px-3 py-2">
-                    Acquista &gt;</Link>
+                    Acquista &gt;</a>
             </div>
         </div>
     )

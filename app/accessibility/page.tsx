@@ -20,6 +20,9 @@ export default async function Who() {
                         {content.data.contenuto}
                     </Markdown>
                 </div>
+                <br/>
+                <p>Per segnalare un problema riguardante l'accessibilità, scrivi a <a
+                    href="mailto:info.turismo@comune.cremona.it" className="underline">info.turismo@comune.cremona.it</a></p>
             </section>
         </>
     );
