@@ -4,7 +4,6 @@ import {Hamburger} from "@/app/_components/_icons/Hamburger";
 import {useEffect, useState} from "react";
 import {Close} from "@/app/_components/_icons/Close";
 import Image from "next/image";
-import {Cart} from "@/app/_components/_icons/Cart";
 import {useUsageStore} from "@/app/_stores/usage";
 import {Usage} from "@/app/_types/types";
 
@@ -95,9 +94,10 @@ export default function Menu({links} : {links:any}) {
                                 aria-controls="mainMenu" aria-expanded={showMenu === 'open'}
                                 aria-label="Apri il menu"
                                 id="hamburgerButton"
+                                onClick={() => toggleMenu('open')}
                         >
                             <Hamburger
-                                className="w-8 h-8 cursor-pointer" onClick={() => toggleMenu('open')}
+                                className="w-8 h-8 cursor-pointer"
                                 aria-hidden={true}
                             />
                         </button>
@@ -126,9 +126,10 @@ export default function Menu({links} : {links:any}) {
                     <button type="button"
                             aria-controls="mainMenu" aria-expanded={showMenu === 'open'}
                             aria-label="Chiudi il menu"
+                            onClick={() => toggleMenu('close')}
                     >
                         <Close
-                            className="w-8 h-8 cursor-pointer" onClick={() => toggleMenu('close')}
+                            className="w-8 h-8 cursor-pointer"
                             aria-hidden={true}
                         />
                     </button>

@@ -101,7 +101,7 @@ export default async function Discover() {
                                     {content.data['cycling_testo']}
                                 </div>
                                 <Image className="object-cover rounded-xl w-full md:w-[50%] h-[164px]"
-                                       src={process.env.NEXT_PUBLIC_BASE_URL + content.data.immagine_mappa_cycling.url} alt="pic" width={200} height={100}/>
+                                       src={process.env.NEXT_PUBLIC_BASE_URL + content.data.immagine_mappa_cycling.url} alt={content.data.immagine_mappa_cycling.alternativeText} width={200} height={100}/>
                             </div>
 
                             <LocalMap homepage={false} autoFilter={1} pages={pages}/>
@@ -130,7 +130,7 @@ export default async function Discover() {
                                     {content.data['luthiery_testo']}
                                 </div>
                                 <Image className="object-cover rounded-xl w-full md:w-[50%] h-[164px]"
-                                       src={process.env.NEXT_PUBLIC_BASE_URL + content.data.immagine_mappa_luthiery.url} alt="pic" width={200} height={100}/>
+                                       src={process.env.NEXT_PUBLIC_BASE_URL + content.data.immagine_mappa_luthiery.url} alt={content.data.immagine_mappa_luthiery.alternativeText} width={200} height={100}/>
                             </div>
                             <LocalMap homepage={false} autoFilter={2} pages={pages}/>
                             <div className="w-full text-right mt-4">

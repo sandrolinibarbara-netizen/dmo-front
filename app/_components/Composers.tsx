@@ -78,22 +78,39 @@ export default function Composers({info}: {info:any}) {
     }, [])
 
     useEffect(() => {
+        const mainMenu = document.getElementById('mainMenu');
         const header = document.getElementById('header');
         const footer = document.getElementById('footer');
         const iubenda = document.getElementById('iubenda');
-        if(header && footer && iubenda) {
+        if(mainMenu && header && footer && iubenda) {
             if(showModal.show) {
+                mainMenu.setAttribute('inert', 'inert');
                 header.setAttribute('inert', 'inert');
                 footer.setAttribute('inert', 'inert');
                 iubenda.setAttribute('inert', 'inert');
                 document.getElementById('closeButton')!.focus();
             } else if(!showModal.show) {
+                mainMenu.removeAttribute('inert');
                 header.removeAttribute('inert');
                 footer.removeAttribute('inert');
                 iubenda.removeAttribute('inert');
             }
         }
     }, [showModal.show])
+
+    useEffect(() => {
+        function handleEscapeKeyDown(e:any) {
+            if (e.key === 'Escape' && showModal.show) {
+                showModalBio(0);
+            }
+        }
+
+        window.addEventListener('keydown', handleEscapeKeyDown);
+
+        return () => {
+            window.removeEventListener('keydown', handleEscapeKeyDown);
+        };
+    }, []);
 
 
     return (
@@ -168,8 +185,8 @@ export default function Composers({info}: {info:any}) {
                 <div role="dialog" aria-modal={true} className="top-0 left-0 fixed z-20 w-screen h-screen bg-gray-500/25">
                         <div className="pt-8 pb-12 pl-8 pr-2 shadow-md relative top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] bg-corpo-blue text-white rounded-xl w-[95%] md:w-2/4">
                             <div className="max-h-[516px] overflow-y-auto pr-6 relative">
-                                <button aria-label="Chiudi modale" id="closeButton" tabIndex={0} className="flex justify-end fixed right-8 bg-corpo-blue pb-2">
-                                    <Close aria-hidden={true} onClick={() => showModalBio(0)} className="cursor-pointer"/>
+                                <button onClick={() => showModalBio(0)} aria-label="Chiudi modale" id="closeButton" tabIndex={0} className="flex justify-end fixed right-8 bg-corpo-blue pb-2">
+                                    <Close aria-hidden={true} className="cursor-pointer"/>
                                 </button>
                                 <div className="markdown">
                                     <Markdown>

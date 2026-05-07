@@ -26,7 +26,7 @@ export default function Map({homepage, autoFilter, fullPage, composers, pages} :
             {homepage && <div className="flex items-center gap-4 px-1 md:px-4 mb-4">
                 <ul className="text-sm flex gap-4 flex-wrap md:justify-start justify-center">
                     <li className="flex items-center border bg-gray-500 border-gray-500 text-white rounded-full px-4 py-2">
-                            <Image src="/icons/filter.svg" alt="filter icon" width={12} height={12} className="mr-1.5"/>
+                            <Image aria-hidden={true} src="/icons/filter.svg" alt="" width={12} height={12} className="mr-1.5"/>
                             Filtri
                     </li>
                     <li>

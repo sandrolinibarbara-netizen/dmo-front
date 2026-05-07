@@ -15,7 +15,6 @@ export function Dialog({placeholder} : {placeholder:string}) {
 
     const dialogRef = useRef<HTMLDialogElement>(null);
     const dialogId = useId();
-    const headerId = useId();
 
     const [month, setMonth] = useState(new Date());
     const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
@@ -30,7 +29,7 @@ export function Dialog({placeholder} : {placeholder:string}) {
     useEffect(() => {
         function handleBodyScroll (isOpen: boolean) {
             document.body.style.overflow = isOpen ? "hidden" : "";
-        };
+        }
         if (!dialogRef.current) return;
         if (isDialogOpen) {
             handleBodyScroll(true);
@@ -43,21 +42,6 @@ export function Dialog({placeholder} : {placeholder:string}) {
             handleBodyScroll(false);
         };
     }, [isDialogOpen]);
-
-    useEffect(() => {
-        function handleEnter(e) {
-            if(e.key === 'Enter' && !isDialogOpen) {
-                if(document.activeElement.getAttribute('id') === 'closeButton') {
-                    setIsDialogOpen(false);
-                }
-            }
-        }
-
-        window.addEventListener('keydown', handleEnter);
-        return () => {
-            window.removeEventListener('keydown', handleEnter);
-        };
-    }, [])
 
     function handleDayPickerSelect (date: Date | undefined) {
         if (!date) {
@@ -90,13 +74,13 @@ export function Dialog({placeholder} : {placeholder:string}) {
 
     return (
         <div className="w-[calc(50%-8px)] flex gap-2 rounded-full border border-gray-500 px-4 py-3">
-            <label htmlFor="date-input">
+            <label htmlFor={`date-input-${placeholder.toLowerCase()}`}>
                 {placeholder}:
             </label>
             <input
                 className="w-full"
                 style={{ fontSize: "inherit" }}
-                id="date-input"
+                id={`date-input-${placeholder.toLowerCase()}`}
                 type="text"
                 value={inputValue}
                 placeholder="dd/MM/yyyy"
@@ -118,11 +102,10 @@ export function Dialog({placeholder} : {placeholder:string}) {
                 ref={dialogRef}
                 id={dialogId}
                 aria-modal
-                aria-labelledby={headerId}
                 onClose={() => setIsDialogOpen(false)}
             >
-                <button id="closeButton" role="button" aria-label="Chiudi il calendario" tabIndex={0} className="absolute top-2 right-2 flex justify-end">
-                    <Close aria-hidden={true} className="cursor-pointer" onClick={() => setIsDialogOpen(false)}/>
+                <button onClick={() => setIsDialogOpen(false)} id="closeButton" role="button" aria-label="Chiudi il calendario" tabIndex={0} className="absolute top-2 right-2 flex justify-end">
+                    <Close aria-hidden={true} className="cursor-pointer"/>
                 </button>
                 <DayPicker
                     classNames={{

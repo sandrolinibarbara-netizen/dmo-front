@@ -88,7 +88,7 @@ export default async function Luthiery() {
                         <iframe title="Video presentazione del progetto Tales of Luthiery" width="100%" height="315"
                                 className="rounded-xl absolute bottom-0"
                                 src="https://www.youtube.com/embed/qZa1JT7oI2c?si=Xs8Yhbtzh8izTk8v"
-                                title="YouTube video player" frameBorder="0"
+                                frameBorder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                 referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
                     </div>
