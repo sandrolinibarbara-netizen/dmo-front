@@ -1,6 +1,6 @@
 'use client'
 
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import Image from "next/image";
 import Markdown from "react-markdown";
 import {Close} from "@/app/_components/_icons/Close";
@@ -63,6 +63,38 @@ export default function Composers({info}: {info:any}) {
         ]
     }
 
+    useEffect(() => {
+        function handleEscapeKeyDown(e:any) {
+            if (e.key === 'Escape' && showModal.show) {
+                showModalBio(0);
+            }
+        }
+
+        window.addEventListener('keydown', handleEscapeKeyDown);
+
+        return () => {
+            window.removeEventListener('keydown', handleEscapeKeyDown);
+        };
+    }, [])
+
+    useEffect(() => {
+        const header = document.getElementById('header');
+        const footer = document.getElementById('footer');
+        const iubenda = document.getElementById('iubenda');
+        if(header && footer && iubenda) {
+            if(showModal.show) {
+                header.setAttribute('inert', 'inert');
+                footer.setAttribute('inert', 'inert');
+                iubenda.setAttribute('inert', 'inert');
+                document.getElementById('closeButton')!.focus();
+            } else if(!showModal.show) {
+                header.removeAttribute('inert');
+                footer.removeAttribute('inert');
+                iubenda.removeAttribute('inert');
+            }
+        }
+    }, [showModal.show])
+
 
     return (
         <>
@@ -80,6 +112,7 @@ export default function Composers({info}: {info:any}) {
                             <h5>{info['compositore_1'][0]['nome']}</h5>
                             <div className="w-full text-right">
                                 <button
+                                    id="composer_1"
                                     className="absolute bottom-4 right-4 cursor-pointer font-medium text-sm text-black transition duration-500 hover:bg-corpo-orange bg-soft-orange rounded-full px-4 py-2"
                                     onClick={() => showModalBio(1)}
                                 >Leggi
@@ -99,6 +132,7 @@ export default function Composers({info}: {info:any}) {
                             <h5>{info['compositore_2'][0]['nome']}</h5>
                             <div className="w-full text-right">
                                 <button
+                                    id="composer_2"
                                     className="absolute bottom-4 right-4 cursor-pointer font-medium text-sm text-black transition duration-500 hover:bg-corpo-orange bg-soft-orange rounded-full px-4 py-2"
                                     onClick={() => showModalBio(2)}
                                 >Leggi
@@ -118,6 +152,7 @@ export default function Composers({info}: {info:any}) {
                             <h5>{info['compositore_3'][0]['nome']}</h5>
                             <div className="w-full text-right">
                                 <button
+                                    id="composer_3"
                                     className="absolute bottom-4 right-4 cursor-pointer font-medium text-sm text-black transition duration-500 hover:bg-corpo-orange bg-soft-orange rounded-full px-4 py-2"
                                     onClick={() => showModalBio(3)}
                                 >Leggi
@@ -130,12 +165,12 @@ export default function Composers({info}: {info:any}) {
 
             {
                 showModal.show &&
-                <div className="top-0 left-0 fixed z-20 w-screen h-screen bg-gray-500/25">
+                <div role="dialog" aria-modal={true} className="top-0 left-0 fixed z-20 w-screen h-screen bg-gray-500/25">
                         <div className="pt-8 pb-12 pl-8 pr-2 shadow-md relative top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] bg-corpo-blue text-white rounded-xl w-[95%] md:w-2/4">
                             <div className="max-h-[516px] overflow-y-auto pr-6 relative">
-                                <div className="flex justify-end fixed right-8 bg-corpo-blue pb-2">
-                                    <Close onClick={() => showModalBio(0)} className="cursor-pointer"/>
-                                </div>
+                                <button aria-label="Chiudi modale" id="closeButton" tabIndex={0} className="flex justify-end fixed right-8 bg-corpo-blue pb-2">
+                                    <Close aria-hidden={true} onClick={() => showModalBio(0)} className="cursor-pointer"/>
+                                </button>
                                 <div className="markdown">
                                     <Markdown>
                                         {info['compositore_' + showModal.text][0]['bio']}

@@ -84,7 +84,7 @@ export default async function Home() {
                           fill={true}
                           />
                       : content.data['sub_hero_video']
-                          ? <iframe className="rounded-xl" src={content.data['sub_hero_video']} width="100%" height="400"
+                          ? <iframe title="Video presentazione del progetto Tales of Harmonies" className="rounded-xl" src={content.data['sub_hero_video']} width="100%" height="400"
                                     frameBorder="0" scrolling="no"></iframe>
                           : <></>
                   }
@@ -178,7 +178,7 @@ export default async function Home() {
               <div className="flex flex-col items-center gap-8 w-[95vw] md:w-[80vw] mx-auto px-4 md:px-8 pt-20 pb-20">
                   <Image src="/icons/Lonely Planet Logo.png" alt="lonely planet logo" width={250} height={100}/>
                   <p className="font-bold text-xl text-center w-[60%]">“Cremona, capitale della liuteria, dove il Torrazzo veglia sulle botteghe artigiane, tra atmosfere sospese nel tempo e un patrimonio culturale straordinario”</p>
-                  <a href="https://www.youtube.com/watch?v=tr3nQWO6Jwk" target="_blank" className="cursor-pointer w-[164px] px-4 py-3 text-black transition duration-500 hover:bg-corpo-orange bg-soft-orange rounded-full text-center">Guarda il video</a>
+                  <a href="https://www.youtube.com/watch?v=tr3nQWO6Jwk" target="_blank" rel="noopener noreferrer" className="cursor-pointer w-[164px] px-4 py-3 text-black transition duration-500 hover:bg-corpo-orange bg-soft-orange rounded-full text-center">Guarda il video</a>
               </div>
           </section>
 
@@ -211,22 +211,22 @@ export default async function Home() {
                       </h2>
                       <div className="flex gap-4 pb-16">
                           {contentLinks.data.facebook &&
-                              <a href={contentLinks.data.facebook} target="_blank">
+                              <a href={contentLinks.data.facebook} target="_blank" rel="noopener noreferrer">
                                   <Image src="/icons/facebook-blue.svg" alt="facebook logo" width={48} height={48}/>
                               </a>
                           }
                           {contentLinks.data.instagram &&
-                              <a href={contentLinks.data.instagram} target="_blank">
+                              <a href={contentLinks.data.instagram} target="_blank" rel="noopener noreferrer">
                                   <Image src="/icons/instagram-blue.svg" alt="instagram logo" width={48} height={48}/>
                               </a>
                           }
                           {contentLinks.data.whatsapp &&
-                              <a href={contentLinks.data.whatsapp} target="_blank">
+                              <a href={contentLinks.data.whatsapp} target="_blank" rel="noopener noreferrer">
                                   <Image src="/icons/whatsapp-blue.svg" alt="whatsapp logo" width={48} height={48}/>
                               </a>
                           }
                           {contentLinks.data.youtube &&
-                              <a href={contentLinks.data.youtube} target="_blank">
+                              <a href={contentLinks.data.youtube} target="_blank" rel="noopener noreferrer">
                                   <Image src="/icons/youtube-blue.svg" alt="youtube logo" width={48} height={48}/>
                               </a>
                           }

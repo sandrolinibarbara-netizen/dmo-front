@@ -30,7 +30,7 @@ export default function InfoCard({name, address, phone, email, children, url, ho
             </div>
         </div>
         {url ? <div className="w-full p-8 text-right bg-white rounded-b-xl">
-            <a href={url} target="_blank"
+            <a href={url} target="_blank" rel="noopener noreferrer"
                className="text-sm cursor-pointer w-full text-black transition duration-500 hover:bg-corpo-orange bg-soft-orange rounded-full px-4 py-3">
                 Vail al sito &gt;
             </a>

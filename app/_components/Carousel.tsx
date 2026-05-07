@@ -44,10 +44,11 @@ export default function Carousel({pics}:{pics:any}) {
    return(
        <div className="flex flex-col items-center gap-4 w-full max-w-[100%]">
            <div className="flex items-center w-full h-[80vh] relative max-w-[100%]">
-               <PrevSlide setSlide={() =>setCurrentSlide('sub')}/>
+               <PrevSlide aria-hidden={true} setSlide={() => setCurrentSlide('sub')}/>
                {pics &&
                    <>
                        <Image
+                           aria-hidden={true}
                            className='object-cover absolute z-0'
                            src={process.env.NEXT_PUBLIC_BASE_URL + pics[placeholder].url}
                            alt={pics[placeholder].alternativeText}
@@ -70,9 +71,10 @@ export default function Carousel({pics}:{pics:any}) {
                        }
                    </>
                }
-               <NextSlide setSlide={() => setCurrentSlide('add')}/>
+
+               <NextSlide aria-hidden={true} setSlide={() => setCurrentSlide('add')}/>
            </div>
-           <div className="flex gap-2">
+           <div aria-hidden={true} className="flex gap-2">
                {pics &&
                    pics.map((pic: any, i: number) => {
                        return(

@@ -1,14 +1,17 @@
 'use client'
 import Link from "next/link";
 import {Hamburger} from "@/app/_components/_icons/Hamburger";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {Close} from "@/app/_components/_icons/Close";
 import Image from "next/image";
 import {Cart} from "@/app/_components/_icons/Cart";
+import {useUsageStore} from "@/app/_stores/usage";
+import {Usage} from "@/app/_types/types";
 
 export default function Menu({links} : {links:any}) {
 
-    const [showMenu, setShowMenu] = useState<string>('initial');
+    const showMenu = useUsageStore((state:Usage) => state.showMenu);
+    const setShowMenu = useUsageStore((state:Usage) => state.setShowMenu);
     const [showExpMenu, setShowExpMenu] = useState<string>('close');
 
     function toggleMenu(action:'open'|'close') {
@@ -28,9 +31,45 @@ export default function Menu({links} : {links:any}) {
         }
     }
 
+    useEffect(() => {
+        const main = document.getElementById('main');
+        const header = document.getElementById('header');
+        const footer = document.getElementById('footer');
+        const iubenda = document.getElementById('iubenda');
+        if(main && header && footer && iubenda) {
+            if(showMenu === 'open') {
+                main.setAttribute('inert', 'inert');
+                header.setAttribute('inert', 'inert');
+                footer.setAttribute('inert', 'inert');
+                iubenda.setAttribute('inert', 'inert');
+                document.getElementById('homepageLink')!.focus();
+            } else if(showMenu === 'close') {
+                main.removeAttribute('inert');
+                header.removeAttribute('inert');
+                footer.removeAttribute('inert');
+                iubenda.removeAttribute('inert');
+                document.getElementById('hamburgerButton')!.focus();
+            }
+        }
+    }, [showMenu])
+
+    useEffect(() => {
+        function handleEscapeKeyDown(e:any) {
+            if (e.key === 'Escape' && (showMenu === 'open' || showMenu === 'initial')) {
+                setShowMenu('close');
+            }
+        }
+
+        window.addEventListener('keydown', handleEscapeKeyDown);
+
+        return () => {
+            window.removeEventListener('keydown', handleEscapeKeyDown);
+        };
+    }, []);
+
     return(
         <>
-            <header className="w-full fixed bg-corpo-blue z-110 top-0 h-[79px] z-100">
+            <header id="header" className="w-full fixed bg-corpo-blue z-110 top-0 h-[79px] z-100">
                 <div className="w-full px-2 md:px-0 md:w-[90%] md:mx-auto h-full p-0.5 text-white flex items-center justify-between">
                     <Link
                         href="/"
@@ -38,7 +77,7 @@ export default function Menu({links} : {links:any}) {
                     >
                         <Image
                             src='/logo.webp'
-                            alt="visit-cremona-logo"
+                            alt="Logo di Visit Cremona"
                             width={500}
                             height={500}
                             className="h-[56px] w-auto"
@@ -51,38 +90,58 @@ export default function Menu({links} : {links:any}) {
                         {/*    <Search className="text-gray-600 absolute left-[16px] w-5 h-5"/>*/}
                         {/*    <input type="text" placeholder="Cerca eventi o esperienze" className="w-[272px] py-3 pr-8 pl-12 rounded-full bg-white text-black"/>*/}
                         {/*</div>*/}
-                        <Cart className="hidden md:block cursor-pointer w-8 h-8"/>
-                        <Hamburger className="w-8 h-8 cursor-pointer" onClick={() => toggleMenu('open')}/>
-                        <Image src="/images/it.png" className="hidden md:block cursor-pointer rounded-full w-6 h-6" alt="italian flag" width={64} height={64}/>
+                        {/*<Cart className="hidden md:block cursor-pointer w-8 h-8"/>*/}
+                        <button type="button"
+                                aria-controls="mainMenu" aria-expanded={showMenu === 'open'}
+                                aria-label="Apri il menu"
+                                id="hamburgerButton"
+                        >
+                            <Hamburger
+                                className="w-8 h-8 cursor-pointer" onClick={() => toggleMenu('open')}
+                                aria-hidden={true}
+                            />
+                        </button>
+                        <Image src="/images/it.png" className="hidden md:block rounded-full w-6 h-6" alt="Bandiera italiana" width={64} height={64}/>
                     </div>
                 </div>
             </header>
 
             <div
-                className={`overlay ${showMenu === 'open' ? 'visible' : ''}`}>
+                className={`overlay ${showMenu === 'open' ? 'visible' : ''}`}
+                aria-hidden={true}
+            >
             </div>
 
-            <div
+            <nav
+                id="mainMenu"
                 className={`${showMenu === 'open' ? 'appear' : showMenu === 'close' ? 'disappear' : 'w-0'} max-w-[350px] h-screen fixed bg-white z-200 right-0 top-0`}>
                 <div className="w-full px-8 pb-2 md:pb-8 pt-4 flex items-center justify-between">
                     <Image
                         src='/logo-only-icon.png'
-                        alt="visit-cremona-logo"
+                        alt="Logo di Visit Cremona"
                         width={500}
                         height={500}
                         className="h-[100px] w-auto"
                     />
-                    <Close className="w-8 h-8 cursor-pointer" onClick={() => toggleMenu('close')}/>
+                    <button type="button"
+                            aria-controls="mainMenu" aria-expanded={showMenu === 'open'}
+                            aria-label="Chiudi il menu"
+                    >
+                        <Close
+                            className="w-8 h-8 cursor-pointer" onClick={() => toggleMenu('close')}
+                            aria-hidden={true}
+                        />
+                    </button>
                 </div>
 
                 <div className="md:hidden block flex w-full items-center justify-end px-8 pb-4 gap-4">
-                    <Cart className="cursor-pointer w-8 h-8"/>
-                    <Image src="/images/it.png" className="cursor-pointer rounded-full w-6 h-6" alt="italian flag" width={64} height={64}/>
+                    {/*<Cart className="cursor-pointer w-8 h-8"/>*/}
+                    <Image src="/images/it.png" className="rounded-full w-6 h-6" alt="Bandiera italiana" width={64} height={64}/>
                 </div>
 
-                <nav className="border-t border-black/50 w-[90%] mx-auto text-black/50 pt-3 overflow-y-auto h-[calc(100vh-212px)] md:h-[calc(100vh-148px)]">
+                <div className="border-t border-black/50 w-[90%] mx-auto text-black/50 pt-3 overflow-y-auto h-[calc(100vh-212px)] md:h-[calc(100vh-148px)]">
                     <ul className="pl-2">
-                        <li className="py-3">
+                        <li id="homepageLink" className="py-3" tabIndex={-1}>
                             <Link
                                 href="/"
                                 onClick={() => toggleMenu('close')}
@@ -117,12 +176,15 @@ export default function Menu({links} : {links:any}) {
 
                         <li className="w-full flex flex-col">
                             <button type="button" onClick={toggleExpMenu}
-                                    className="cursor-pointer pr-4 py-3 flex justify-between items-center">
+                                    className="cursor-pointer pr-4 py-3 flex justify-between items-center"
+                                    aria-controls="expMenu" aria-expanded={showExpMenu === 'open'}
+                            >
                                 <span>Esperienze</span>
                                 <span
                                     className={`${showExpMenu === 'open' ? 'rotate-90' : 'rotate-0'} transition-all duration-500 origin-center`}>&gt;</span>
                             </button>
-                            <ul className={`${showExpMenu === 'open' ? 'max-h-[1000px]' : 'max-h-0'} pl-4 transition-all duration-500 overflow-hidden`}>
+                            <ul id="expMenu"
+                                className={`${showExpMenu === 'open' ? 'max-h-[1000px]' : 'max-h-0'} pl-4 transition-all duration-500 overflow-hidden`}>
                                 <li className="py-3">
                                     <Link
                                         href="/experiences"
@@ -210,7 +272,7 @@ export default function Menu({links} : {links:any}) {
                                 Dichiarazione di accessibilità
                             </Link>
                         </li>
-                        <li className="py-3"><a target="_blank" href={links['amministrazione_trasparente']}>Amministrazione
+                        <li className="py-3"><a target="_blank" rel="noopener noreferrer" href={links['amministrazione_trasparente']}>Amministrazione
                             trasparente</a></li>
 
                         <li className="py-3">
@@ -249,8 +311,8 @@ export default function Menu({links} : {links:any}) {
                             </Link>
                         </li>
                     </ul>
-                </nav>
-            </div>
+                </div>
+            </nav>
         </>
     )
 }

@@ -55,10 +55,10 @@ export default function Stories({gallery, description} : {description: string, g
                 <div
                     className="mx-auto md:mx-0 w-[95%] pt-4 md:pt-12 pb-8 pl-4 pr-4 md:pr-[calc(20%+(0.25rem*8))] flex items-center gap-12 bg-[#f0f8ff] relative z-10">
 
-                    <button type="button"
+                    <button type="button" aria-label="Scorri immagini a sinistra"
                             disabled={disabled} onClick={() => slide('prev')}
                             className="cursor-pointer hidden md:flex items-center justify-center min-w-[36px] w-[128px]">
-                        <Image src="/icons/prev.svg" alt="previous image icon" width={48} height={48}/>
+                        <Image aria-hidden={true} src="/icons/prev.svg" alt="Freccia a sinistra" width={48} height={48}/>
                     </button>
                     <div>
                         <h2 className="font-bold text-3xl">Le storie del territorio</h2>
@@ -71,9 +71,9 @@ export default function Stories({gallery, description} : {description: string, g
                             </Link>
                         </div>
                     </div>
-                    <button type="button" disabled={disabled} onClick={() => slide('next')}
+                    <button type="button" aria-label="Scorri immagini a destra" disabled={disabled} onClick={() => slide('next')}
                             className="cursor-pointer hidden md:flex items-center justify-center min-w-[36px] w-[128px]">
-                        <Image src="/icons/next.svg" alt="next image icon" width={48} height={48}/>
+                        <Image aria-hidden={true} src="/icons/next.svg" alt="Freccia a destra" width={48} height={48}/>
                     </button>
                 </div>
                 <div className="md:hidden block w-[90%] mx-auto h-[400px]">

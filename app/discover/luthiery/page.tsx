@@ -85,7 +85,7 @@ export default async function Luthiery() {
                     </div>
 
                     <div className="w-full h-[300px] md:w-2/4 md:h-auto relative">
-                        <iframe width="100%" height="315"
+                        <iframe title="Video presentazione del progetto Tales of Luthiery" width="100%" height="315"
                                 className="rounded-xl absolute bottom-0"
                                 src="https://www.youtube.com/embed/qZa1JT7oI2c?si=Xs8Yhbtzh8izTk8v"
                                 title="YouTube video player" frameBorder="0"

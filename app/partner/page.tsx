@@ -69,7 +69,7 @@ export default async function Who() {
                               if (el[0].link) {
                                   return (
                                       <div className="max-w-[200px] w-auto h-24 relative" key={Math.random()}>
-                                          <a href={el[0].link} target="_blank">
+                                          <a href={el[0].link} target="_blank" rel="noopener noreferrer">
                                               <Image
                                                   width={200}
                                                   height={100}

@@ -27,6 +27,7 @@ export default async function Story({params}: { params: Promise<{ id: string }> 
                         </div>
 
                     <iframe
+                        title="Mappa del percorso"
                         src={content.data.link + '&profile=1'}
                         width="100%" height="800" frameBorder="0" scrolling="no">
                     </iframe>
@@ -75,6 +76,7 @@ export default async function Story({params}: { params: Promise<{ id: string }> 
                                 return (
                                     <div className="w-full md:w-1/3 bg-white" key={el.id}>
                                         <iframe
+                                            title="Mappa del percorso"
                                             src={el.link}
                                             width="100%" height="200" frameBorder="0" scrolling="no"></iframe>
                                         <div className="w-full text-right py-3 px-4">

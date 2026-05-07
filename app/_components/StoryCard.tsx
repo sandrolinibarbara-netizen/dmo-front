@@ -10,7 +10,7 @@ export default function StoryCard({el}:{el:any}) {
                     src={process.env.NEXT_PUBLIC_BASE_URL + el.immagine.url}
                     width={200}
                     height={400}
-                    alt="pic"/>
+                    alt={el.immagine.alternativeText}/>
             </div>
 
             <h4 className="absolute top-[316px] left-4 font-bold">{el.titolo}</h4>

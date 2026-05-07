@@ -46,7 +46,7 @@ export default function VisitCard({title, price, details} : {title:string|undefi
 
                                 return(
                                     <li key={Math.random()} className={`${title === 'Welcome Card' && i > 1 ? 'text-gray-400': 'text-black'} border-t flex gap-4 px-2 py-4 items-center`}>
-                                        <Image width={i === 0 ? 34 : 28} height={i === 0 ? 34 : 28} src={image} alt="icon" />
+                                        <Image aria-hidden={true} width={i === 0 ? 34 : 28} height={i === 0 ? 34 : 28} src={image} alt="" />
                                         <p>{el}</p>
                                     </li>
                                 )

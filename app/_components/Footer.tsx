@@ -3,13 +3,13 @@ import Image from "next/image";
 
 export default function Footer({links, contacts} : {links:any, contacts:any}) {
     return (
-        <footer className="min-h-[40vh] bg-corpo-blue w-full flex gap-4 py-16 text-white">
+        <footer id="footer" className="min-h-[40vh] bg-corpo-blue w-full flex gap-4 py-16 text-white">
             <div className="w-[80vw] flex flex-col lg:flex-row gap-20 items-center lg:items-start mx-auto">
                 <div className="w-[50vw] lg:w-[20vw] flex flex-col items-center justify-center gap-8">
                     <Link href="/" className="w-[90%]">
                         <Image
                             src='/logo.webp'
-                            alt="visit-cremona-logo"
+                            alt="Logo di Visit Cremona"
                             width={500}
                             height={500}
                         />
@@ -17,7 +17,7 @@ export default function Footer({links, contacts} : {links:any, contacts:any}) {
                     <div className="flex gap-8 w-full items-center justify-center">
                         <Image
                             src='/icons/InLombardia_white.png'
-                            alt="in lombardia logo"
+                            alt="Logo di InLombardia"
                             className="w-[80px]"
                             width={500}
                             height={500}
@@ -25,7 +25,7 @@ export default function Footer({links, contacts} : {links:any, contacts:any}) {
 
                         <Image
                             src='/icons/E015-Logo_white.png'
-                            alt=" e015 logo"
+                            alt="Logo di E015"
                             className="w-[80px]"
                             width={500}
                             height={500}
@@ -44,29 +44,29 @@ export default function Footer({links, contacts} : {links:any, contacts:any}) {
                         Seguici sui social:
                         <ul className="flex gap-4 items-center">
                             <li>
-                                <a target="_blank" href={links.facebook}>
-                                    <Image src="/icons/hugeicons_facebook-02.webp" alt="facebook logo" width={24}
+                                <a aria-label="Vai al profilo Facebook di Visit Cremona" target="_blank" rel="noopener noreferrer" href={links.facebook}>
+                                    <Image aria-hidden={true} src="/icons/hugeicons_facebook-02.webp" alt="facebook logo" width={24}
                                            height={24}/>
                                 </a>
                             </li>
                             <li>
-                                <a target="_blank" href={links.instagram}>
-                                    <Image src="/icons/logo-instagram.webp" alt="instagram logo" width={24}
+                                <a aria-label="Vai al profilo Instagram di Visit Cremona" target="_blank" rel="noopener noreferrer" href={links.instagram}>
+                                    <Image aria-hidden={true} src="/icons/logo-instagram.webp" alt="instagram logo" width={24}
                                            height={24}/>
                                 </a>
                             </li>
                             {links.whatsapp &&
                                 <li>
-                                    <a target="_blank" href={links.whatsapp}>
-                                        <Image src="/icons/hugeicons_facebook-02.webp" alt="facebook logo" width={24}
+                                    <a aria-label="Vai al profilo Whatsapp di Visit Cremona" target="_blank" rel="noopener noreferrer" href={links.whatsapp}>
+                                        <Image aria-hidden={true} src="/icons/hugeicons_facebook-02.webp" alt="facebook logo" width={24}
                                                height={24}/>
                                     </a>
                                 </li>
                             }
                             {links.youtube &&
                                 <li>
-                                    <a target="_blank" href={links.youtube}>
-                                        <Image src="/icons/logo-youtube.svg" alt="instagram logo" width={24}
+                                    <a aria-label="Vai al profilo Youtube di Visit Cremona" target="_blank" rel="noopener noreferrer" href={links.youtube}>
+                                        <Image aria-hidden={true} src="/icons/logo-youtube.svg" alt="instagram logo" width={24}
                                                height={24}/>
                                     </a>
                                 </li>
@@ -79,10 +79,10 @@ export default function Footer({links, contacts} : {links:any, contacts:any}) {
                     <ul className="flex flex-col gap-6 text-center lg:text-left">
                         <li><a href="/Visit Cremona_Brand Guide_V6.pdf" download>Guida del brand</a></li>
                         <li><Link href="/accessibility">Dichiarazione di accessibilità</Link></li>
-                        <li><a target="_blank" href={links['amministrazione_trasparente']}>Amministrazione
+                        <li><a target="_blank" rel="noopener noreferrer" href={links['amministrazione_trasparente']}>Amministrazione
                             trasparente</a></li>
                         <li><Link href="/partner">Partner</Link></li>
-                        <li><a target="_blank" href={links['osservatorio_cremona']}>Osservatorio Turistico Cremonese</a></li>
+                        <li><a target="_blank" rel="noopener noreferrer" href={links['osservatorio_cremona']}>Osservatorio Turistico Cremonese</a></li>
                     </ul>
                     <ul className="flex flex-col gap-6 text-center lg:text-left">
                         <li><Link href="/who">Chi siamo</Link></li>

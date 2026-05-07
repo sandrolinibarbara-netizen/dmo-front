@@ -53,7 +53,7 @@ export default async function Plan() {
                         <div className="w-full text-right mt-8 mb-4">
                             <a href="https://www.google.com/maps/dir//Cremona,+26100+CR/@45.6574975,9.9627623,7z/data=!3m1!4b1!4m8!4m7!1m0!1m5!1m1!1s0x4780fe6d3c71fe83:0x307737e7e74bdaf5!2m2!1d10.0227044!2d45.1333135?entry=ttu&g_ep=EgoyMDI2MDEyMS4wIKXMDSoASAFQAw%3D%3D"
                                className="cursor-pointer mt-4 w-full text-black transition duration-500 hover:bg-corpo-orange bg-soft-orange rounded-full px-4 py-3"
-                               target="_blank"
+                               target="_blank" rel="noopener noreferrer"
                             >Ottieni indicazioni &gt;</a>
                         </div>
                     </AccordionDetails>
@@ -160,7 +160,7 @@ export default async function Plan() {
                     <AccordionDetails>
                         <div className="p-4 w-fit">
                             <p>Per consultare tutte le strutture dove dormire clicca al seguente
-                                <a target="_blank" href="https://www.turismocremona.it/it/dove-dormire"
+                                <a target="_blank" rel="noopener noreferrer" href="https://www.turismocremona.it/it/dove-dormire"
                                    className="font-bold text-corpo-orange underline ml-2">link</a>
                             </p>
                         </div>

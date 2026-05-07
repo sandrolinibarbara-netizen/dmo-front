@@ -7,6 +7,7 @@ import { it } from "react-day-picker/locale";
 import "react-day-picker/style.css";
 import {Calendar} from "@/app/_components/_icons/Calendar";
 import {useFilterStore} from "@/app/_stores/filter";
+import {Close} from "@/app/_components/_icons/Close";
 
 export function Dialog({placeholder} : {placeholder:string}) {
 
@@ -21,7 +22,7 @@ export function Dialog({placeholder} : {placeholder:string}) {
     const [inputValue, setInputValue] = useState("");
     const [isDialogOpen, setIsDialogOpen] = useState(false);
 
-    const calendarLabel = `Calendar, ${format(month, "MMMM yyyy")}`;
+    const calendarLabel = `Calendario, ${format(month, "MMMM yyyy")}`;
     function toggleDialog() {
         setIsDialogOpen(!isDialogOpen)
     }
@@ -42,6 +43,21 @@ export function Dialog({placeholder} : {placeholder:string}) {
             handleBodyScroll(false);
         };
     }, [isDialogOpen]);
+
+    useEffect(() => {
+        function handleEnter(e) {
+            if(e.key === 'Enter' && !isDialogOpen) {
+                if(document.activeElement.getAttribute('id') === 'closeButton') {
+                    setIsDialogOpen(false);
+                }
+            }
+        }
+
+        window.addEventListener('keydown', handleEnter);
+        return () => {
+            window.removeEventListener('keydown', handleEnter);
+        };
+    }, [])
 
     function handleDayPickerSelect (date: Date | undefined) {
         if (!date) {
@@ -105,10 +121,13 @@ export function Dialog({placeholder} : {placeholder:string}) {
                 aria-labelledby={headerId}
                 onClose={() => setIsDialogOpen(false)}
             >
+                <button id="closeButton" role="button" aria-label="Chiudi il calendario" tabIndex={0} className="absolute top-2 right-2 flex justify-end">
+                    <Close aria-hidden={true} className="cursor-pointer" onClick={() => setIsDialogOpen(false)}/>
+                </button>
                 <DayPicker
                     classNames={{
-                        root: `rounded-xl shadow-lg p-8 w-[332px] h-[348px]`,
-                        nav:'absolute top-8 right-8',
+                        root: `rounded-xl shadow-lg px-8 pb-8 pt-10 w-[332px] h-[368px]`,
+                        nav:'absolute top-10 right-8',
                         months: 'w-full h-[90%]',
                         month: 'w-full h-[90%]',
                         month_grid: 'w-full h-[90%] mt-6 gap-2',

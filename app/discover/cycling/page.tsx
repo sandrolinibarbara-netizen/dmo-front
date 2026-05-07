@@ -94,10 +94,10 @@ export default async function Cycling() {
                     </div>
 
                     <div className="w-full h-[300px] md:w-2/4 md:h-auto relative">
-                        <iframe width="100%" height="315"
+                        <iframe title="Video presentazione del progetto Tales of Cycling" width="100%" height="315"
                                 className="rounded-xl absolute bottom-0"
                                 src="https://www.youtube.com/embed/5PFbSF4gw4U?si=uky2Nd3dY5FiZFNj"
-                                title="YouTube video player" frameBorder="0"
+                                frameBorder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                 referrerPolicy="strict-origin-when-cross-origin" allowFullScreen>
                         </iframe>
@@ -106,7 +106,7 @@ export default async function Cycling() {
             </section>
 
             <section className="w-[95vw] md:w-[80vw] mx-auto items-center justify-center px-4 md:px-8 pt-8 pb-24">
-                <iframe src="https://www.komoot.com/it-it/collection/3284381/embed" width="100%" height="700"
+                <iframe title="Mappa del percorso 'Infinito Viaggiare'" src="https://www.komoot.com/it-it/collection/3284381/embed" width="100%" height="700"
                         frameBorder="0" scrolling="no"></iframe>
 
                 <div className="flex md:flex-row flex-col gap-4 w-full mt-4">
@@ -116,6 +116,7 @@ export default async function Cycling() {
                             return (
                                 <div className="w-full md:w-1/3 bg-white" key={el.id}>
                                     <iframe
+                                        title="Mappa del percorso"
                                         src={el.link}
                                         width="100%" height="200" frameBorder="0" scrolling="no"></iframe>
                                     <div className="w-full text-right py-3 px-4">

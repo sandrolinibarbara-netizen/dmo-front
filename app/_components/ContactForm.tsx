@@ -1,137 +1,116 @@
-import {sendMail} from "@/utils/nodemailer/sendMail";
-import Form from "next/form";
+'use client'
+import send from "@/app/lib/send";
+import {useState} from "react";
 
-export default function ContactForm({newsletter, partner} : {newsletter:boolean, partner?:undefined|boolean}) {
-    async function send(formData:any) {
-        'use server'
-        if(formData.get('privacy') === 'on') {
-            const fullName = formData.get('name') + ' ' + formData.get('lastname');
-            const email = formData.get('email');
-            if(partner) {
-                const company = formData.get('company');
-                const phone = formData.get('company');
-                const message = formData.get('message');
-                await sendMail({
-                    sendTo: 'info@visitcremona.com',
-                    subject:'Nuova richiesta di partnership',
-                    text: fullName + '(' + company + ')' + ' ha mandato il seguente messaggio: ' + message,
-                    replyTo: email
-                });
+export default function ContactForm({newsletter} : {newsletter:boolean}) {
+
+    const [error, setError] = useState<boolean>(false);
+
+    function resetError() {
+        if(error) {
+            setError(false);
+        }
+    }
+    function checkAndSend(e:any) {
+        e.preventDefault();
+        const error = document.getElementById('errors')!;
+        const form = e.target;
+        const formData = new FormData(form);
+        if(!formData.get('name')) {
+            error.textContent = 'Inserisci il nome';
+            setError(true);
+            return;
+        }
+        if(!formData.get('lastname')) {
+            error.textContent = 'Inserisci il cognome';
+            setError(true);
+            return;
+        }
+        if(!formData.get('email')) {
+            error.textContent = 'Inserisci l\'indirizzo email';
+            setError(true);
+            return;
+        }
+        if(!newsletter) {
+            if(!formData.get('subject')) {
+                error.textContent = 'Inserisci l\'oggetto della tua richiesta';
+                setError(true);
                 return;
             }
-            if(!newsletter) {
-                const subject = formData.get('subject');
-                const message = formData.get('message');
-                await sendMail({
-                    sendTo: 'info@visitcremona.com',
-                    subject:'Nuova richiesta di informazioni: ' + subject,
-                    text: fullName + ' ha mandato il seguente messaggio: ' + message,
-                    replyTo: email
-                });
-            } else {
-                await sendMail({
-                    sendTo: 'info@visitcremona.com',
-                    subject:'Nuova iscrizione alla newsletter',
-                    text: fullName + ' si è iscritto alla newsletter ',
-                    replyTo: email
-                });
+            if(!formData.get('message')) {
+                error.textContent = 'Inserisci il testo della tua richiesta';
+                setError(true);
+                return;
             }
         }
+        if(!formData.get('privacy')) {
+            error.textContent = 'Per proseguire, devi prendere visione della privacy policy';
+            setError(true);
+            return;
+        }
+
+        send(formData);
     }
 
     return(
-        <>
-            {
-                partner
-                ? <Form action={send} className="mt-12 flex flex-col gap-4 w-full">
-                        <div className="flex gap-4">
-                            <label className="text-black w-[calc(33%-6px)]">
-                                <input required name="name" className="bg-white shadow-sm w-full rounded-xl py-2 px-3"
-                                       type="text"
-                                       placeholder="Nome"/>
+       <form method="post" onSubmit={checkAndSend}
+                            className={`mt-8 flex flex-col gap-4 ${!newsletter ? '' : 'w-full md:w-[55vw]'}`}>
+                        <input name="newsletter" type="hidden" value={`${newsletter}`}/>
+                        <fieldset className={`flex gap-4 ${!newsletter ? 'flex-col' : 'flex-row'}`}>
+                            <label aria-label="Nome obbligatorio" htmlFor="name"
+                                   className={`text-black ${!newsletter ? '' : 'w-full md:w-[50%]'}`}>
+                                <input id="name" name="name"
+                                       onChange={resetError}
+                                       className="bg-white shadow-sm w-full rounded-xl py-2 px-3" type="text"
+                                       placeholder="Nome (obbligatorio)"/>
                             </label>
-                            <label className="text-black w-[calc(33%-6px)]">
-                                <input required name="lastname" className="bg-white shadow-sm w-full rounded-xl py-2 px-3"
-                                       type="text"
-                                       placeholder="Cognome"/>
+                            <label aria-label="Cognome obbligatorio" htmlFor="lastname"
+                                   className={`text-black ${!newsletter ? '' : 'w-full md:w-[50%]'}`}>
+                                <input id="lastname" name="lastname"
+                                       onChange={resetError}
+                                       className="bg-white shadow-sm w-full rounded-xl py-2 px-3" type="text"
+                                       placeholder="Cognome (obbligatorio)"/>
                             </label>
-                            <label className="text-black w-[calc(33%-6px)]">
-                                <input required name="company" className="bg-white shadow-sm w-full rounded-xl py-2 px-3"
-                                       type="text"
-                                       placeholder="Azienda"/>
-                            </label>
-                        </div>
-
-                        <div className="flex gap-4">
-                            <label className="text-black w-[calc(50%-8px)]">
-                                <input required name="email" className="bg-white shadow-sm w-full rounded-xl py-2 px-3"
-                                       type="email"
-                                       placeholder="Email"/>
-                            </label>
-                            <label className="text-black w-[calc(50%-8px)]">
-                                <input required name="phone" className="bg-white shadow-sm w-full rounded-xl py-2 px-3"
-                                       type="phone"
-                                       placeholder="Telefono"/>
-                            </label>
-                        </div>
-
-                            <label className="text-black">
-                        <textarea required name="message" rows={8}
-                                  className="bg-white shadow-sm w-full rounded-xl py-2 px-3" placeholder="Messaggio"/>
-                            </label>
-
-
-                            <label>
-                                <input required name="privacy" className="mr-2" type="checkbox"/>
-                                Ho preso visione e accetto la <a href="https://www.iubenda.com/privacy-policy/52538338"
-                                                                 target="_blank" className="underline">privacy policy</a>
-                            </label>
-
-                            <div className={`w-full ${!newsletter ? 'text-right' : ''}`}>
-                                <button type="submit"
-                                        className={`cursor-pointer w-[164px] ${!newsletter ? "p-4" : "text-sm px-4 py-2 w-fit mt-2"} text-black transition duration-500 hover:bg-corpo-orange bg-soft-orange rounded-full`}>{!newsletter ? 'Invia' : 'Iscriviti'} &gt;</button>
-                            </div>
-                    </Form>
-                : <Form action={send} className={`mt-8 flex flex-col gap-4 ${!newsletter ? '' : 'w-full md:w-[55vw]'}`}>
-                        <div className={`flex gap-4 ${!newsletter ? 'flex-col' : 'flex-row'}`}>
-                            <label className={`text-black ${!newsletter ? '' : 'w-full md:w-[50%]'}`}>
-                            <input required name="name" className="bg-white shadow-sm w-full rounded-xl py-2 px-3" type="text"
-                                       placeholder="Nome"/>
-                            </label>
-                            <label className={`text-black ${!newsletter ? '' : 'w-full md:w-[50%]'}`}>
-                                <input required name="lastname" className="bg-white shadow-sm w-full rounded-xl py-2 px-3" type="text"
-                                       placeholder="Cognome"/>
-                            </label>
-                        </div>
-                        <label className="text-black">
-                            <input required name="email" className="bg-white shadow-sm w-full rounded-xl py-2 px-3" type="email"
-                                   placeholder="Email"/>
+                        </fieldset>
+                        <label aria-label="Indirizzo email obbligatorio" htmlFor="email" className="text-black">
+                            <input id="email" name="email"
+                                   onChange={resetError}
+                                   className="bg-white shadow-sm w-full rounded-xl py-2 px-3" type="email"
+                                   placeholder="Email (obbligatorio)"/>
                         </label>
                         {!newsletter &&
                             <>
-                                <label className="text-black">
-                                    <input required name="subject" className="bg-white shadow-sm w-full rounded-xl py-2 px-3"
-                                           type="text" placeholder="Oggetto"/>
+                                <label aria-label="Oggetto obbligatorio" htmlFor="subject" className="text-black">
+                                    <input id="subject" name="subject"
+                                           onChange={resetError}
+                                           className="bg-white shadow-sm w-full rounded-xl py-2 px-3"
+                                           type="text" placeholder="Oggetto (obbligatorio)"/>
                                 </label>
-                                <label className="text-black">
-                        <textarea required name="message" rows={8}
-                                  className="bg-white shadow-sm w-full rounded-xl py-2 px-3" placeholder="Messaggio"/>
+                                <label aria-label="Messaggio obbligatorio" htmlFor="message" className="text-black">
+                        <textarea id="message" name="message" rows={8}
+                                  onChange={resetError}
+                                  className="bg-white shadow-sm w-full rounded-xl py-2 px-3" placeholder="Messaggio (obbligatorio)"/>
                                 </label>
                             </>
                         }
 
-                        <label>
-                            <input required name="privacy" className="mr-2" type="checkbox"/>
-                            Ho preso visione e accetto la <a href="https://www.iubenda.com/privacy-policy/52538338"
-                                                             target="_blank" className="underline">privacy policy</a>
-                        </label>
+                        <div>
+                            <label htmlFor="privacy">
+                                <input onChange={resetError} id="privacy" name="privacy" className="mr-2" type="checkbox"/>
+                                Ho preso visione e accetto la privacy policy.
+                            </label>
+                            <span> Consulta la <a href="https://www.iubenda.com/privacy-policy/52538338"
+                                                 target="_blank" rel="noopener noreferrer" className="underline">privacy policy</a>.</span>
+                        </div>
+
+                        <p id="errors" role="alert" aria-atomic="true"
+                            className={`${error ? 'block' : 'hidden'} p-4 border-red-500 bg-red-200 text-black rounded-xl`}
+                        ></p>
 
                         <div className={`w-full ${!newsletter ? 'text-right' : ''}`}>
                             <button type="submit"
                                     className={`cursor-pointer w-[164px] ${!newsletter ? "p-4" : "text-sm px-4 py-2 w-fit mt-2"} text-black transition duration-500 hover:bg-corpo-orange bg-soft-orange rounded-full`}>{!newsletter ? 'Invia' : 'Iscriviti'} &gt;</button>
                         </div>
-                    </Form>
-            }
-        </>
+                    </form>
     )
 }

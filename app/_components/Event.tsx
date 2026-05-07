@@ -31,7 +31,7 @@ export default function Event({event}:{event:any}) {
             {event &&
                 <div
                     className="w-full rounded-xl border-1 flex md:flex-row flex-col p-4 gap-8 overflow-y-auto md:overflow-y-none md:h-[558px]">
-                    <img src={imageSource} alt="copertina esperienza"
+                    <img src={imageSource} alt={`Copertina dell'evento ${title}`}
                            className="rounded-xl w-full md:w-[40%] h-[524px] object-cover"/>
                     <div className="md:w-[55%]">
                         <div className="p-4 md:h-[456px]">
@@ -39,7 +39,7 @@ export default function Event({event}:{event:any}) {
                             <div className="flex flex-col gap-4 my-4 border-b-1 border-orange-800 pb-4">
                                 <div className="flex gap-4 items-center">
                                     <div className="flex items-center justify-center w-[10%]">
-                                        <Image src="/icons/calendar-outline.svg" alt="calendar icon" width={32} height={32}/>
+                                        <Image aria-hidden={true} src="/icons/calendar-outline.svg" alt="" width={32} height={32}/>
                                     </div>
                                     <div className="text-sm flex flex-col w-[90%]">
                                         <p className="md:line-clamp-1">{date}</p>
@@ -47,7 +47,7 @@ export default function Event({event}:{event:any}) {
                                 </div>
                                 <div className="flex gap-4 items-center">
                                     <div className="flex items-center justify-center w-[10%]">
-                                        <Image src="/icons/map-pin.svg" alt="calendar icon" width={32} height={32}/>
+                                        <Image aria-hidden={true} src="/icons/map-pin.svg" alt="" width={32} height={32}/>
                                     </div>
                                     <div className="text-sm flex flex-col w-[90%]">
                                         {address !== ''
@@ -58,7 +58,7 @@ export default function Event({event}:{event:any}) {
                                 </div>
                                 <div className="flex gap-4 items-center">
                                     <div className="flex items-center justify-center w-[10%]">
-                                        <Image src="/icons/call-outline.svg" alt="calendar icon" width={34} height={34}/>
+                                        <Image aria-hidden={true} src="/icons/call-outline.svg" alt="" width={34} height={34}/>
                                     </div>
                                     <div className="text-sm flex flex-col w-[90%]">
                                         {telephone !== ''
@@ -75,7 +75,7 @@ export default function Event({event}:{event:any}) {
                         { link !== '' &&
                             <div
                                 className="flex gap-4 w-full items-center justify-end text-sm border-t border-orange-800 pt-8">
-                                    <a className="text-black transition duration-500 hover:bg-corpo-orange bg-soft-orange rounded-full py-2 px-3"
+                                    <a aria-label="Vai alla pagina dell'evento su sito di InLombardia" className="text-black transition duration-500 hover:bg-corpo-orange bg-soft-orange rounded-full py-2 px-3"
                                href={link}>Partecipa all&apos;evento &gt;</a>
                             </div>
                         }

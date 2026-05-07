@@ -17,3 +17,8 @@ export type ComposerLocation = {
     lat: number,
     long: number
 }
+
+export type Usage = {
+    showMenu: string,
+    setShowMenu: (menuState:string) => void
+}
