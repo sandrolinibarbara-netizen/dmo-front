@@ -113,7 +113,7 @@ export default async function Who() {
                       className="p-8 w-full md:w-[33%] min-h-[172px] rounded-xl bg-corpo-blue text-white flex flex-col gap-6">
                       <p className="font-bold">Lorem ipsum dolor sit amet</p>
                       <div className="flex gap-4 items-center mt-2">
-                          <PDF className="cursor-pointer w-12 h-12"/>
+                          <PDF aria-hidden={true} className="cursor-pointer w-12 h-12"/>
                           <p className="text-sm w-[75%]">
                               Sed mollis cursus ex, nec interdum mi ultrices et. Fusce ut accumsan magna.
                           </p>
@@ -124,7 +124,7 @@ export default async function Who() {
                       className="p-8 w-full md:w-[33%] min-h-[172px] rounded-xl bg-corpo-blue text-white flex flex-col gap-6">
                       <p className="font-bold">Lorem ipsum dolor sit amet</p>
                       <div className="flex gap-4 items-center mt-2">
-                          <PDF className="cursor-pointer w-12 h-12"/>
+                          <PDF aria-hidden={true} className="cursor-pointer w-12 h-12"/>
                           <p className="text-sm w-[75%]">
                               Sed mollis cursus ex, nec interdum mi ultrices et. Fusce ut accumsan magna.
                           </p>
@@ -135,7 +135,7 @@ export default async function Who() {
                       className="p-8 w-full md:w-[33%] min-h-[172px] rounded-xl bg-corpo-blue text-white flex flex-col gap-6">
                       <p className="font-bold">Lorem ipsum dolor sit amet</p>
                       <div className="flex gap-4 items-center mt-2">
-                          <PDF className="cursor-pointer w-12 h-12"/>
+                          <PDF aria-hidden={true} className="cursor-pointer w-12 h-12"/>
                           <p className="text-sm w-[75%]">
                               Sed mollis cursus ex, nec interdum mi ultrices et. Fusce ut accumsan magna.
                           </p>

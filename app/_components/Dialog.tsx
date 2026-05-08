@@ -101,10 +101,11 @@ export function Dialog({placeholder} : {placeholder:string}) {
                 role="dialog"
                 ref={dialogRef}
                 id={dialogId}
+                aria-label={calendarLabel}
                 aria-modal
                 onClose={() => setIsDialogOpen(false)}
             >
-                <button onClick={() => setIsDialogOpen(false)} id="closeButton" role="button" aria-label="Chiudi il calendario" tabIndex={0} className="absolute top-2 right-2 flex justify-end">
+                <button onClick={() => setIsDialogOpen(false)} id={`closeButton${placeholder}`} role="button" aria-label="Chiudi il calendario" tabIndex={0} className="absolute top-2 right-2 flex justify-end">
                     <Close aria-hidden={true} className="cursor-pointer"/>
                 </button>
                 <DayPicker

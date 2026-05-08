@@ -3,7 +3,7 @@ import {PDF} from "@/app/_components/_icons/PDF";
 export default function Downloads({info} : {info:any}) {
     return (
 
-        <div className="mt-5 flex md:flex-row flex-col gap-4 w-full">
+        <div id="downloadsList" className="mt-5 flex md:flex-row flex-col gap-4 w-full">
             {info.download_1[0] &&
                 <div
                     className="p-8 w-full md:w-[33%] min-h-[172px] rounded-xl bg-corpo-blue text-white flex flex-col gap-6">

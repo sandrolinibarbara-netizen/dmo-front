@@ -11,12 +11,12 @@ export default function SingleExperienceCard({el, grid, altGrid} : {el:any, grid
                         {el.title}
                     </span>
                 </h4>
-                <p className="h-[104px]">
-                    <span className="line-clamp-4 text-sm">
-                        {el.description?.[0].children?.[0].text ?? "Lorem ipsum dolor sit amet, " +
-                            "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}
-                    </span>
-                </p>
+                <div className="h-[104px]">
+                    <p className="line-clamp-4 text-sm"
+                    >
+                        {el.description.replace(/<\/?[^>]+(>|$)/g, "")}
+                    </p>
+                </div>
                 <div className={`w-full flex ${el.tagIds.includes(6) ? 'justify-end' : 'justify-between'} items-center`}>
                     {!el.tagIds.includes(6) && <p className="font-bold">da {
                         new Intl.NumberFormat("de-DE", {

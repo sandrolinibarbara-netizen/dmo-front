@@ -56,7 +56,7 @@ export default function VisitCard({title, price, details} : {title:string|undefi
                 </>
             }
             <div className="w-full text-end absolute bottom-8 right-8">
-                <a href={`https://multishop-cremona.collaudo.domniapass.com/it/products/${title === 'Welcome card' ? 'welcome-card' : 'visit-cremona-card'}`}
+                <a href={`https://multishop-cremona.collaudo.domniapass.com/it/products/${title === 'Welcome Card' ? 'welcome-card' : 'visit-cremona-card'}`}
                       className="text-black text-sm transition duration-500 hover:bg-corpo-orange bg-soft-orange rounded-full px-3 py-2">
                     Acquista &gt;</a>
             </div>

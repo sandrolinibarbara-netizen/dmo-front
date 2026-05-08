@@ -7,10 +7,26 @@ export type ExperienceCardData = {
         }>;
     }>;
     documentId?: string;
+    locations?: ExperienceLocation[];
     slug?: string;
     tagIds?: number[];
     title?: string;
     tipo?: string;
+    [key: string]: unknown;
+};
+
+export type ExperienceLocation = {
+    address?: string;
+    addressLocality?: string;
+    indirizzo?: string;
+    lat?: number;
+    latitude?: number;
+    lng?: number;
+    longitude?: number;
+    name?: string;
+    nome?: string;
+    streetAddress?: string;
+    title?: string;
     [key: string]: unknown;
 };
 

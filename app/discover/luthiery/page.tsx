@@ -84,7 +84,7 @@ export default async function Luthiery() {
                         </div>
                     </div>
 
-                    <div className="w-full h-[300px] md:w-2/4 md:h-auto relative">
+                    <div id="luthieryVideo" className="w-full h-[300px] md:w-2/4 md:h-auto relative">
                         <iframe title="Video presentazione del progetto Tales of Luthiery" width="100%" height="315"
                                 className="rounded-xl absolute bottom-0"
                                 src="https://www.youtube.com/embed/qZa1JT7oI2c?si=Xs8Yhbtzh8izTk8v"
@@ -107,7 +107,7 @@ export default async function Luthiery() {
 
             <DiscoverEventsSection events={sortedEvents}/>
 
-            <section className="w-[95vw] md:w-screen md:mb-0 mb-8 md:px-0 px-4 mx-auto items-center justify-center">
+            <section id="luthieryMap" className="w-[95vw] md:w-screen md:mb-0 mb-8 md:px-0 px-4 mx-auto items-center justify-center">
                 <h2 className="md:w-[80vw] mx-auto px-4 md:px-8 font-bold text-4xl mt-8 mb-16">Visualizza tutti gli
                     Eventi e le Esperienze sulla mappa</h2>
                 <LocalMap homepage={false} autoFilter={2} fullPage={true} pages={pages}/>

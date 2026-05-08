@@ -9,6 +9,7 @@ import {ComposerLocation} from "@/app/_types/types";
 import L from 'leaflet';
 import cyclingMarker from '../../public/icons/cycling-marker.svg';
 import luthieryMarker from '../../public/icons/luthiery-marker.svg';
+import Link from "next/link";
 
 export default function Map({homepage, autoFilter, fullPage, composers, pages} : {homepage:boolean, autoFilter?:undefined|number, fullPage?:undefined|boolean, composers?:undefined|ComposerLocation[], pages:any}) {
     const [filter, setFilter] = useState<string>('all');
@@ -18,8 +19,6 @@ export default function Map({homepage, autoFilter, fullPage, composers, pages} :
     const luthieryIcon = new L.Icon({
         iconUrl: luthieryMarker.src,
     });
-
-    console.log(pages)
 
     return (
         <section id="map">
@@ -64,8 +63,7 @@ export default function Map({homepage, autoFilter, fullPage, composers, pages} :
                                 <Image className="rounded-t-xl w-full h-[136px] object-cover" width={200} height={100} src={el.imageUrl ? process.env.NEXT_PUBLIC_BASE_URL + el.imageUrl :`/images/experiences/violin1.webp`} alt="Immagine esemplificativa del luogo"/>
                                 <div className="px-4 pt-4 pb-2">
                                     <h4 className="font-bold">{el.title}</h4>
-                                    <p className="line-clamp-6">{el.description?.[0].children?.[0].text ?? "Lorem ipsum dolor sit amet, " +
-                                        "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}</p>
+                                    <p className="line-clamp-6">{el.description.replace(/<\/?[^>]+(>|$)/g, "")}</p>
                                     <div className="flex justify-between items-center">
                                         <p className="font-bold">{
                                             new Intl.NumberFormat("de-DE", {
@@ -88,8 +86,7 @@ export default function Map({homepage, autoFilter, fullPage, composers, pages} :
                                 <Image className="rounded-t-xl w-full h-[136px] object-cover" width={200} height={100} src={el.imageUrl ? process.env.NEXT_PUBLIC_BASE_URL + el.imageUrl :`/images/experiences/violin1.webp`} alt="Immagine esemplificativa del luogo"/>
                                 <div className="px-4 pt-4 pb-2">
                                     <h4 className="font-bold">{el.title}</h4>
-                                    <p className="line-clamp-6">{el.description?.[0].children?.[0].text ?? "Lorem ipsum dolor sit amet, " +
-                                        "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}</p>
+                                    <p className="line-clamp-6">{el.description.replace(/<\/?[^>]+(>|$)/g, "")}</p>
                                     <div className="flex justify-between items-center">
                                         <p className="font-bold">{
                                             new Intl.NumberFormat("de-DE", {
@@ -112,13 +109,16 @@ export default function Map({homepage, autoFilter, fullPage, composers, pages} :
                             <Popup className="border border-orange-500 rounded-xl">
                                 <div className="px-4 pt-4 pb-2">
                                     <h4 className="font-bold">{el.name}</h4>
-                                    <p>{el.description}</p>
+                                    {/*<p>{el.description}</p>*/}
                                 </div>
                             </Popup>
                         </Marker>
                     )
                 })}
             </MapContainer>
+            <div className="w-full text-right p-4">
+                <Link href="/accessible-experiences" className="underline">Consulta tutte le esperienze</Link>
+            </div>
         </section>
     )
 }

@@ -59,6 +59,7 @@ export default function ContactForm({newsletter} : {newsletter:boolean}) {
                         <fieldset className={`flex gap-4 ${!newsletter ? 'flex-col' : 'flex-row'}`}>
                             <label aria-label="Nome obbligatorio" htmlFor="name"
                                    className={`text-black ${!newsletter ? '' : 'w-full md:w-[50%]'}`}>
+                                <span className="sr-only">Nome</span>
                                 <input id="name" name="name"
                                        onChange={resetError}
                                        className="bg-white shadow-sm w-full rounded-xl py-2 px-3" type="text"
@@ -66,33 +67,38 @@ export default function ContactForm({newsletter} : {newsletter:boolean}) {
                             </label>
                             <label aria-label="Cognome obbligatorio" htmlFor="lastname"
                                    className={`text-black ${!newsletter ? '' : 'w-full md:w-[50%]'}`}>
+                                <span className="sr-only">Cognome</span>
                                 <input id="lastname" name="lastname"
                                        onChange={resetError}
                                        className="bg-white shadow-sm w-full rounded-xl py-2 px-3" type="text"
                                        placeholder="Cognome (obbligatorio)"/>
                             </label>
                         </fieldset>
-                        <label aria-label="Indirizzo email obbligatorio" htmlFor="email" className="text-black">
-                            <input id="email" name="email"
-                                   onChange={resetError}
-                                   className="bg-white shadow-sm w-full rounded-xl py-2 px-3" type="email"
-                                   placeholder="Email (obbligatorio)"/>
-                        </label>
-                        {!newsletter &&
+           <label aria-label="Indirizzo email obbligatorio" htmlFor="email" className="text-black">
+               <span className="sr-only">Email</span>
+               <input id="email" name="email"
+                      onChange={resetError}
+                      className="bg-white shadow-sm w-full rounded-xl py-2 px-3" type="email"
+                      placeholder="Email (obbligatorio)"/>
+           </label>
+           {!newsletter &&
                             <>
                                 <label aria-label="Oggetto obbligatorio" htmlFor="subject" className="text-black">
+                                    <span className="sr-only">Oggetto</span>
                                     <input id="subject" name="subject"
                                            onChange={resetError}
                                            className="bg-white shadow-sm w-full rounded-xl py-2 px-3"
                                            type="text" placeholder="Oggetto (obbligatorio)"/>
                                 </label>
                                 <label aria-label="Messaggio obbligatorio" htmlFor="message" className="text-black">
-                        <textarea id="message" name="message" rows={8}
-                                  onChange={resetError}
-                                  className="bg-white shadow-sm w-full rounded-xl py-2 px-3" placeholder="Messaggio (obbligatorio)"/>
+                                    <span className="sr-only">Messaggio</span>
+                                    <textarea id="message" name="message" rows={8}
+                                              onChange={resetError}
+                                              className="bg-white shadow-sm w-full rounded-xl py-2 px-3"
+                                              placeholder="Messaggio (obbligatorio)"/>
                                 </label>
                             </>
-                        }
+           }
 
                         <div>
                             <label htmlFor="privacy">

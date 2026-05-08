@@ -1,7 +1,7 @@
 'use client'
 import Link from "next/link";
 import {Hamburger} from "@/app/_components/_icons/Hamburger";
-import {useEffect, useState} from "react";
+import {type FocusEvent, useEffect, useState} from "react";
 import {Close} from "@/app/_components/_icons/Close";
 import Image from "next/image";
 import {useUsageStore} from "@/app/_stores/usage";
@@ -9,9 +9,13 @@ import {Usage} from "@/app/_types/types";
 
 export default function Menu({links} : {links:any}) {
 
+    const showModal = useUsageStore((state:Usage) => state.showModal);
+    const showModalBio = useUsageStore((state:Usage) => state.showModalBio);
     const showMenu = useUsageStore((state:Usage) => state.showMenu);
     const setShowMenu = useUsageStore((state:Usage) => state.setShowMenu);
     const [showExpMenu, setShowExpMenu] = useState<string>('close');
+    const [showCardsMenu, setShowCardsMenu] = useState<string>('close');
+
 
     function toggleMenu(action:'open'|'close') {
         if(action === 'open' && (showMenu === 'close' || showMenu === 'initial')) {
@@ -19,6 +23,8 @@ export default function Menu({links} : {links:any}) {
         } else if(action === 'close' && showMenu === 'open') {
             setShowMenu('close');
             setShowExpMenu('close');
+            setShowCardsMenu('close');
+
         }
     }
 
@@ -27,6 +33,26 @@ export default function Menu({links} : {links:any}) {
             setShowExpMenu('open');
         } else {
             setShowExpMenu('close');
+        }
+    }
+
+    function toggleCardsMenu() {
+        if(showCardsMenu === 'close') {
+            setShowCardsMenu('open');
+        } else {
+            setShowCardsMenu('close');
+        }
+    }
+
+    function openExpMenuOnKeyboardFocus(event: FocusEvent<HTMLButtonElement>) {
+        if(showExpMenu === 'close' && event.currentTarget.matches(':focus-visible')) {
+            setShowExpMenu('open');
+        }
+    }
+
+    function openCardsMenuOnKeyboardFocus(event: FocusEvent<HTMLButtonElement>) {
+        if(showCardsMenu === 'close' && event.currentTarget.matches(':focus-visible')) {
+            setShowCardsMenu('open');
         }
     }
 
@@ -54,7 +80,14 @@ export default function Menu({links} : {links:any}) {
 
     useEffect(() => {
         function handleEscapeKeyDown(e:any) {
-            if (e.key === 'Escape' && (showMenu === 'open' || showMenu === 'initial')) {
+            if(showModal.show) {
+                const composer = 'composer_' + showModal.text.toString();
+                const composersList = document.getElementById('composersList')!;
+                composersList.removeAttribute('inert');
+                document.getElementById(composer)!.focus();
+                showModalBio(0);
+                return;
+            } else if (e.key === 'Escape' && (showMenu === 'open' || showMenu === 'initial')) {
                 setShowMenu('close');
             }
         }
@@ -64,7 +97,7 @@ export default function Menu({links} : {links:any}) {
         return () => {
             window.removeEventListener('keydown', handleEscapeKeyDown);
         };
-    }, []);
+    }, [showModal.show]);
 
     return(
         <>
@@ -72,9 +105,11 @@ export default function Menu({links} : {links:any}) {
                 <div className="w-full px-2 md:px-0 md:w-[90%] md:mx-auto h-full p-0.5 text-white flex items-center justify-between">
                     <Link
                         href="/"
+                        aria-label="Torna alla home"
                         onClick={() => toggleMenu('close')}
                     >
                         <Image
+                            aria-hidden={true}
                             src='/logo.webp'
                             alt="Logo di Visit Cremona"
                             width={500}
@@ -124,6 +159,7 @@ export default function Menu({links} : {links:any}) {
                         className="h-[100px] w-auto"
                     />
                     <button type="button"
+                            id="closeMenuButton"
                             aria-controls="mainMenu" aria-expanded={showMenu === 'open'}
                             aria-label="Chiudi il menu"
                             onClick={() => toggleMenu('close')}
@@ -177,6 +213,7 @@ export default function Menu({links} : {links:any}) {
 
                         <li className="w-full flex flex-col">
                             <button type="button" onClick={toggleExpMenu}
+                                    onFocus={openExpMenuOnKeyboardFocus}
                                     className="cursor-pointer pr-4 py-3 flex justify-between items-center"
                                     aria-controls="expMenu" aria-expanded={showExpMenu === 'open'}
                             >
@@ -220,7 +257,38 @@ export default function Menu({links} : {links:any}) {
                                 </li>
                             </ul>
                         </li>
-
+                        <li className="w-full flex flex-col">
+                            <button type="button" onClick={toggleCardsMenu}
+                                    onFocus={openCardsMenuOnKeyboardFocus}
+                                    className="cursor-pointer pr-4 py-3 flex justify-between items-center"
+                                    aria-controls="cardsMenu" aria-expanded={showCardsMenu === 'open'}
+                            >
+                                <span>Shop</span>
+                                <span
+                                    className={`${showCardsMenu === 'open' ? 'rotate-90' : 'rotate-0'} transition-all duration-500 origin-center`}>&gt;</span>
+                            </button>
+                            <ul id="cardsMenu"
+                                className={`${showCardsMenu === 'open' ? 'max-h-[1000px]' : 'max-h-0'} pl-4 transition-all duration-500 overflow-hidden`}>
+                                <li className="py-3">
+                                    <a
+                                        href="https://multishop-cremona.collaudo.domniapass.com/it/products/welcome-card"
+                                        target="_blank" rel="noopener noreferrer"
+                                    onClick={() => toggleMenu('close')}
+                                    >
+                                        Card of Harmonies WELCOME
+                                    </a>
+                                </li>
+                                <li className="py-3">
+                                    <a
+                                        href="https://multishop-cremona.collaudo.domniapass.com/it/products/visit-cremona-card"
+                                        target="_blank" rel="noopener noreferrer"
+                                        onClick={() => toggleMenu('close')}
+                                    >
+                                        Visit Cremona Card UNICA
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
 
                         <li className="py-3">
                             <Link
@@ -273,7 +341,8 @@ export default function Menu({links} : {links:any}) {
                                 Dichiarazione di accessibilità
                             </Link>
                         </li>
-                        <li className="py-3"><a target="_blank" rel="noopener noreferrer" href={links['amministrazione_trasparente']}>Amministrazione
+                        <li className="py-3"><a target="_blank" rel="noopener noreferrer"
+                                                href={links['amministrazione_trasparente']}>Amministrazione
                             trasparente</a></li>
 
                         <li className="py-3">

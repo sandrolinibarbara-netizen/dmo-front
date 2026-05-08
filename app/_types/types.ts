@@ -20,5 +20,7 @@ export type ComposerLocation = {
 
 export type Usage = {
     showMenu: string,
-    setShowMenu: (menuState:string) => void
+    setShowMenu: (menuState:string) => void,
+    showModal: {show: boolean, text: number},
+    showModalBio: (n:number) => void
 }

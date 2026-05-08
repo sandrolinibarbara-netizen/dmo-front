@@ -12,7 +12,7 @@ export default function AllExperiences({type, pages}:{type:string, pages:any}) {
             expToDisplay = 1;
     }
     return (
-        <section className="w-[95vw] md:w-[80vw] mx-auto items-center justify-center px-4 md:px-8 pb-24">
+        <section id="allExperiences" className="w-[95vw] md:w-[80vw] mx-auto items-center justify-center px-4 md:px-8 pb-24">
             <h2 className="font-bold text-4xl mt-8 mb-16">Tutte le esperienze</h2>
             <div className="flex gap-4 flex-wrap">
                 {pages &&

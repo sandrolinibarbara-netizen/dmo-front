@@ -35,7 +35,7 @@ export default function DiscoverEventsSection({events}:{events: DiscoverEvent[]}
         : upcomingEvents.slice(0, INITIAL_VISIBLE_EVENTS);
 
     return (
-        <section className="w-[95vw] md:w-[80vw] mx-auto items-center justify-center px-4 md:px-8 pt-16 pb-24">
+        <section id="allEvents" className="w-[95vw] md:w-[80vw] mx-auto items-center justify-center px-4 md:px-8 pt-16 pb-24">
             <h2 className="font-bold text-4xl mt-8 mb-16">Tutti gli eventi</h2>
             <div className="flex gap-4 flex-wrap">
                 {visibleEvents.map((event, index) => (

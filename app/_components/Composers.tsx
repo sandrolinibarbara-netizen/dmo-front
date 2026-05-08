@@ -1,11 +1,12 @@
 'use client'
 
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import Image from "next/image";
 import Markdown from "react-markdown";
 import {Close} from "@/app/_components/_icons/Close";
 import LocalMap from "@/app/_components/LocalMap";
 import {ComposerLocation} from "@/app/_types/types";
+import {useUsageStore} from "@/app/_stores/usage";
 
 type Composer = {
     [key:string]: ComposerLocation[],
@@ -15,13 +16,15 @@ type Composer = {
 }
 
 export default function Composers({info}: {info:any}) {
-    const [showModal, setShowModal] = useState({
-        show: false,
-        text: 0
-    })
+   const showModal = useUsageStore(state => state.showModal);
+   const showModalBio = useUsageStore(state => state.showModalBio);
 
-    function showModalBio(n:number) {
-        setShowModal({show: (n !== 0), text: n})
+    function closeModal() {
+        const composer = 'composer_' + showModal.text.toString();
+        const composersList = document.getElementById('composersList')!;
+        composersList.removeAttribute('inert');
+        document.getElementById(composer)!.focus();
+        showModalBio(0);
     }
 
     const composers:Composer = {
@@ -64,59 +67,47 @@ export default function Composers({info}: {info:any}) {
     }
 
     useEffect(() => {
-        function handleEscapeKeyDown(e:any) {
-            if (e.key === 'Escape' && showModal.show) {
-                showModalBio(0);
-            }
-        }
-
-        window.addEventListener('keydown', handleEscapeKeyDown);
-
-        return () => {
-            window.removeEventListener('keydown', handleEscapeKeyDown);
-        };
-    }, [])
-
-    useEffect(() => {
         const mainMenu = document.getElementById('mainMenu');
+        const downloads = document.getElementById('downloadsList');
+        const luthieryMap = document.getElementById('luthieryMap');
+        const allEvents = document.getElementById('allEvents');
+        const allExperiences = document.getElementById('allExperiences');
+        const luthieryVideo = document.getElementById('luthieryVideo');
+        const composersList = document.getElementById('composersList');
         const header = document.getElementById('header');
         const footer = document.getElementById('footer');
         const iubenda = document.getElementById('iubenda');
-        if(mainMenu && header && footer && iubenda) {
+        if(mainMenu && downloads && luthieryMap && allExperiences && allEvents
+            && luthieryVideo && composersList && header && footer && iubenda)
             if(showModal.show) {
                 mainMenu.setAttribute('inert', 'inert');
                 header.setAttribute('inert', 'inert');
                 footer.setAttribute('inert', 'inert');
+                downloads.setAttribute('inert', 'inert');
+                luthieryMap.setAttribute('inert', 'inert');
+                allEvents.setAttribute('inert', 'inert');
+                luthieryVideo.setAttribute('inert', 'inert');
+                composersList.setAttribute('inert', 'inert');
+                allExperiences.setAttribute('inert', 'inert');
                 iubenda.setAttribute('inert', 'inert');
                 document.getElementById('closeButton')!.focus();
             } else if(!showModal.show) {
                 mainMenu.removeAttribute('inert');
                 header.removeAttribute('inert');
                 footer.removeAttribute('inert');
+                downloads.removeAttribute('inert');
+                luthieryMap.removeAttribute('inert');
+                luthieryVideo.removeAttribute('inert');
+                allEvents.removeAttribute('inert');
+                allExperiences.removeAttribute('inert');
                 iubenda.removeAttribute('inert');
             }
-        }
     }, [showModal.show])
-
-    useEffect(() => {
-        function handleEscapeKeyDown(e:any) {
-            if (e.key === 'Escape' && showModal.show) {
-                showModalBio(0);
-            }
-        }
-
-        window.addEventListener('keydown', handleEscapeKeyDown);
-
-        return () => {
-            window.removeEventListener('keydown', handleEscapeKeyDown);
-        };
-    }, []);
-
 
     return (
         <>
             <div
-                className="mb-4">
+                id="composersList" className="mb-4">
                 <ul className="flex flex-col md:flex-row items-center gap-4 md:gap-[2%]">
                     <li className="h-[500px] w-full md:w-[32%] relative">
                         <Image width={300} height={300}
@@ -182,10 +173,10 @@ export default function Composers({info}: {info:any}) {
 
             {
                 showModal.show &&
-                <div role="dialog" aria-modal={true} className="top-0 left-0 fixed z-20 w-screen h-screen bg-gray-500/25">
+                <div aria-label={`Modale con la biografia e i luoghi di ${info[`compositore_${showModal.text.toString()}`][0]['nome']}`} role="dialog" aria-modal={true} className="top-0 left-0 fixed z-20 w-screen h-screen bg-gray-500/25">
                         <div className="pt-8 pb-12 pl-8 pr-2 shadow-md relative top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] bg-corpo-blue text-white rounded-xl w-[95%] md:w-2/4">
                             <div className="max-h-[516px] overflow-y-auto pr-6 relative">
-                                <button onClick={() => showModalBio(0)} aria-label="Chiudi modale" id="closeButton" tabIndex={0} className="flex justify-end fixed right-8 bg-corpo-blue pb-2">
+                                <button onClick={closeModal} aria-label="Chiudi modale" id="closeButton" tabIndex={0} className="flex justify-end fixed right-8 bg-corpo-blue pb-2">
                                     <Close aria-hidden={true} className="cursor-pointer"/>
                                 </button>
                                 <div className="markdown">
