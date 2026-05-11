@@ -5,7 +5,7 @@ export default async function Press() {
     let content, contentRef, referral;
 
     try {
-        let data = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/area-presses/',
+        let data = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/area-presses?populate=*',
             { next: { revalidate: 1000 }});
         content = await data.json();
 
@@ -37,7 +37,7 @@ export default async function Press() {
                             <LinkCard
                                 key={el.nome}
                                 title={el.nome}
-                                url={el.download}
+                                url={process.env.NEXT_PUBLIC_BASE_URL + el.download.url}
                                 description={el.descrizione}
                                 download={true}/>
                         )

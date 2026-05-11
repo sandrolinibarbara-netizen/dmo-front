@@ -1,6 +1,6 @@
 import Image from "next/image";
 // import ContactForm from "@/app/_components/ContactForm";
-import {PDF} from "@/app/_components/_icons/PDF";
+import Downloads from "@/app/_components/Downloads";
 
 export default async function Who() {
     let content;
@@ -42,7 +42,13 @@ export default async function Who() {
             '&populate[32]=partner_15' +
             '&populate[33]=partner_16' +
             '&populate[34]=partner_17' +
-            '&populate[35]=partner_18',
+            '&populate[35]=partner_18' +
+            '&populate[36]=download_1' +
+            '&populate[37]=download_2' +
+            '&populate[38]=download_3' +
+            '&populate[39]=download_1.download' +
+            '&populate[40]=download_2.download' +
+            '&populate[41]=download_3.download',
             { next: { revalidate: 1000 }}
         );
         content = await data.json();
@@ -99,49 +105,16 @@ export default async function Who() {
                   }
               </div>
 
-              <h2 className="font-bold text-4xl mt-16">{content.data['diventa_partner_titolo']}</h2>
+              <h2 className="font-bold text-3xl mt-16">{content.data['diventa_partner_titolo']}</h2>
               <p className="w-full pl-1
               {/*md:columns-2 */}
               mt-8 whitespace-pre-line">
-                  Per maggiori informazioni scrivici a <a className="font-bold" href="mailto:info@visitcremona.com">info@visitcremona.com</a>
+                  Per maggiori informazioni scrivici a <a className="underline" href="mailto:info@visitcremona.com">info@visitcremona.com</a>
               </p>
               {/*<ContactForm newsletter={false} partner={true}/>*/}
 
-              <h2 className="font-bold text-4xl mt-20 mb-8">Scaricabili</h2>
-              <div className="flex flex-col md:flex-row gap-4 w-full">
-                  <div
-                      className="p-8 w-full md:w-[33%] min-h-[172px] rounded-xl bg-corpo-blue text-white flex flex-col gap-6">
-                      <p className="font-bold">Lorem ipsum dolor sit amet</p>
-                      <div className="flex gap-4 items-center mt-2">
-                          <PDF aria-hidden={true} className="cursor-pointer w-12 h-12"/>
-                          <p className="text-sm w-[75%]">
-                              Sed mollis cursus ex, nec interdum mi ultrices et. Fusce ut accumsan magna.
-                          </p>
-                      </div>
-                  </div>
-
-                  <div
-                      className="p-8 w-full md:w-[33%] min-h-[172px] rounded-xl bg-corpo-blue text-white flex flex-col gap-6">
-                      <p className="font-bold">Lorem ipsum dolor sit amet</p>
-                      <div className="flex gap-4 items-center mt-2">
-                          <PDF aria-hidden={true} className="cursor-pointer w-12 h-12"/>
-                          <p className="text-sm w-[75%]">
-                              Sed mollis cursus ex, nec interdum mi ultrices et. Fusce ut accumsan magna.
-                          </p>
-                      </div>
-                  </div>
-
-                  <div
-                      className="p-8 w-full md:w-[33%] min-h-[172px] rounded-xl bg-corpo-blue text-white flex flex-col gap-6">
-                      <p className="font-bold">Lorem ipsum dolor sit amet</p>
-                      <div className="flex gap-4 items-center mt-2">
-                          <PDF aria-hidden={true} className="cursor-pointer w-12 h-12"/>
-                          <p className="text-sm w-[75%]">
-                              Sed mollis cursus ex, nec interdum mi ultrices et. Fusce ut accumsan magna.
-                          </p>
-                      </div>
-                  </div>
-              </div>
+              <h2 className="font-bold text-3xl mt-20 mb-8">Scaricabili</h2>
+              <Downloads info={content.data}/>
           </section>
       </>
   );

@@ -1,5 +1,4 @@
 import TalesLogo from "@/app/_components/TalesLogo";
-import LocalMap from "@/app/_components/LocalMap";
 import Markdown from "react-markdown";
 import Composers from "@/app/_components/Composers";
 import AllExperiences from "@/app/_components/AllExperiences";
@@ -106,12 +105,6 @@ export default async function Luthiery() {
             <AllExperiences type='luthiery' pages={pages}/>
 
             <DiscoverEventsSection events={sortedEvents}/>
-
-            <section id="luthieryMap" className="w-[95vw] md:w-screen md:mb-0 mb-8 md:px-0 px-4 mx-auto items-center justify-center">
-                <h2 className="md:w-[80vw] mx-auto px-4 md:px-8 font-bold text-4xl mt-8 mb-16">Visualizza tutti gli
-                    Eventi e le Esperienze sulla mappa</h2>
-                <LocalMap homepage={false} autoFilter={2} fullPage={true} pages={pages}/>
-            </section>
 
         </>
     )

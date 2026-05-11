@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function SingleExperienceCard({el, grid, altGrid} : {el:any, grid:boolean, altGrid?:boolean}) {
 
@@ -24,9 +25,18 @@ export default function SingleExperienceCard({el, grid, altGrid} : {el:any, grid
                             currency: "EUR"
                         }).format(el.cheapest)
                     }</p>}
-                    <a target="_blank" rel="noopener noreferrer" href={`https://multishop-cremona.collaudo.domniapass.com/it/products/${el.slug}`}
-                       className="text-black transition duration-500 hover:bg-corpo-orange bg-soft-orange rounded-full py-2 px-3">
-                        Scopri</a>
+                    {el.tagIds.includes(6)
+                        ? <Link
+                             href={`/experiences/unique/${el.documentId}`}
+                             className="text-black transition duration-500 hover:bg-corpo-orange bg-soft-orange rounded-full py-2 px-3">
+                            Scopri
+                            </Link>
+                        : <a target="_blank" rel="noopener noreferrer"
+                             href={`https://multishop-cremona.collaudo.domniapass.com/it/products/${el.slug}`}
+                             className="text-black transition duration-500 hover:bg-corpo-orange bg-soft-orange rounded-full py-2 px-3">
+                            Scopri
+                        </a>
+                    }
                 </div>
             </div>
         </div>

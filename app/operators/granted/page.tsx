@@ -52,7 +52,7 @@ export default async function Operators() {
                             <LinkCard
                                 key={el.nome}
                                 title={el.nome}
-                                url={el.download}
+                                url={process.env.NEXT_PUBLIC_BASE_URL + el.download.url}
                                 description={el.descrizione}
                                 download={true}/>
                         )

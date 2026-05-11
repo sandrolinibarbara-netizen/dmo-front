@@ -161,7 +161,7 @@ export default async function Plan() {
                         <div className="p-4 w-fit">
                             <p>Per consultare tutte le strutture dove dormire clicca al seguente
                                 <a target="_blank" rel="noopener noreferrer" href="https://www.turismocremona.it/it/dove-dormire"
-                                   className="font-bold text-corpo-orange underline ml-2">link</a>
+                                   className="underline">link</a>
                             </p>
                         </div>
                     </AccordionDetails>

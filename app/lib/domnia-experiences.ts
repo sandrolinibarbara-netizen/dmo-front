@@ -15,6 +15,17 @@ type ProductGroupResponse = {
     data: ExperienceCardData[];
 };
 
+type ProductGroupDetailResponse =
+    | ExperienceCardData
+    | {
+          data?: ExperienceCardData | ExperienceCardData[];
+      };
+
+type ProductGroupDetailResult = {
+    data?: ExperienceCardData;
+    isFallback: boolean;
+};
+
 async function fetchDomniaJson<T>(path: string, accessToken: string): Promise<T> {
     const response = await fetch(`${DOMNIA_API_BASE_URL}${path}`, {
         cache: 'no-store',
@@ -27,6 +38,42 @@ async function fetchDomniaJson<T>(path: string, accessToken: string): Promise<T>
     }
 
     return response.json() as Promise<T>;
+}
+
+function getProductGroupId(productGroup: ExperienceCardData) {
+    const id = productGroup.id;
+
+    return typeof id === 'string' || typeof id === 'number'
+        ? id.toString()
+        : undefined;
+}
+
+function findProductGroupById(
+    productGroups: ExperienceCardData[],
+    productGroupId: string,
+) {
+    return productGroups.find((productGroup) => {
+        return (
+            productGroup.documentId === productGroupId ||
+            getProductGroupId(productGroup) === productGroupId ||
+            productGroup.slug === productGroupId
+        );
+    });
+}
+
+function normalizeProductGroupDetailResponse(
+    response: ProductGroupDetailResponse,
+    productGroupId: string,
+): ExperienceCardData | undefined {
+    if ('data' in response) {
+        if (Array.isArray(response.data)) {
+            return findProductGroupById(response.data, productGroupId);
+        }
+
+        return response.data as ExperienceCardData | undefined;
+    }
+
+    return response;
 }
 
 function getMockProductGroups() {
@@ -95,6 +142,33 @@ async function fetchProductGroupsWithFallback(accessToken: string) {
 
         return {
             data: getMockProductGroups(),
+            isFallback: true,
+        };
+    }
+}
+
+async function fetchProductGroupByIdWithFallback(
+    accessToken: string,
+    productGroupId: string,
+): Promise<ProductGroupDetailResult> {
+    try {
+        const response = await fetchDomniaJson<ProductGroupDetailResponse>(
+            `/api/shop/product-groups/${encodeURIComponent(productGroupId)}`,
+            accessToken,
+        );
+
+        return {
+            data: normalizeProductGroupDetailResponse(response, productGroupId),
+            isFallback: false,
+        };
+    } catch (error) {
+        console.warn(
+            'Domnia product group unavailable, using local mock response',
+            error,
+        );
+
+        return {
+            data: findProductGroupById(getMockProductGroups(), productGroupId),
             isFallback: true,
         };
     }
@@ -171,8 +245,34 @@ export async function fetchExperiencesWithAccessToken(accessToken: string) {
     );
 }
 
+export async function fetchExperienceByIdWithAccessToken(
+    accessToken: string,
+    productGroupId: string,
+) {
+    const [productGroupResult, products] = await Promise.all([
+        fetchProductGroupByIdWithFallback(accessToken, productGroupId),
+        fetchProductsWithFallback(accessToken),
+    ]);
+
+    if (!productGroupResult.data) {
+        return null;
+    }
+
+    const productGroups = productGroupResult.isFallback
+        ? attachFallbackConnectedProducts([productGroupResult.data], products)
+        : [productGroupResult.data];
+
+    return enrichExperiences(productGroups, products)[0] ?? null;
+}
+
 export async function getExperiences(returnTo: string) {
     const accessToken = await requireDomniaAccessToken(returnTo);
 
     return fetchExperiencesWithAccessToken(accessToken);
+}
+
+export async function getExperience(productGroupId: string, returnTo: string) {
+    const accessToken = await requireDomniaAccessToken(returnTo);
+
+    return fetchExperienceByIdWithAccessToken(accessToken, productGroupId);
 }

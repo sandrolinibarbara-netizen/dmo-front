@@ -20,7 +20,7 @@ export default async function Rent() {
                     <p className="text-sm"><span className="font-semibold">Home / Scopri il territorio / Cicloturismo /</span> Strutture
                         per il noleggio
                     </p>
-                    <h2 className="font-bold text-4xl mt-10 mb-8">Strutture per il noleggio</h2>
+                    <h2 className="font-bold text-4xl mt-10 mb-8">Vendita, noleggio e riparazione di biciclette</h2>
 
                 <div className="flex flex-col md:flex-row gap-4 flex-wrap">
                     {content.data.map((el:any) => {

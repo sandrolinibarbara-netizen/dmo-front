@@ -13,7 +13,7 @@ import getEvents from "@/app/lib/edt-events";
 // import Refresh from "@/app/_components/Refresh";
 
 export default async function Home() {
-    let content, contentLinks, contentExpImages;
+    let content, contentLinks, contentExpImages, contentStories;
     try {
         const data = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/homepage' +
             '?populate[0]=hero_carosello' +
@@ -34,6 +34,11 @@ export default async function Home() {
         const dataLinks = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/link',
             { next: { revalidate: 1000 }});
         contentLinks = await dataLinks.json();
+
+        const dataStories = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/stories?populate=*',
+            { next: { revalidate: 1000 }});
+        contentStories = await dataStories.json();
+        console.log(contentStories)
 
         let dataExpImages = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/experiences-images?populate=*',
             { next: { revalidate: 1000 }});
@@ -199,7 +204,7 @@ export default async function Home() {
           }
 
           <section className="flex flex-col gap-8 w-full justify-center pb-24">
-              <Stories description={content.data['stories_testo']} gallery={content.data['stories_gallery']}/>
+              <Stories description={content.data['stories_testo']} gallery={contentStories.data}/>
           </section>
 
           <section className="w-full bg-pastel-yellow">

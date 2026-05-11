@@ -1,6 +1,5 @@
 import TalesLogo from "@/app/_components/TalesLogo";
 import Link from "next/link";
-import LocalMap from "@/app/_components/LocalMap";
 import Markdown from "react-markdown";
 import Image from "next/image";
 import AllExperiences from "@/app/_components/AllExperiences";
@@ -118,7 +117,7 @@ export default async function Cycling() {
                                     <iframe
                                         title="Mappa del percorso"
                                         src={el.link}
-                                        width="100%" height="200" frameBorder="0" scrolling="no"></iframe>
+                                        width="100%" height="400" frameBorder="0" scrolling="no"></iframe>
                                     <div className="w-full text-right py-3 px-4">
                                         <Link
                                             className="text-black transition duration-500 hover:bg-corpo-orange bg-soft-orange rounded-full px-3 py-2 text-sm"
@@ -177,11 +176,6 @@ export default async function Cycling() {
             </section>
 
             <DiscoverEventsSection events={sortedEvents}/>
-
-            <section className="w-[95vw] md:w-screen md:mb-0 mb-8 md:px-0 px-4 mx-auto items-center justify-center">
-                <h2 className="md:w-[80vw] mx-auto px-4 md:px-8 font-bold text-4xl mt-8 mb-16">Visualizza tutti gli Eventi e le Esperienze sulla mappa</h2>
-                <LocalMap homepage={false} autoFilter={1} fullPage={true} pages={pages}/>
-            </section>
 
         </>
     )

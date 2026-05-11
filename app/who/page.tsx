@@ -17,13 +17,11 @@ export default async function Who() {
             '&populate[6]=team_2' +
             '&populate[7]=team_3' +
             '&populate[8]=team_4' +
-            '&populate[9]=team_4' +
-            '&populate[10]=team_1.avatar' +
-            '&populate[11]=team_2.avatar' +
-            '&populate[12]=team_3.avatar' +
-            '&populate[13]=team_4.avatar' +
-            '&populate[14]=team_5.avatar' +
-            '&populate[15]=sub_hero_immagine',
+            '&populate[9]=team_1.avatar' +
+            '&populate[10]=team_2.avatar' +
+            '&populate[11]=team_3.avatar' +
+            '&populate[12]=team_4.avatar' +
+            '&populate[13]=sub_hero_immagine',
             { next: { revalidate: 1000 }}
         );
         content = await data.json();
@@ -189,16 +187,6 @@ export default async function Who() {
                       name={content.data['team_4'][0].nome}
                       job={content.data['team_4'][0].ruolo}
                       link={content.data['team_4'][0]['profilo_linkedin']}
-                  />
-
-                  <MemberCard
-                      avatar={[
-                          process.env.NEXT_PUBLIC_BASE_URL + content.data['team_5'][0].avatar.url,
-                          content.data['team_5'][0].avatar.alternativeText
-                      ]}
-                      name={content.data['team_5'][0].nome}
-                      job={content.data['team_5'][0].ruolo}
-                      link={content.data['team_5'][0]['profilo_linkedin']}
                   />
               </div>
           </section>

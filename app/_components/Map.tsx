@@ -20,6 +20,21 @@ export default function Map({homepage, autoFilter, fullPage, composers, pages} :
         iconUrl: luthieryMarker.src,
     });
 
+    function setCoordinates(composers:undefined|ComposerLocation[], pages:any, filter:string, autoFilter:number) {
+        if(composers && composers[0].name.includes('Paderno')) {
+            return [45.23906740340918, 9.928271781708482];
+        } else if(filter === 'cycling' || autoFilter === 1) {
+            const c = pages.filter((el:any) => el.tagIds.includes(3))[0].locations;
+            return [c[0].lat, c[0].lng];
+        } else if(filter === 'luthiery' || autoFilter === 2) {
+            const c = pages.filter((el:any) => el.tagIds.includes(2))[0].locations;
+            return [c[0].lat, c[0].lng];
+        }
+        // Cremona default
+        return [45.136887, 10.028458];
+    }
+
+
     return (
         <section id="map">
             {homepage && <div className="flex items-center gap-4 px-1 md:px-4 mb-4">
@@ -49,8 +64,8 @@ export default function Map({homepage, autoFilter, fullPage, composers, pages} :
                 </ul>
             </div>}
             <MapContainer className={`${homepage || fullPage ? 'h-[600px]' : 'h-[532px] md:w-[800px]'} w-full rounded-xl z-100`}
-                          center={(composers && composers[0].name.includes('Paderno')) ? [45.23906740340918, 9.928271781708482] : [45.136887, 10.028458]}
-                          zoom={composers ? 14 : 13}
+                          center={setCoordinates(composers, pages, filter, autoFilter)}
+                          zoom={composers ? 14 : 12}
                           scrollWheelZoom={false}>
                 <TileLayer
                     attribution="Google Maps"
@@ -107,7 +122,7 @@ export default function Map({homepage, autoFilter, fullPage, composers, pages} :
                     return (
                         <Marker key={el.lat + ', ' + el.long} position={[el.lat, el.long]} icon={luthieryIcon}>
                             <Popup className="border border-orange-500 rounded-xl">
-                                <div className="px-4 pt-4 pb-2">
+                                <div className="p-4 text-center">
                                     <h4 className="font-bold">{el.name}</h4>
                                     {/*<p>{el.description}</p>*/}
                                 </div>
@@ -116,7 +131,7 @@ export default function Map({homepage, autoFilter, fullPage, composers, pages} :
                     )
                 })}
             </MapContainer>
-            <div className="w-full text-right p-4">
+            <div className={`w-full ${autoFilter ? 'hidden' : 'text-right'} p-4`}>
                 <Link href="/accessible-experiences" className="underline">Consulta tutte le esperienze</Link>
             </div>
         </section>

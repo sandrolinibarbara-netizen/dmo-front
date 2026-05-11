@@ -12,14 +12,14 @@ export default function Carousel({pics}:{pics:any}) {
         document.getElementById('prevBtn')?.setAttribute('disabled', 'disabled');
         document.getElementById('nextBtn')?.setAttribute('disabled', 'disabled');
         if(fn === 'add') {
-            if(slide === 6) {
+            if(slide === pics.length - 1) {
                 setSlide(0);
             } else {
                 setSlide(prev => prev + 1);
             }
         } else {
             if(slide === 0) {
-                setSlide(6);
+                setSlide(pics.length - 1);
             } else {
                 setSlide(prev => prev - 1);
             }

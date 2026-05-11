@@ -12,14 +12,14 @@ type GalleryImage = {
 export default function Stories({gallery, description} : {description: string, gallery:any[]}) {
     const [disabled, setDisabled] = useState<boolean>(false);
     const [images, setImages] = useState<GalleryImage[]>([
-        {url: gallery[0].url,
-        alt: gallery[0].alternativeText},
-        {url: gallery[1].url,
-            alt: gallery[1].alternativeText},
-        {url: gallery[2].url,
-            alt: gallery[2].alternativeText},
-        {url: gallery[3].url,
-            alt: gallery[3].alternativeText},
+        {url: gallery[0].immagine.url,
+        alt: gallery[0].immagine.alternativeText},
+        {url: gallery[1].immagine.url,
+            alt: gallery[1].immagine.alternativeText},
+        {url: gallery[2].immagine.url,
+            alt: gallery[2].immagine.alternativeText},
+        {url: gallery[3].immagine.url,
+            alt: gallery[3].immagine.alternativeText},
     ]);
     function slide(step:'prev'|'next') {
         setDisabled(true);
