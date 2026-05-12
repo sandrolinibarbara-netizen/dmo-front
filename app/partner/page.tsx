@@ -1,6 +1,7 @@
 import Image from "next/image";
 // import ContactForm from "@/app/_components/ContactForm";
 import Downloads from "@/app/_components/Downloads";
+import ContactForm from "@/app/_components/ContactForm";
 
 export default async function Who() {
     let content;
@@ -106,15 +107,14 @@ export default async function Who() {
               </div>
 
               <h2 className="font-bold text-3xl mt-16">{content.data['diventa_partner_titolo']}</h2>
-              <p className="w-full pl-1
-              {/*md:columns-2 */}
-              mt-8 whitespace-pre-line">
-                  Per maggiori informazioni scrivici a <a className="underline" href="mailto:info@visitcremona.com">info@visitcremona.com</a>
+              <p className="w-full pl-1 mt-8 whitespace-pre-line">
+                  {content.data.diventa_partner_descrizione}
+                  <a className="underline" href="mailto:info@visitcremona.com">Scrivici per saperne di più.</a>
               </p>
-              {/*<ContactForm newsletter={false} partner={true}/>*/}
+              {/*<ContactForm newsletter={false}/>*/}
 
-              <h2 className="font-bold text-3xl mt-20 mb-8">Scaricabili</h2>
-              <Downloads info={content.data}/>
+              {/*<h2 className="font-bold text-3xl mt-20 mb-8">Scaricabili</h2>*/}
+              {/*<Downloads info={content.data}/>*/}
           </section>
       </>
   );
