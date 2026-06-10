@@ -58,6 +58,7 @@ export default async function Plan() {
                         </div>
                     </AccordionDetails>
                 </Accordion>
+
                 <Accordion sx={{backgroundColor: 'transparent', boxShadow: 'none', borderBottom: '1px solid #000'}}>
                     <AccordionSummary
                         expandIcon={<Plus/>}
@@ -82,6 +83,40 @@ export default async function Plan() {
                         </div>
                     </AccordionDetails>
                 </Accordion>
+
+                {content.data.shuttle && <Accordion sx={{backgroundColor: 'transparent', boxShadow: 'none', borderBottom: '1px solid #000'}}>
+                    <AccordionSummary
+                        expandIcon={<Plus/>}
+                        aria-controls="panel2-content"
+                        id="panel2-header"
+                    >
+                        <div className="flex gap-4 items-center my-2">
+                            <div className="w-12">
+                                <Image
+                                    src='/icons/highway.svg' alt="icona autodtrada" width={64} height={64}
+                                    className="w-full"
+                                />
+                            </div>
+                            <h2 className="font-bold text-2xl">Transfer autostradale</h2>
+                        </div>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <div className="markdown">
+                            <Markdown>
+                                {content.data.shuttle}
+                            </Markdown>
+                        </div>
+                        <div className="w-full text-end mb-4">
+                            <a href="https://autostradale.it/i-nostri-servizi/transfer-aeroportuali/cremona-bergamo-orio-al-serio/"
+                               target="_blank" rel="noopener noreferrer"
+                               className="w-[164px] cursor-pointer font-medium text-base px-3 py-3 text-black transition duration-500 hover:bg-corpo-orange bg-soft-orange rounded-full text-center"
+                            >
+                                Vai al sito &gt;
+                            </a>
+                        </div>
+                    </AccordionDetails>
+                </Accordion>}
+
                 <Accordion sx={{backgroundColor: 'transparent', boxShadow: 'none', borderBottom: '1px solid #000'}}>
                     <AccordionSummary
                         expandIcon={<Plus/>}
@@ -106,13 +141,14 @@ export default async function Plan() {
                         </div>
                     </AccordionDetails>
                 </Accordion>
+
                 <Accordion sx={{backgroundColor: 'transparent', boxShadow: 'none', borderBottom: '1px solid #000'}}>
                     <AccordionSummary
                         expandIcon={<Plus/>}
                         aria-controls="panel4-content"
                         id="panel4-header"
                     >
-                        <div className="flex gap-4 items-center my-4">
+                        <div className="flex gap-4 items-center my-2">
                             <div className="w-12">
                                 <Image
                                     src='/icons/info.svg' alt="icona info" width={64} height={64}
@@ -141,6 +177,7 @@ export default async function Plan() {
                         </div>
                     </AccordionDetails>
                 </Accordion>
+
                 <Accordion sx={{backgroundColor: 'transparent', boxShadow: 'none'}}>
                     <AccordionSummary
                         expandIcon={<Plus/>}

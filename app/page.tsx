@@ -26,7 +26,8 @@ export default async function Home() {
             '&populate[7]=esperienze_uniche.immagine' +
             '&populate[8]=esperienze_uniche' +
             '&populate[9]=stories_gallery' +
-            '&populate[10]=social_immagine',
+            '&populate[10]=social_immagine' +
+            '&populate[11]=banner_immagine',
             { next: { revalidate: 1000 }}
         );
         content = await data.json();
@@ -201,6 +202,31 @@ export default async function Home() {
                       </div>
                   </div>
             </section>
+          }
+
+          {content.data['banner_immagine'].url && content.data['banner_testo'] &&
+              <section className="flex flex-col gap-8 w-full justify-center pb-24">
+                  <div className="relative w-full h-[400px]">
+                      <Image src={process.env.NEXT_PUBLIC_BASE_URL + content.data['banner_immagine'].url}
+                             alt={content.data['banner_immagine'].alternativeText} width={2000} height={300}
+                             className="w-full h-full object-cover"
+                      />
+                      <div
+                          className="bg-corpo-blue/75 md:bg-transparent md:bg-linear-to-r from-corpo-blue to-transparent z-10 absolute w-full h-full top-0"></div>
+                      <div
+                          className="text-white text-3xl absolute top-0 z-12 font-bold w-[80vw] left-[10vw] h-full flex flex-col justify-center items-center md:items-start gap-8">
+                          <p className="w-full md:w-[40%] text-center md:text-left">
+                              {content.data['banner_testo']}
+                          </p>
+
+                          <Link href="/plan"
+                             className="w-[164px] cursor-pointer font-medium text-base px-3 py-3 text-black transition duration-500 hover:bg-corpo-orange bg-soft-orange rounded-full text-center">
+                              Scopri di più &gt;
+                          </Link>
+
+                      </div>
+                  </div>
+              </section>
           }
 
           <section className="flex flex-col gap-8 w-full justify-center pb-24">
