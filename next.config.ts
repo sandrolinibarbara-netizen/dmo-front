@@ -7,8 +7,8 @@ const nextConfig: NextConfig = {
     images: {
         dangerouslyAllowLocalIP: isDev,
         remotePatterns: [
-            new URL('http://localhost:1338/uploads/**'),
-            new URL('https://strapi-production-f50f.up.railway.app/uploads/**'),
+            new URL('http://localhost:1339/uploads/**'),
+            new URL('https://strapi-mbmm-staging.up.railway.app/uploads/**'),
         ],
         // remotePatterns: [
         //     {
