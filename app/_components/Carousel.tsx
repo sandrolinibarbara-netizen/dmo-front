@@ -8,20 +8,18 @@ export default function Carousel({pics}:{pics:any}) {
 
     const [slide, setSlide] = useState<number>(0);
     const [placeholder, setPlaceholder] = useState<number>(slide);
-
-
     function setCurrentSlide(fn:string) {
         document.getElementById('prevBtn')?.setAttribute('disabled', 'disabled');
         document.getElementById('nextBtn')?.setAttribute('disabled', 'disabled');
         if(fn === 'add') {
-            if(slide === 6) {
+            if(slide === pics.length - 1) {
                 setSlide(0);
             } else {
                 setSlide(prev => prev + 1);
             }
         } else {
             if(slide === 0) {
-                setSlide(6);
+                setSlide(pics.length - 1);
             } else {
                 setSlide(prev => prev - 1);
             }
@@ -41,15 +39,16 @@ export default function Carousel({pics}:{pics:any}) {
             document.getElementById('nextBtn')?.removeAttribute('disabled');
             setPlaceholder(slide);
         }, 1500)
-    }, [slide])
+    }, [slide]);
 
    return(
        <div className="flex flex-col items-center gap-4 w-full max-w-[100%]">
            <div className="flex items-center w-full h-[80vh] relative max-w-[100%]">
-               <PrevSlide setSlide={() =>setCurrentSlide('sub')}/>
+               <PrevSlide aria-hidden={true} setSlide={() => setCurrentSlide('sub')}/>
                {pics &&
                    <>
                        <Image
+                           aria-hidden={true}
                            className='object-cover absolute z-0'
                            src={process.env.NEXT_PUBLIC_BASE_URL + pics[placeholder].url}
                            alt={pics[placeholder].alternativeText}
@@ -72,9 +71,10 @@ export default function Carousel({pics}:{pics:any}) {
                        }
                    </>
                }
-               <NextSlide setSlide={() => setCurrentSlide('add')}/>
+
+               <NextSlide aria-hidden={true} setSlide={() => setCurrentSlide('add')}/>
            </div>
-           <div className="flex gap-2">
+           <div aria-hidden={true} className="flex gap-2">
                {pics &&
                    pics.map((pic: any, i: number) => {
                        return(

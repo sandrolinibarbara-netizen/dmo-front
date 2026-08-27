@@ -1,4 +1,7 @@
 import Image from "next/image";
+// import ContactForm from "@/app/_components/ContactForm";
+import Downloads from "@/app/_components/Downloads";
+import ContactForm from "@/app/_components/ContactForm";
 
 export default async function Who() {
     let content;
@@ -40,7 +43,13 @@ export default async function Who() {
             '&populate[32]=partner_15' +
             '&populate[33]=partner_16' +
             '&populate[34]=partner_17' +
-            '&populate[35]=partner_18',
+            '&populate[35]=partner_18' +
+            '&populate[36]=download_1' +
+            '&populate[37]=download_2' +
+            '&populate[38]=download_3' +
+            '&populate[39]=download_1.download' +
+            '&populate[40]=download_2.download' +
+            '&populate[41]=download_3.download',
             { next: { revalidate: 1000 }}
         );
         content = await data.json();
@@ -55,18 +64,32 @@ export default async function Who() {
 
   return (
       <>
-          <section className="w-[90vw] md:w-[80vw] mx-auto text-center md:text-left mt-[79px] pt-[69px] mb-[80px] min-h-[65vh] fadein-slower">
+          <section
+              className="w-[95vw] md:w-[80vw] mx-auto text-left mt-[79px] px-4 md:px-8 pt-[69px] mb-[80px] min-h-[65vh] fadein-slower">
               <h2 className="font-bold text-4xl">{content.data['partners_titolo']}</h2>
-              <div className="grid justify-items-center grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-4 mt-8">
-              {partnersInfo &&
-                  partnersInfo.map((el:any) => {
-                      if(!el[0]) {
-                          return
-                      } else {
-                          if(el[0].link) {
-                              return (
-                                  <div className="max-w-[200px] w-auto h-24 relative" key={Math.random()}>
-                                      <a href={el[0].link} target="_blank">
+              <div className="grid justify-items-center grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 mt-8">
+                  {partnersInfo &&
+                      partnersInfo.map((el: any) => {
+                          if (!el[0]) {
+                              return
+                          } else {
+                              if (el[0].link) {
+                                  return (
+                                      <div className="max-w-[200px] w-auto h-24 relative" key={Math.random()}>
+                                          <a href={el[0].link} target="_blank" rel="noopener noreferrer">
+                                              <Image
+                                                  width={200}
+                                                  height={100}
+                                                  className="rounded-xl"
+                                                  src={process.env.NEXT_PUBLIC_BASE_URL + el[0].immagine.url}
+                                                  alt={el[0].immagine.alternativeText}
+                                              />
+                                          </a>
+                                      </div>
+                                  )
+                              } else {
+                                  return (
+                                      <div className="max-w-[200px] w-auto h-24 relative" key={Math.random()}>
                                           <Image
                                               width={200}
                                               height={100}
@@ -74,32 +97,24 @@ export default async function Who() {
                                               src={process.env.NEXT_PUBLIC_BASE_URL + el[0].immagine.url}
                                               alt={el[0].immagine.alternativeText}
                                           />
-                                      </a>
-                                  </div>
-                              )
-                          } else {
-                              return (
-                                  <div className="max-w-[200px] w-auto h-24 relative" key={Math.random()}>
-                                      <Image
-                                          width={200}
-                                          height={100}
-                                          className="rounded-xl"
-                                          src={process.env.NEXT_PUBLIC_BASE_URL + el[0].immagine.url}
-                                          alt={el[0].immagine.alternativeText}
-                                      />
-                                  </div>
-                              )
+                                      </div>
+                                  )
+                              }
                           }
-                      }
 
-                  })
-              }
+                      })
+                  }
               </div>
 
-              <h2 className="font-bold text-4xl mt-16">{content.data['diventa_partner_titolo']}</h2>
-              {/*<p className="w-full pl-1 columns-2 mt-8 whitespace-pre-line">{content.data['diventa_partner_descrizione']}</p>*/}
-              <p className="w-full text-center md:text-left font-semibold mt-4">Per maggiori informazioni scrivici a <a href="mailto:info@visitcremona.com" className="underline">info@visitcremona.com</a>
+              <h2 className="font-bold text-3xl mt-16">{content.data['diventa_partner_titolo']}</h2>
+              <p className="w-full pl-1 mt-8 whitespace-pre-line">
+                  {content.data.diventa_partner_descrizione}
+                  <a className="underline" href="mailto:info@visitcremona.com">Scrivici per saperne di più.</a>
               </p>
+              {/*<ContactForm newsletter={false}/>*/}
+
+              {/*<h2 className="font-bold text-3xl mt-20 mb-8">Scaricabili</h2>*/}
+              {/*<Downloads info={content.data}/>*/}
           </section>
       </>
   );

@@ -4,6 +4,7 @@ import "./globals.css";
 import Menu from "@/app/_components/Menu";
 import Footer from "@/app/_components/Footer";
 import Iubenda from "@/app/_components/Iubenda";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,15 +40,24 @@ export default async function RootLayout({
     }
 
   return (
-    <html lang="en">
-    <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-    >
-    <Menu links={content.data}/>
-    {children}
-    <Footer links={content.data} contacts={contactsContent.data}/>
-    <Iubenda/>
-    </body>
+    <html lang="it">
+        <head>
+            <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+                  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+                  crossOrigin=""/>
+            <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1"/>
+        </head>
+        <body
+            className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
+            <Menu links={content.data}/>
+            <main id="main">
+                {children}
+            </main>
+            <Footer links={content.data} contacts={contactsContent.data}/>
+            <Iubenda/>
+            <Script src="https://cdn.jsdelivr.net/npm/sienna-accessibility@latest/dist/sienna-accessibility.umd.js" defer />
+        </body>
     </html>
   );
 }

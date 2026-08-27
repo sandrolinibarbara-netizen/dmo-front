@@ -1,25 +1,32 @@
 import Image from "next/image";
+import LocalMap from "@/app/_components/LocalMap";
+import TalesLogo from "@/app/_components/TalesLogo";
+import Link from "next/link";
+import AnimatedHoverButton from "@/app/_components/AnimatedHoverButton";
+import FilteredExperiences from "@/app/_components/FilteredExperiences";
+import {getExperiences} from "@/app/lib/domnia-experiences";
 
 export default async function Discover() {
     let content;
 
     try {
-        let data = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/discover?populate=*',
+        const data = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/discover?populate=*',
             { next: { revalidate: 1000 }});
         content = await data.json();
     } catch(error) {
         console.log(error);
     }
 
+    const pages = await getExperiences('/discover');
+
     return(
         <>
             <section className="mt-[79px] bg-alt-blue fadein-slower">
-                <div className="flex flex-col md:flex-row gap-20 w-[90vw] md:w-[80vw] mx-auto justify-center px-4 md:px-8 pt-20 pb-24 text-white">
+                <div className="flex flex-col md:flex-row gap-20 w-[95vw] md:w-[80vw] mx-auto justify-center px-4 md:px-8 pt-20 pb-24 text-white">
                     <div className="flex flex-col gap-2 w-full md:w-2/4">
                         <p className="text-sm"><span className="font-semibold">Home /</span> Scopri il territorio</p>
                         <h2 className="font-bold text-4xl mt-8">{content.data['titolo_1']}</h2>
                         <p className="w-full mt-2 pl-1 whitespace-pre-line">{content.data['testo_1']}</p>
-
                     </div>
                     <div className="w-full h-[500px] md:w-2/4 md:h-auto relative">
                         <Image
@@ -32,7 +39,7 @@ export default async function Discover() {
                 </div>
             </section>
 
-            <section className="flex flex-col md:flex-row gap-20 w-[90vw] md:w-[80vw] mx-auto justify-center px-4 md:px-8 pt-20 pb-24">
+            <section className="flex flex-col md:flex-row gap-20 w-[95vw] md:w-[80vw] mx-auto justify-center px-4 md:px-8 pt-20 pb-24">
                 <div className="w-full h-[500px] md:w-2/4 md:h-auto relative">
                     <Image
                         className="object-cover object-center rounded-xl"
@@ -49,7 +56,7 @@ export default async function Discover() {
             </section>
 
             <section className="bg-alt-blue text-white">
-                <div className="flex flex-col md:flex-row gap-12 w-[90vw] md:w-[80vw] mx-auto justify-center px-4 md:px-8 pt-20 pb-24">
+                <div className="flex flex-col md:flex-row gap-12 w-[95vw] md:w-[80vw] mx-auto justify-center px-4 md:px-8 pt-20 pb-24">
                     <div className="flex flex-col gap-2 w-full md:w-2/4">
                         <h2 className="font-bold text-4xl mt-8">{content.data['titolo_3']}</h2>
                         <p className="w-full mt-2 pl-1 whitespace-pre-line">{content.data['testo_3']}</p>
@@ -65,6 +72,77 @@ export default async function Discover() {
                     </div>
                 </div>
             </section>
+
+            <section>
+                <div className="w-[95vw] md:w-[80vw] mx-auto px-4 md:px-8 pt-20 pb-24">
+                    <h2 className="font-bold text-4xl mt-8">Le Anime del Territorio</h2>
+                    <p className="w-full mt-8 pl-1">
+                        {content.data['anime_testo']}
+                    </p>
+
+                    <div className="mt-12 flex gap-4">
+                        <Link href='#cycling' className="bg-[#918FC7] rounded-full px-4 py-3 text-sm">Cicloturismo</Link>
+                        <Link href='#luthiery' className="bg-sky-300 rounded-full px-4 py-3 text-sm">Musica e liuteria</Link>
+                    </div>
+
+                    {/*Tales of Cycling*/}
+                    <div id="cycling" aria-hidden={true} className="h-[80px]"></div>
+                    <div className="mt-2 mb-8">
+                        <TalesLogo theme="cycling"/>
+                    </div>
+                    <div className="flex gap-4">
+
+                        <FilteredExperiences type='cycling' pages={pages}/>
+
+                        <div className="flex flex-col gap-2 ">
+                            <div className="flex md:flex-row flex-col gap-2">
+                                <div
+                                    className="text-sm rounded-xl w-full md:w-[50%] h-fit md:h-[164px] bg-[#918FC7] py-8 md:py-4 px-8 flex items-center justify-center">
+                                    {content.data['cycling_testo']}
+                                </div>
+                                <Image className="object-cover rounded-xl w-full md:w-[50%] h-[164px]"
+                                       src={process.env.NEXT_PUBLIC_BASE_URL + content.data.immagine_mappa_cycling.url} alt={content.data.immagine_mappa_cycling.alternativeText} width={200} height={100}/>
+                            </div>
+
+                            <LocalMap homepage={false} autoFilter={1} pages={pages}/>
+
+                            <div className="w-full text-right mt-4">
+                                <Link href="/discover/cycling" className="font-bold underline relative">
+                                    <AnimatedHoverButton content="Scopri Tales of Cycling"/>
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/*Tales of Luthiery*/}
+                    <div id="luthiery" aria-hidden={true} className="h-[80px]"></div>
+                    <div id="luthiery" className="mt-2 mb-8">
+                        <TalesLogo theme="luthiery"/>
+                    </div>
+                    <div className="flex gap-4">
+
+                        <FilteredExperiences type="luthiery" pages={pages}/>
+
+                        <div className="flex flex-col gap-2 ">
+                            <div className="flex md:flex-row flex-col gap-2">
+                                <div
+                                    className="text-sm rounded-xl w-full md:w-[50%] h-fit md:h-[164px] bg-sky-300 py-4 px-8 flex items-center justify-center">
+                                    {content.data['luthiery_testo']}
+                                </div>
+                                <Image className="object-cover rounded-xl w-full md:w-[50%] h-[164px]"
+                                       src={process.env.NEXT_PUBLIC_BASE_URL + content.data.immagine_mappa_luthiery.url} alt={content.data.immagine_mappa_luthiery.alternativeText} width={200} height={100}/>
+                            </div>
+                            <LocalMap homepage={false} autoFilter={2} pages={pages}/>
+                            <div className="w-full text-right mt-4">
+                                <Link href="/discover/luthiery" className="font-bold underline relative">
+                                    <AnimatedHoverButton content="Scopri Tales of Music and Luthiery"/>
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
         </>
-)
+    )
 }
